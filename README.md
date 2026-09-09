@@ -82,10 +82,3 @@ Rather than ward-level (coarse, but easy), we run the risk model and map on a **
 
 **6. Validation**
 - Run the full pipeline against one synthetic/test rainfall event end-to-end: rainfall in → per-cell risk map + severity ranking + sample citizen alert out. That's the demo.
-
-## Next steps
-
-Once this README is confirmed:
-1. Attempt to source real GHMC drainage/incident data; fall back to open data per cell where it's unavailable.
-2. Scaffold the two PWAs (citizen, admin) and the FastAPI backend.
-3. Build the grid, pull terrain/drainage/population data for Hyderabad, and train the first-pass risk model.
