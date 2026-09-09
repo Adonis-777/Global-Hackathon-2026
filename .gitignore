@@ -13,3 +13,6 @@ dist/
 # Env files with real secrets
 .env
 backend/.env
+
+# Local dev-server logs
+*.log
