@@ -495,6 +495,40 @@ class RiskEngine:
             for row in df.itertuples()
         ]
 
+    def risk_at_localities(
+        self, rainfall_mm: float, model_name: str = DEFAULT_MODEL, band_method: str = DEFAULT_BAND_METHOD
+    ) -> list[dict]:
+        """Location-level flood probability for a test rainfall event, for
+        every real GHMC 2019 waterlogging-prone locality at once (the
+        "major flood-prone areas" view) - batches the nearest-cell lookup
+        via the shared KDTree instead of N separate risk_at_point() calls."""
+        localities = self.localities()
+        if not localities:
+            return []
+
+        df = self.score(rainfall_mm, model_name, band_method)
+        coords = np.array([[loc["lat"], loc["lon"]] for loc in localities])
+        _, idx = self._grid_tree.query(coords, k=1)
+
+        results = []
+        for loc, cell_idx in zip(localities, idx):
+            row = df.iloc[cell_idx]
+            percentile = float((df["risk_score"] <= row.risk_score).mean() * 100)
+            results.append(
+                {
+                    "name": loc["name"],
+                    "lat": loc["lat"],
+                    "lon": loc["lon"],
+                    "cell_id": int(row.cell_id),
+                    "risk_score": round(float(row.risk_score), 4),
+                    "severity_band": row.severity_band,
+                    "percentile_citywide": round(percentile, 1),
+                    "population_exposed": int(row.population_exposed),
+                }
+            )
+        results.sort(key=lambda r: r["risk_score"], reverse=True)
+        return results
+
     @staticmethod
     def available_options() -> dict:
         """Model/severity-banding choices the frontend can offer, per the

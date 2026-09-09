@@ -100,6 +100,19 @@ def localities():
     return {"localities": get_engine().localities()}
 
 
+@app.get("/api/risk-at-localities")
+def risk_at_localities(rainfall_mm: float = DEFAULT_RAINFALL_MM, model: str = DEFAULT_MODEL, band_method: str = DEFAULT_BAND_METHOD):
+    """Location-level flood probability for a test rainfall event, across
+    every real GHMC 2019 waterlogging-prone locality - the major
+    flood-prone areas of Hyderabad, not just the abstract grid."""
+    return {
+        "rainfall_mm": rainfall_mm,
+        "model": model,
+        "band_method": band_method,
+        "localities": get_engine().risk_at_localities(rainfall_mm, model, band_method),
+    }
+
+
 class OverrideRequest(BaseModel):
     cell_id: int
     severity_band: str = Field(pattern="^(green|yellow|red)$")

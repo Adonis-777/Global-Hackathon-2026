@@ -70,6 +70,22 @@ export interface ModelOptions {
 
 export const fetchModelOptions = () => getJSON<ModelOptions>('/api/model/options')
 
+export interface LocalityRisk {
+  name: string
+  lat: number
+  lon: number
+  cell_id: number
+  risk_score: number
+  severity_band: SeverityBand
+  percentile_citywide: number
+  population_exposed: number
+}
+
+export const fetchRiskAtLocalities = (rainfallMm: number, model: ModelName, bandMethod: BandMethod) =>
+  getJSON<{ rainfall_mm: number; model: ModelName; band_method: BandMethod; localities: LocalityRisk[] }>(
+    `/api/risk-at-localities?rainfall_mm=${rainfallMm}&model=${model}&band_method=${bandMethod}`,
+  )
+
 async function getJSON<T>(path: string): Promise<T> {
   const res = await fetch(`${API_URL}${path}`)
   if (!res.ok) throw new Error(`${path} failed: ${res.status}`)

@@ -14,11 +14,13 @@ import {
   type Hotspot,
   type ModelName,
   type ModelOptions,
+  type LocalityRisk,
   type RiskCellProperties,
   type RiskGridGeoJSON,
   type SeverityBand,
   type SeverityStat,
 } from './api'
+import ProneAreasPanel from './ProneAreasPanel'
 import RiskMap from './RiskMap'
 import SeverityChart from './SeverityChart'
 import SimulationPanel from './SimulationPanel'
@@ -184,7 +186,25 @@ function App() {
         </div>
       </header>
 
-      <div className="px-4 pt-4">
+      <div className="px-4 pt-4 space-y-4">
+        <ProneAreasPanel
+          rainfallMm={rainfallMm}
+          model={model}
+          bandMethod={bandMethod}
+          onSelect={(loc: LocalityRisk) =>
+            setSelected({
+              cell_id: loc.cell_id,
+              lat: loc.lat,
+              lon: loc.lon,
+              risk_score: loc.risk_score,
+              severity_band: loc.severity_band,
+              population_exposed: loc.population_exposed,
+              dist_to_drain_km: 0,
+              dist_to_incident_km: 0,
+              overridden: false,
+            })
+          }
+        />
         <SimulationPanel model={model} bandMethod={bandMethod} onTick={(mm) => setRainfallMm(mm)} />
       </div>
 
