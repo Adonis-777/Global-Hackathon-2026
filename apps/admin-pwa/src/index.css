@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+@import "tailwindcss";
+
+:root {
+  --c-ink: #000000;
+  --c-ink-soft: #2e2e2e;
+  --c-muted: #b8b8b8;
+  --c-surface-nav: #000000;
+  --c-surface-card: #f2f2f2;
+  --c-surface-panel: #ffffff;
+  --c-border-row: #ededed;
+  --c-accent: #38c6ec;
+  --c-band: #0db5ed;
+  --c-danger: #ff3131;
+  --c-warning: #f6a825;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+  color: #ffffff;
+  font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes scan {
+  0% {
+    top: 0%;
+    opacity: 0.8;
+  }
+  50% {
+    top: 98%;
+    opacity: 1;
+  }
+  100% {
+    top: 0%;
+    opacity: 0.8;
+  }
+}
+
+.animate-scan {
+  animation: scan 4s ease-in-out infinite;
+}
+
+@keyframes bounce-short {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-bounce-short {
+  animation: bounce-short 2s ease-in-out infinite;
+}
+
+/* Hide Leaflet control attribution & any tile watermark overlays */
+.leaflet-control-attribution,
+.leaflet-container .leaflet-control-attribution {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}

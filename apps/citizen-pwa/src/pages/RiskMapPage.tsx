@@ -1,38 +1,29 @@
-import { useEffect, useState } from 'react'
-import { fetchRiskGrid, triggerAlert, type AlertResponse, type RiskGridGeoJSON } from './api'
-import RiskMap from './RiskMap'
-import PrecautionarySteps, { RiskLevel } from './components/PrecautionarySteps'
-import { FloodReportingForm } from './pages/FloodReportingForm'
-import { CyberButton } from '../../../shared/ui/CyberButton'
-import { CyberCard } from '../../../shared/ui/CyberCard'
-import { CyberLabel } from '../../../shared/ui/CyberLabel'
+import React, { useState, useEffect } from 'react';
+import { QuantumNav } from '../../../../shared/ui/QuantumNav';
+import { CyberCard } from '../../../../shared/ui/CyberCard';
+import { CyberButton } from '../../../../shared/ui/CyberButton';
+import { CyberLabel } from '../../../../shared/ui/CyberLabel';
+import { AlertNotification } from '../../../../shared/ui/AlertNotification';
+import { RiskCell, SafeRouteOption, AlertPayload } from '../../../../shared/types';
+import { MockApiService } from '../../../admin-pwa/src/api/mockApi';
+import { CitizenInteractiveMap } from '../components/CitizenInteractiveMap';
+import { PrecautionarySteps, RiskLevel } from '../components/PrecautionarySteps';
 
-// Demo "my location" - a real GHMC waterlogging-prone locality (Malakpet)
-const DEMO_LOCATION = { lat: 17.3736706, lon: 78.4996484, label: 'Malakpet (demo location)' }
 
-const SEVERITY_LABEL: Record<string, string> = {
-  red: 'High risk',
-  yellow: 'Moderate risk',
-  green: 'Low risk',
+export interface RiskMapPageProps {
+  onOpenReportForm?: () => void;
 }
 
-const SEVERITY_TO_RISK_LEVEL: Record<string, RiskLevel> = {
-  red: 'HIGH',
-  yellow: 'MODERATE',
-  green: 'LOW',
-}
-
-function App() {
-  const [view, setView] = useState<'map' | 'report'>('map')
-  const [rainfallMm, setRainfallMm] = useState(60)
-  const [riskGrid, setRiskGrid] = useState<RiskGridGeoJSON | null>(null)
-  const [alert, setAlert] = useState<AlertResponse | null>(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [routeGuidanceOpen, setRouteGuidanceOpen] = useState(false)
+export const RiskMapPage: React.FC<RiskMapPageProps> = ({ onOpenReportForm }) => {
+  const [cells, setCells] = useState<RiskCell[]>([]);
+  const [selectedCell, setSelectedCell] = useState<RiskCell | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeTab, setActiveTab] = useState('map');
+  const [routeGuidanceOpen, setRouteGuidanceOpen] = useState(false);
+  const [emergencyAlert, setEmergencyAlert] = useState<AlertPayload | null>(null);
 
   // Simulated Safe Routes
-  const [routes] = useState([
+  const [routes] = useState<SafeRouteOption[]>([
     {
       id: 'RTE_01',
       name: 'Eastern Bypass Corridor (Recommended)',
@@ -66,48 +57,43 @@ function App() {
   ]);
 
   useEffect(() => {
-    let cancelled = false
-    setLoading(true)
-    setError(null)
-    Promise.all([
-      fetchRiskGrid(rainfallMm),
-      triggerAlert({ lat: DEMO_LOCATION.lat, lon: DEMO_LOCATION.lon, rainfallMm }),
-    ])
-      .then(([grid, alertResult]) => {
-        if (cancelled) return
-        setRiskGrid(grid)
-        setAlert(alertResult)
-      })
-      .catch((err) => !cancelled && setError(String(err)))
-      .finally(() => !cancelled && setLoading(false))
-    return () => {
-      cancelled = true
-    }
-  }, [rainfallMm])
+    MockApiService.getRiskCells().then((data) => {
+      setCells(data);
+      if (data.length > 0) setSelectedCell(data[0]);
 
-  const markers = [{ lon: DEMO_LOCATION.lon, lat: DEMO_LOCATION.lat, color: '#0f766e' }]
-  if (alert?.alternate_route) {
-    markers.push({ lon: alert.alternate_route.lon, lat: alert.alternate_route.lat, color: '#22c55e' })
-  }
+      const highRisk = data.find((c) => c.severity === 'HIGH');
+      if (highRisk) {
+        setTimeout(() => {
+          setEmergencyAlert({
+            hexId: highRisk.hexId,
+            locality: highRisk.locality,
+            message: `AVOID AREA: Critical water accumulation detected (${highRisk.waterLevelCm}cm depth). Safe route guidance active.`,
+            severity: 'HIGH',
+            channels: ['SMS', 'PUSH'],
+            affectedPopulation: highRisk.exposedPopulation
+          });
+        }, 1500);
+      }
+    });
+  }, []);
 
-  if (view === 'report') {
-    return <FloodReportingForm onBackToMap={() => setView('map')} />
-  }
+  const filteredCells = cells.filter((c) =>
+    c.locality.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    c.hexId.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="min-h-screen bg-[#000000] text-white font-sans selection:bg-[#38c6ec] selection:text-black pb-16">
-      {/* Top-level Nav Placeholder (Usually QuantumNav, but simplified here for the mockup) */}
-      <header className="bg-[#0e0e0e] border-b border-[#38c6ec]/30 px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <span className="text-[#38c6ec] font-black tracking-tighter text-lg">QUANTUM² [HYD.NOWCAST]</span>
-          <span className="text-[10px] text-[#b8b8b8] font-mono uppercase tracking-widest">Citizen Utility</span>
-        </div>
-        <CyberButton variant="accent" size="sm" onClick={() => setView('report')}>
-          Report Flood ("Uplink")
-        </CyberButton>
-      </header>
+      <QuantumNav
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        ctaText='Report Flood ("Uplink")'
+        onCtaClick={onOpenReportForm}
+        subtitle="COMMUTER"
+      />
 
       <main className="max-w-7xl mx-auto px-4 mt-6 space-y-6">
+
         {/* Hero Commuter Banner */}
         <div className="bg-[#0e0e0e] border border-[#38c6ec]/30 rounded-2xl p-6 relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#38c6ec]/10 rounded-full blur-3xl pointer-events-none" />
@@ -130,29 +116,19 @@ function App() {
               <CyberButton variant="accent" onClick={() => setRouteGuidanceOpen(true)}>
                 Safe Route Advice
               </CyberButton>
+              {onOpenReportForm && (
+                <CyberButton variant="white" onClick={onOpenReportForm}>
+                  + Submit Flood Uplink
+                </CyberButton>
+              )}
             </div>
           </div>
         </div>
 
-        {/* Rainfall Control Bar */}
-        <div className="bg-[#0e0e0e] border border-[#242424] rounded-xl p-4 flex items-center gap-4 shadow-lg">
-          <label htmlFor="rainfall" className="text-xs font-mono text-[#b8b8b8] whitespace-nowrap">
-            SIMULATE RAINFALL: <strong className="text-white">{rainfallMm} mm</strong>
-          </label>
-          <input
-            id="rainfall"
-            type="range"
-            min={10}
-            max={150}
-            step={5}
-            value={rainfallMm}
-            onChange={(e) => setRainfallMm(Number(e.target.value))}
-            className="w-full accent-[#38c6ec]"
-          />
-        </div>
-
-        {/* Map and Alert Grid */}
+        {/* Interactive Map & Locality Inspector Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+          {/* Map Vector Viewer (2 Cols) */}
           <div className="lg:col-span-2 space-y-4">
             <CyberCard
               title="Interactive Commuter Risk Zone Map"
@@ -161,17 +137,50 @@ function App() {
               badge="LIVE MAP"
               className="bg-[#0a0a0a]"
             >
-              <div className="h-[500px] w-full relative">
-                <RiskMap riskGrid={riskGrid} markers={markers} />
-                {loading && (
-                  <div className="absolute top-2 left-2 bg-black/80 text-[#38c6ec] text-xs px-2 py-1 rounded border border-[#38c6ec]/30">
-                    LOADING DATA...
-                  </div>
-                )}
+              {/* Search Bar Input */}
+              <div className="mb-3">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="🔍 Search locality e.g. Begumpet, Khairatabad, Madhapur, Charminar..."
+                  className="w-full bg-[#161616] border border-[#242424] rounded-xl px-4 py-2.5 text-xs text-white placeholder-[#b8b8b8] focus:border-[#38c6ec] focus:outline-none"
+                />
               </div>
+
+              {/* Leaflet Interactive Map View */}
+              <CitizenInteractiveMap
+                cells={filteredCells}
+                selectedCell={selectedCell}
+                onSelectCell={setSelectedCell}
+              />
+
+              {/* Active Selected Location Details Panel */}
+              {selectedCell && (
+                <div className="mt-4 bg-[#121212] border border-[#38c6ec]/40 rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xl">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h4 className="text-sm font-bold text-white">{selectedCell.locality}</h4>
+                      <span className="text-xs font-mono text-[#38c6ec]">[{selectedCell.hexId}]</span>
+                    </div>
+                    <p className="text-xs text-[#b8b8b8] mt-1 font-mono">
+                      Water Depth: <strong className="text-white">{selectedCell.waterLevelCm} cm</strong> | Flood Prob: <strong className="text-white">{(selectedCell.floodProbability * 100).toFixed(0)}%</strong>
+                    </p>
+                  </div>
+
+                  <CyberButton
+                    size="sm"
+                    variant={selectedCell.severity === 'HIGH' ? 'danger' : 'accent'}
+                    onClick={() => setRouteGuidanceOpen(true)}
+                  >
+                    {selectedCell.severity === 'HIGH' ? '⚠️ Avoid Zone & Reroute' : 'Check Safe Route'}
+                  </CyberButton>
+                </div>
+              )}
             </CyberCard>
           </div>
 
+          {/* Commuter Hazard Advice Panel (1 Col) */}
           <div className="lg:col-span-1 space-y-4">
             <CyberCard
               title="Hazard Avoidance Advice"
@@ -179,43 +188,46 @@ function App() {
               badge="AUTO NAV"
               className="bg-[#0a0a0a]"
             >
-              <div className="space-y-4">
-                {alert && alert.triggered ? (
-                  <div className="p-3.5 rounded-xl bg-[#ff3131]/10 border border-[#ff3131]/30">
-                    <div className="flex items-center gap-2 text-[#ff3131] font-bold text-xs">
-                      <span className="w-2 h-2 rounded-full bg-[#ff3131] animate-ping" />
-                      <span>HIGH RISK ADVISORY</span>
-                    </div>
-                    <p className="text-xs text-[#b8b8b8] mt-1 leading-relaxed">
-                      {alert.message}
-                    </p>
+              <div className="space-y-3">
+                <div className="p-3.5 rounded-xl bg-[#ff3131]/10 border border-[#ff3131]/30">
+                  <div className="flex items-center gap-2 text-[#ff3131] font-bold text-xs">
+                    <span className="w-2 h-2 rounded-full bg-[#ff3131] animate-ping" />
+                    <span>HIGH RISK ADVISORY — SECTOR 4</span>
                   </div>
-                ) : (
-                  <div className="p-3.5 rounded-xl bg-[#121212] border border-[#242424]">
-                    <p className="text-xs text-[#b8b8b8]">No critical hazards detected at your location for current rainfall.</p>
-                  </div>
-                )}
+                  <p className="text-xs text-[#b8b8b8] mt-1 leading-relaxed">
+                    "Avoid Begumpet Sector 4 (Red Zone). Use Eastern Bypass Corridor via ORR."
+                  </p>
+                </div>
 
                 <div className="p-3.5 rounded-xl bg-[#121212] border border-[#242424] space-y-2">
                   <span className="text-[11px] font-mono text-[#38c6ec]">FASTEST SAFE ROUTE</span>
-                  <h4 className="text-sm font-bold text-white">{routes[0].name}</h4>
+                  <h4 className="text-sm font-bold text-white">Eastern Bypass Corridor</h4>
                   <div className="flex items-center justify-between text-xs text-[#b8b8b8] font-mono">
-                    <span>Est. Time: <strong className="text-white">{routes[0].durationMinutes} mins</strong></span>
-                    <span>Distance: <strong className="text-white">{routes[0].distanceKm} km</strong></span>
+                    <span>Est. Time: <strong className="text-white">28 mins</strong></span>
+                    <span>Distance: <strong className="text-white">14.2 km</strong></span>
                   </div>
                   <div className="w-full bg-black/50 h-2 rounded-full overflow-hidden">
                     <div className="bg-[#38c6ec] h-full w-[88%]" />
                   </div>
                   <p className="text-[11px] text-[#38c6ec] font-mono">98.8% Flood-Free Safety Index</p>
                 </div>
+
+                {onOpenReportForm && (
+                  <button
+                    onClick={onOpenReportForm}
+                    className="w-full py-3 rounded-xl border border-dashed border-[#38c6ec]/50 bg-[#38c6ec]/5 hover:bg-[#38c6ec]/15 text-[#38c6ec] font-bold text-xs transition-all flex items-center justify-center gap-2"
+                  >
+                    <span>📷 Report Waterlogging Here ("Uplink")</span>
+                  </button>
+                )}
               </div>
             </CyberCard>
-
-            <PrecautionarySteps
-              riskLevel={SEVERITY_TO_RISK_LEVEL[alert?.cell?.severity_band || 'green']}
-            />
           </div>
+
         </div>
+
+        {/* Next Precautionary Steps Section */}
+        <PrecautionarySteps riskLevel={(selectedCell?.severity as RiskLevel) || 'LOW'} />
       </main>
 
       {/* Safe Route Guidance Modal */}
@@ -223,11 +235,11 @@ function App() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
           <div className="bg-[#0f0f0f] border border-[#38c6ec]/40 rounded-2xl max-w-xl w-full p-6 shadow-2xl space-y-4">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
-              <div className="flex items-center gap-3">
+              <div>
                 <span className="text-xs font-mono text-[#38c6ec]">DYNAMIC ROUTE RECALCULATION</span>
                 <h3 className="text-lg font-bold text-white">Safe Route Guidance & Hazard Avoidance</h3>
               </div>
-              <button onClick={() => setRouteGuidanceOpen(false)} className="text-[#b8b8b8] hover:text-white text-xl">✕</button>
+              <button onClick={() => setRouteGuidanceOpen(false)} className="text-[#b8b8b8] hover:text-white">✕</button>
             </div>
 
             <p className="text-xs text-[#b8b8b8]">
@@ -279,8 +291,15 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Floating Retro Emergency Alert Banner */}
+      <AlertNotification
+        alert={emergencyAlert}
+        onDismiss={() => setEmergencyAlert(null)}
+        onAction={() => setRouteGuidanceOpen(true)}
+      />
     </div>
   );
-}
+};
 
-export default App;
+export default RiskMapPage;
