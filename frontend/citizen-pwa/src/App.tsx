@@ -71,13 +71,17 @@ function App() {
     }
   }, [alert, location.lat, location.lon])
 
-  const markers = [{ lon: location.lon, lat: location.lat, color: '#0f766e' }]
+  // Red = where the citizen currently is, green = where they should head.
+  // Destination markers are added first, current location last, so the
+  // red pin renders on top when the two are close enough to overlap.
+  const markers: Array<{ lon: number; lat: number; color: string }> = []
   if (alert?.alternate_route) {
-    markers.push({ lon: alert.alternate_route.lon, lat: alert.alternate_route.lat, color: '#22c55e' })
+    markers.push({ lon: alert.alternate_route.lon, lat: alert.alternate_route.lat, color: '#16a34a' })
   }
   if (safeRoute) {
-    markers.push({ lon: safeRoute.lon, lat: safeRoute.lat, color: '#0d9488' })
+    markers.push({ lon: safeRoute.lon, lat: safeRoute.lat, color: '#16a34a' })
   }
+  markers.push({ lon: location.lon, lat: location.lat, color: '#dc2626' })
 
   const locationLabel =
     location.source === 'gps'
