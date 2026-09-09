@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { fetchRiskGrid, triggerAlert, type AlertResponse, type RiskGridGeoJSON } from './api'
+import PrecautionarySteps from './PrecautionarySteps'
 import RiskMap from './RiskMap'
 
 // Demo "my location" - a real GHMC waterlogging-prone locality (Malakpet,
@@ -90,6 +91,7 @@ function App() {
             )}
           </div>
         )}
+        {alert && <PrecautionarySteps severityBand={alert.cell.severity_band} />}
       </section>
 
       <footer className="p-4 bg-slate-100 border-t border-slate-200 flex flex-col gap-2">
