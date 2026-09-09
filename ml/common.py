@@ -22,8 +22,14 @@ INCIDENTS_CSV = os.path.join(DATA_PROCESSED, "ghmc_waterlogging_incidents_2019.c
 GRID_CSV_PATH = os.path.join(DATA_PROCESSED, "grid_points.csv")
 FEATURES_CSV_PATH = os.path.join(DATA_PROCESSED, "grid_features.csv")
 RISK_GRID_GEOJSON_PATH = os.path.join(DATA_PROCESSED, "risk_grid.geojson")
-MODEL_PATH = os.path.join(MODELS_DIR, "risk_model.joblib")
+MODEL_PATH = os.path.join(MODELS_DIR, "risk_model.joblib")  # kept for back-compat = random_forest
 KMEANS_PATH = os.path.join(MODELS_DIR, "severity_kmeans.joblib")
+
+# One regressor per algorithm compared in the research paper
+# (ML_Algorithm_Comparison_Paper.docx) - selectable live via the backend's
+# `model` query param instead of only ever training/serving Random Forest.
+MODEL_NAMES = ["random_forest", "xgboost", "adaboost"]
+MODEL_PATHS = {name: os.path.join(MODELS_DIR, f"risk_model_{name}.joblib") for name in MODEL_NAMES}
 
 # Grid spacing in degrees. ~0.0045deg latitude is ~500m at Hyderabad's latitude.
 GRID_SPACING_DEG = 0.0045

@@ -3,6 +3,8 @@ uvicorn[standard]
 pandas
 numpy
 scikit-learn
+scipy
+xgboost
 joblib
 python-dotenv
 twilio

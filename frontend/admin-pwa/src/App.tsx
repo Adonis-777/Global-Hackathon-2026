@@ -3,13 +3,17 @@ import {
   clearOverride,
   fetchFleet,
   fetchHotspots,
+  fetchModelOptions,
   fetchRiskGrid,
   fetchSeverityStats,
   mobilizeDrf,
   recallDrf,
   setOverride,
+  type BandMethod,
   type FleetVehicle,
   type Hotspot,
+  type ModelName,
+  type ModelOptions,
   type RiskCellProperties,
   type RiskGridGeoJSON,
   type SeverityBand,
@@ -24,8 +28,14 @@ const BAND_BADGE: Record<SeverityBand, string> = {
   green: 'bg-green-100 text-green-800',
 }
 
+const MODEL_LABEL: Record<ModelName, string> = { random_forest: 'Random Forest', xgboost: 'XGBoost', adaboost: 'AdaBoost' }
+const BAND_METHOD_LABEL: Record<BandMethod, string> = { percentile: 'Percentile (default)', kmeans: 'K-Means', hybrid: 'Hybrid (K-Means + KNN)' }
+
 function App() {
   const [rainfallMm, setRainfallMm] = useState(60)
+  const [modelOptions, setModelOptions] = useState<ModelOptions | null>(null)
+  const [model, setModel] = useState<ModelName>('random_forest')
+  const [bandMethod, setBandMethod] = useState<BandMethod>('percentile')
   const [riskGrid, setRiskGrid] = useState<RiskGridGeoJSON | null>(null)
   const [hotspots, setHotspots] = useState<Hotspot[]>([])
   const [bands, setBands] = useState<SeverityStat[]>([])
@@ -38,10 +48,23 @@ function App() {
   const [dispatching, setDispatching] = useState<string | null>(null)
 
   useEffect(() => {
+    fetchModelOptions().then((opts) => {
+      setModelOptions(opts)
+      setModel(opts.default_model)
+      setBandMethod(opts.default_band_method)
+    })
+  }, [])
+
+  useEffect(() => {
     let cancelled = false
     setLoading(true)
     setError(null)
-    Promise.all([fetchRiskGrid(rainfallMm), fetchHotspots(rainfallMm, 15), fetchSeverityStats(rainfallMm), fetchFleet()])
+    Promise.all([
+      fetchRiskGrid(rainfallMm, model, bandMethod),
+      fetchHotspots(rainfallMm, model, bandMethod, 15),
+      fetchSeverityStats(rainfallMm, model, bandMethod),
+      fetchFleet(),
+    ])
       .then(([grid, hotspotRes, statsRes, fleetRes]) => {
         if (cancelled) return
         setRiskGrid(grid)
@@ -54,7 +77,7 @@ function App() {
     return () => {
       cancelled = true
     }
-  }, [rainfallMm, refreshTick])
+  }, [rainfallMm, model, bandMethod, refreshTick])
 
   useEffect(() => {
     if (!selected) return
@@ -85,7 +108,7 @@ function App() {
     if (!selected) return
     setDispatching(vehicleId)
     try {
-      await mobilizeDrf(vehicleId, selected.cell_id, rainfallMm)
+      await mobilizeDrf(vehicleId, selected.cell_id, rainfallMm, model, bandMethod)
       refresh()
     } catch (err) {
       setError(String(err))
@@ -118,7 +141,7 @@ function App() {
           <span className="h-2 w-2 rounded-full bg-emerald-400" />
           DRF units deployed: <strong>{busyCount}</strong> / {fleet.length}
         </div>
-        <div className="flex items-center gap-2 text-sm">
+        <div className="flex items-center gap-3 text-sm">
           <label htmlFor="rainfall">Rainfall: {rainfallMm} mm</label>
           <input
             id="rainfall"
@@ -129,6 +152,34 @@ function App() {
             value={rainfallMm}
             onChange={(e) => setRainfallMm(Number(e.target.value))}
           />
+          {modelOptions && (
+            <>
+              <select
+                value={model}
+                onChange={(e) => setModel(e.target.value as ModelName)}
+                className="rounded bg-orange-900/60 border border-orange-700 text-xs px-2 py-1"
+                title="Prediction model (see ML_Algorithm_Comparison_Paper.docx)"
+              >
+                {modelOptions.models.map((m) => (
+                  <option key={m} value={m}>
+                    {MODEL_LABEL[m]}
+                  </option>
+                ))}
+              </select>
+              <select
+                value={bandMethod}
+                onChange={(e) => setBandMethod(e.target.value as BandMethod)}
+                className="rounded bg-orange-900/60 border border-orange-700 text-xs px-2 py-1"
+                title="Severity-banding method (see ML_Algorithm_Comparison_Paper.docx)"
+              >
+                {modelOptions.band_methods.map((b) => (
+                  <option key={b} value={b}>
+                    {BAND_METHOD_LABEL[b]}
+                  </option>
+                ))}
+              </select>
+            </>
+          )}
         </div>
       </header>
 

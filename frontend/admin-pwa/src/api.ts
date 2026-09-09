@@ -58,20 +58,36 @@ export interface SeverityStat {
   avg_risk_score: number
 }
 
+export type ModelName = 'random_forest' | 'xgboost' | 'adaboost'
+export type BandMethod = 'percentile' | 'kmeans' | 'hybrid'
+
+export interface ModelOptions {
+  models: ModelName[]
+  default_model: ModelName
+  band_methods: BandMethod[]
+  default_band_method: BandMethod
+}
+
+export const fetchModelOptions = () => getJSON<ModelOptions>('/api/model/options')
+
 async function getJSON<T>(path: string): Promise<T> {
   const res = await fetch(`${API_URL}${path}`)
   if (!res.ok) throw new Error(`${path} failed: ${res.status}`)
   return res.json()
 }
 
-export const fetchRiskGrid = (rainfallMm: number) =>
-  getJSON<RiskGridGeoJSON>(`/api/risk-grid?rainfall_mm=${rainfallMm}`)
+export const fetchRiskGrid = (rainfallMm: number, model: ModelName, bandMethod: BandMethod) =>
+  getJSON<RiskGridGeoJSON>(`/api/risk-grid?rainfall_mm=${rainfallMm}&model=${model}&band_method=${bandMethod}`)
 
-export const fetchHotspots = (rainfallMm: number, limit = 20) =>
-  getJSON<{ rainfall_mm: number; hotspots: Hotspot[] }>(`/api/hotspots?rainfall_mm=${rainfallMm}&limit=${limit}`)
+export const fetchHotspots = (rainfallMm: number, model: ModelName, bandMethod: BandMethod, limit = 20) =>
+  getJSON<{ rainfall_mm: number; hotspots: Hotspot[] }>(
+    `/api/hotspots?rainfall_mm=${rainfallMm}&model=${model}&band_method=${bandMethod}&limit=${limit}`,
+  )
 
-export const fetchSeverityStats = (rainfallMm: number) =>
-  getJSON<{ rainfall_mm: number; bands: SeverityStat[] }>(`/api/stats/severity-population?rainfall_mm=${rainfallMm}`)
+export const fetchSeverityStats = (rainfallMm: number, model: ModelName, bandMethod: BandMethod) =>
+  getJSON<{ rainfall_mm: number; bands: SeverityStat[] }>(
+    `/api/stats/severity-population?rainfall_mm=${rainfallMm}&model=${model}&band_method=${bandMethod}`,
+  )
 
 export async function setOverride(cellId: number, severityBand: SeverityBand) {
   const res = await fetch(`${API_URL}/api/overrides`, {
@@ -94,11 +110,17 @@ export const fetchFleet = (targetLat?: number, targetLon?: number) =>
     targetLat != null && targetLon != null ? `/api/fleet?target_lat=${targetLat}&target_lon=${targetLon}` : '/api/fleet',
   )
 
-export async function mobilizeDrf(vehicleId: string, cellId: number, rainfallMm: number): Promise<FleetVehicle> {
+export async function mobilizeDrf(
+  vehicleId: string,
+  cellId: number,
+  rainfallMm: number,
+  model: ModelName,
+  bandMethod: BandMethod,
+): Promise<FleetVehicle> {
   const res = await fetch(`${API_URL}/api/mobilize`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ vehicle_id: vehicleId, cell_id: cellId, rainfall_mm: rainfallMm }),
+    body: JSON.stringify({ vehicle_id: vehicleId, cell_id: cellId, rainfall_mm: rainfallMm, model, band_method: bandMethod }),
   })
   if (!res.ok) {
     const body = await res.json().catch(() => ({}))

@@ -3,7 +3,7 @@ FastAPI backend for the Urban Waterlogging Nowcast.
 
 Run (from backend/, with backend/requirements.txt installed, and after
 `python ml/run_pipeline.py` has produced data/processed/grid_features.csv
-and ml/models/risk_model.joblib):
+and the ml/models/risk_model_{random_forest,xgboost,adaboost}.joblib trio):
 
     uvicorn app:app --reload --port 8000
 """
@@ -16,7 +16,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from alerts import build_alert_message, send_alert
-from risk_engine import BAND_NAMES, RiskEngine
+from risk_engine import DEFAULT_BAND_METHOD, DEFAULT_MODEL, RiskEngine
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
@@ -52,39 +52,47 @@ def health():
     return {"status": "ok", "cells_loaded": len(engine.grid) if engine else 0}
 
 
+@app.get("/api/model/options")
+def model_options():
+    """Model/severity-banding choices available, per
+    ML_Algorithm_Comparison_Paper.docx - lets the frontend build selectors
+    instead of hardcoding the algorithm names."""
+    return RiskEngine.available_options()
+
+
 @app.get("/api/risk-grid")
-def risk_grid(rainfall_mm: float = DEFAULT_RAINFALL_MM):
-    return get_engine().risk_grid_geojson(rainfall_mm)
+def risk_grid(rainfall_mm: float = DEFAULT_RAINFALL_MM, model: str = DEFAULT_MODEL, band_method: str = DEFAULT_BAND_METHOD):
+    return get_engine().risk_grid_geojson(rainfall_mm, model, band_method)
 
 
 @app.get("/api/hotspots")
-def hotspots(rainfall_mm: float = DEFAULT_RAINFALL_MM, limit: int = 20):
-    return {"rainfall_mm": rainfall_mm, "hotspots": get_engine().hotspots(rainfall_mm, limit)}
+def hotspots(rainfall_mm: float = DEFAULT_RAINFALL_MM, limit: int = 20, model: str = DEFAULT_MODEL, band_method: str = DEFAULT_BAND_METHOD):
+    return {"rainfall_mm": rainfall_mm, "hotspots": get_engine().hotspots(rainfall_mm, limit, model, band_method)}
 
 
 @app.get("/api/stats/severity-population")
-def severity_population_stats(rainfall_mm: float = DEFAULT_RAINFALL_MM):
-    return {"rainfall_mm": rainfall_mm, "bands": get_engine().severity_population_stats(rainfall_mm)}
+def severity_population_stats(rainfall_mm: float = DEFAULT_RAINFALL_MM, model: str = DEFAULT_MODEL, band_method: str = DEFAULT_BAND_METHOD):
+    return {"rainfall_mm": rainfall_mm, "bands": get_engine().severity_population_stats(rainfall_mm, model, band_method)}
 
 
 @app.get("/api/stats/risk-histogram")
-def risk_histogram(rainfall_mm: float = DEFAULT_RAINFALL_MM, bins: int = 10):
-    return {"rainfall_mm": rainfall_mm, "bins": get_engine().risk_histogram(rainfall_mm, bins)}
+def risk_histogram(rainfall_mm: float = DEFAULT_RAINFALL_MM, bins: int = 10, model: str = DEFAULT_MODEL, band_method: str = DEFAULT_BAND_METHOD):
+    return {"rainfall_mm": rainfall_mm, "bins": get_engine().risk_histogram(rainfall_mm, bins, model, band_method)}
 
 
 @app.get("/api/model/feature-importance")
-def feature_importance():
-    return {"features": get_engine().feature_importances()}
+def feature_importance(model: str = DEFAULT_MODEL):
+    return {"model": model, "features": get_engine().feature_importances(model)}
 
 
 @app.get("/api/risk-at-point")
-def risk_at_point(lat: float, lon: float, rainfall_mm: float = DEFAULT_RAINFALL_MM):
-    return get_engine().risk_at_point(lat, lon, rainfall_mm)
+def risk_at_point(lat: float, lon: float, rainfall_mm: float = DEFAULT_RAINFALL_MM, model: str = DEFAULT_MODEL, band_method: str = DEFAULT_BAND_METHOD):
+    return get_engine().risk_at_point(lat, lon, rainfall_mm, model, band_method)
 
 
 @app.get("/api/road-segments")
-def road_segments(rainfall_mm: float = DEFAULT_RAINFALL_MM):
-    return get_engine().affected_road_segments(rainfall_mm)
+def road_segments(rainfall_mm: float = DEFAULT_RAINFALL_MM, model: str = DEFAULT_MODEL, band_method: str = DEFAULT_BAND_METHOD):
+    return get_engine().affected_road_segments(rainfall_mm, model, band_method)
 
 
 @app.get("/api/localities")
@@ -123,12 +131,14 @@ class MobilizeRequest(BaseModel):
     vehicle_id: str
     cell_id: int
     rainfall_mm: float = DEFAULT_RAINFALL_MM
+    model: str = DEFAULT_MODEL
+    band_method: str = DEFAULT_BAND_METHOD
 
 
 @app.post("/api/mobilize")
 def mobilize_drf(body: MobilizeRequest):
     try:
-        return get_engine().mobilize_drf(body.vehicle_id, body.cell_id, body.rainfall_mm)
+        return get_engine().mobilize_drf(body.vehicle_id, body.cell_id, body.rainfall_mm, body.model, body.band_method)
     except ValueError as exc:
         raise HTTPException(status_code=409, detail=str(exc))
 

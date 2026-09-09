@@ -15,13 +15,26 @@ import joblib
 import numpy as np
 import pandas as pd
 from scipy.spatial import cKDTree
+from sklearn.cluster import KMeans
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import StandardScaler
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 GRID_FEATURES_CSV = os.path.join(REPO_ROOT, "data", "processed", "grid_features.csv")
-MODEL_PATH = os.path.join(REPO_ROOT, "ml", "models", "risk_model.joblib")
 ROADS_GEOJSON = os.path.join(REPO_ROOT, "data", "raw", "osm_roads_hyderabad.geojson")
 LOCALITIES_CSV = os.path.join(REPO_ROOT, "data", "processed", "ghmc_waterlogging_incidents_2019.csv")
 DEPOTS_JSON = os.path.join(REPO_ROOT, "data", "processed", "drf_depots.json")
+
+# The three regressors compared in ML_Algorithm_Comparison_Paper.docx
+# (ml/run_experiments.py), trained live for continuous risk scoring by
+# ml/train_risk_model.py. All three are loaded so the API's `model` param
+# can switch between them without a restart.
+MODEL_NAMES = ["random_forest", "xgboost", "adaboost"]
+MODEL_PATHS = {name: os.path.join(REPO_ROOT, "ml", "models", f"risk_model_{name}.joblib") for name in MODEL_NAMES}
+DEFAULT_MODEL = "random_forest"
+
+BAND_METHODS = ["percentile", "kmeans", "hybrid"]
+DEFAULT_BAND_METHOD = "percentile"
 
 BAND_RANK = {"green": 0, "yellow": 1, "red": 2}
 BAND_NAMES = ["green", "yellow", "red"]
@@ -46,17 +59,15 @@ class RiskEngine:
     without needing to re-run the whole offline pipeline."""
 
     def __init__(self):
-        missing = [p for p in (GRID_FEATURES_CSV, MODEL_PATH) if not os.path.exists(p)]
+        missing = [p for p in (GRID_FEATURES_CSV, *MODEL_PATHS.values()) if not os.path.exists(p)]
         if missing:
             raise FileNotFoundError(
                 "Missing pipeline output(s): "
                 + ", ".join(missing)
-                + ". Run `python ml/run_pipeline.py` first (see ml/requirements.txt)."
+                + ". Run `python ml/train_risk_model.py` (or the full `python ml/run_pipeline.py`) first."
             )
         self.grid = pd.read_csv(GRID_FEATURES_CSV)
-        bundle = joblib.load(MODEL_PATH)
-        self.model = bundle["model"]
-        self.feature_cols = bundle["feature_cols"]
+        self.models: dict[str, dict] = {name: joblib.load(path) for name, path in MODEL_PATHS.items()}
         # human-in-the-loop overrides: cell_id -> severity_band, kept in memory only
         self.overrides: dict[int, str] = {}
         # DRF vehicle fleet: in-memory list of dicts (id, zone, home_lat/lon,
@@ -110,28 +121,62 @@ class RiskEngine:
             )
         return roads
 
-    def score(self, rainfall_mm: float) -> pd.DataFrame:
+    def score(self, rainfall_mm: float, model_name: str = DEFAULT_MODEL, band_method: str = DEFAULT_BAND_METHOD) -> pd.DataFrame:
+        bundle = self.models.get(model_name, self.models[DEFAULT_MODEL])
+        model, feature_cols = bundle["model"], bundle["feature_cols"]
+
         df = self.grid.copy()
         df["rainfall_mm"] = rainfall_mm
-        df["risk_score"] = self.model.predict(df[self.feature_cols]).clip(0, 1)
+        df["risk_score"] = model.predict(df[feature_cols]).clip(0, 1)
         df["population_exposed"] = (df["population_density"] * 0.25).round().astype(int)
-
-        # Severity via percentile rank, not fixed absolute thresholds: the
-        # heuristic-trained model's score range shifts with rainfall_mm, so a
-        # fixed 0.33/0.66 cut left "red" almost empty at moderate rainfall.
-        # Bottom 50% -> green, next 30% -> yellow, top 20% -> red mirrors the
-        # real use case (a small, prioritized mobilization set), not an even split.
-        df["severity_band"] = pd.qcut(
-            df["risk_score"].rank(method="first"), q=[0, 0.5, 0.8, 1.0], labels=BAND_NAMES
-        ).astype(str)
+        df["severity_band"] = self._assign_bands(df, band_method if band_method in BAND_METHODS else DEFAULT_BAND_METHOD)
 
         for cell_id, band in self.overrides.items():
             df.loc[df["cell_id"] == cell_id, "severity_band"] = band
 
         return df
 
-    def risk_grid_geojson(self, rainfall_mm: float) -> dict:
-        df = self.score(rainfall_mm)
+    @staticmethod
+    def _assign_bands(df: pd.DataFrame, band_method: str) -> pd.Series:
+        """Three interchangeable severity-banding methods, all benchmarked in
+        ML_Algorithm_Comparison_Paper.docx (ml/run_experiments.py, Task B):
+
+        - percentile (default/production): bottom 50% green, next 30% yellow,
+          top 20% red. Cheap, and avoids a fixed absolute threshold leaving
+          "red" empty when the model's score range shifts with rainfall_mm.
+        - kmeans: unsupervised K-Means(k=3) on standardized
+          (risk_score, population_exposed), the paper's baseline - bands
+          reflect natural clusters in the risk/population space rather than
+          a fixed percentile split.
+        - hybrid: kmeans bands, then each cell's band is replaced by the
+          majority band among its 5 nearest geographic neighbours, trading a
+          little cluster purity for map-visible spatial coherence (no
+          isolated single red cell inside a green area).
+        """
+        if band_method == "percentile":
+            return pd.qcut(df["risk_score"].rank(method="first"), q=[0, 0.5, 0.8, 1.0], labels=BAND_NAMES).astype(str)
+
+        X = StandardScaler().fit_transform(df[["risk_score", "population_exposed"]])
+        kmeans = KMeans(n_clusters=3, random_state=7, n_init=10)
+        clusters = kmeans.fit_predict(X)
+        order = pd.Series(df["risk_score"].values).groupby(clusters).mean().sort_values().index.tolist()
+        band_map = {cluster: BAND_NAMES[rank] for rank, cluster in enumerate(order)}
+        bands = np.array([band_map[c] for c in clusters])
+
+        if band_method == "kmeans":
+            return pd.Series(bands, index=df.index)
+
+        # hybrid: spatial smoothing on top of the kmeans bands
+        band_ranks = np.array([BAND_RANK[b] for b in bands])
+        coords = df[["lat", "lon"]].values
+        geo_knn = KNeighborsClassifier(n_neighbors=5)
+        geo_knn.fit(coords, band_ranks)
+        neighbour_idx = geo_knn.kneighbors(coords, return_distance=False)
+        smoothed_ranks = np.array([np.bincount(band_ranks[idx]).argmax() for idx in neighbour_idx])
+        return pd.Series([BAND_NAMES[r] for r in smoothed_ranks], index=df.index)
+
+    def risk_grid_geojson(self, rainfall_mm: float, model_name: str = DEFAULT_MODEL, band_method: str = DEFAULT_BAND_METHOD) -> dict:
+        df = self.score(rainfall_mm, model_name, band_method)
         features = [
             {
                 "type": "Feature",
@@ -150,10 +195,10 @@ class RiskEngine:
         ]
         return {"type": "FeatureCollection", "features": features}
 
-    def hotspots(self, rainfall_mm: float, limit: int = 20) -> list[dict]:
+    def hotspots(self, rainfall_mm: float, limit: int = 20, model_name: str = DEFAULT_MODEL, band_method: str = DEFAULT_BAND_METHOD) -> list[dict]:
         self._expire_stale_dispatches()
         assigned = {v["assigned_cell_id"]: v for v in self.fleet if v["status"] == "busy"}
-        df = self.score(rainfall_mm)
+        df = self.score(rainfall_mm, model_name, band_method)
         df["mobilization_score"] = df["risk_score"] * df["population_exposed"]
         top = df.sort_values("mobilization_score", ascending=False).head(limit)
         return [
@@ -198,7 +243,14 @@ class RiskEngine:
             out.append(entry)
         return out
 
-    def mobilize_drf(self, vehicle_id: str, cell_id: int, rainfall_mm: float) -> dict:
+    def mobilize_drf(
+        self,
+        vehicle_id: str,
+        cell_id: int,
+        rainfall_mm: float,
+        model_name: str = DEFAULT_MODEL,
+        band_method: str = DEFAULT_BAND_METHOD,
+    ) -> dict:
         """Dispatch a specific free DRF vehicle to a cell, grounded in that
         cell's live risk_score/severity_band. The vehicle becomes busy for an
         estimated round-trip-plus-on-site duration and cannot be dispatched
@@ -210,7 +262,7 @@ class RiskEngine:
         if vehicle["status"] != "free":
             raise ValueError(f"{vehicle_id} is already deployed")
 
-        df = self.score(rainfall_mm)
+        df = self.score(rainfall_mm, model_name, band_method)
         row = df.loc[df["cell_id"] == cell_id]
         if row.empty:
             raise ValueError(f"Unknown cell_id {cell_id}")
@@ -244,8 +296,8 @@ class RiskEngine:
         if vehicle is not None:
             self._reset_vehicle(vehicle)
 
-    def severity_population_stats(self, rainfall_mm: float) -> list[dict]:
-        df = self.score(rainfall_mm)
+    def severity_population_stats(self, rainfall_mm: float, model_name: str = DEFAULT_MODEL, band_method: str = DEFAULT_BAND_METHOD) -> list[dict]:
+        df = self.score(rainfall_mm, model_name, band_method)
         grouped = df.groupby("severity_band").agg(
             cell_count=("cell_id", "count"),
             total_population_exposed=("population_exposed", "sum"),
@@ -313,20 +365,32 @@ class RiskEngine:
             for row in df.itertuples()
         ]
 
-    def feature_importances(self) -> list[dict]:
-        pairs = sorted(zip(self.feature_cols, self.model.feature_importances_), key=lambda x: -x[1])
+    @staticmethod
+    def available_options() -> dict:
+        """Model/severity-banding choices the frontend can offer, per the
+        comparison in ML_Algorithm_Comparison_Paper.docx."""
+        return {
+            "models": MODEL_NAMES,
+            "default_model": DEFAULT_MODEL,
+            "band_methods": BAND_METHODS,
+            "default_band_method": DEFAULT_BAND_METHOD,
+        }
+
+    def feature_importances(self, model_name: str = DEFAULT_MODEL) -> list[dict]:
+        bundle = self.models.get(model_name, self.models[DEFAULT_MODEL])
+        pairs = sorted(zip(bundle["feature_cols"], bundle["model"].feature_importances_), key=lambda x: -x[1])
         return [{"feature": f, "importance": round(float(i), 4)} for f, i in pairs]
 
-    def risk_histogram(self, rainfall_mm: float, bins: int = 10) -> list[dict]:
-        df = self.score(rainfall_mm)
+    def risk_histogram(self, rainfall_mm: float, bins: int = 10, model_name: str = DEFAULT_MODEL, band_method: str = DEFAULT_BAND_METHOD) -> list[dict]:
+        df = self.score(rainfall_mm, model_name, band_method)
         counts, edges = np.histogram(df["risk_score"], bins=bins, range=(0, 1))
         return [
             {"bin_start": round(float(edges[i]), 2), "bin_end": round(float(edges[i + 1]), 2), "count": int(counts[i])}
             for i in range(len(counts))
         ]
 
-    def risk_at_point(self, lat: float, lon: float, rainfall_mm: float) -> dict:
-        df = self.score(rainfall_mm)
+    def risk_at_point(self, lat: float, lon: float, rainfall_mm: float, model_name: str = DEFAULT_MODEL, band_method: str = DEFAULT_BAND_METHOD) -> dict:
+        df = self.score(rainfall_mm, model_name, band_method)
         dist = haversine_km(lat, lon, df["lat"].values, df["lon"].values)
         idx = int(np.argmin(dist))
         row = df.iloc[idx]
@@ -348,11 +412,11 @@ class RiskEngine:
             },
         }
 
-    def affected_road_segments(self, rainfall_mm: float) -> dict:
+    def affected_road_segments(self, rainfall_mm: float, model_name: str = DEFAULT_MODEL, band_method: str = DEFAULT_BAND_METHOD) -> dict:
         """Road segments (trunk/primary/secondary/tertiary, from OSM) whose
         nearest grid cell is yellow or red at this rainfall - i.e. roads
         actually near a modelled hotspot, not just any road in the city."""
-        df = self.score(rainfall_mm)
+        df = self.score(rainfall_mm, model_name, band_method)
         severity = df["severity_band"].values
         risk = df["risk_score"].values
 
