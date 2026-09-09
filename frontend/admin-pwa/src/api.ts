@@ -134,3 +134,60 @@ export async function recallDrf(vehicleId: string) {
   if (!res.ok) throw new Error(`recall failed: ${res.status}`)
   return res.json()
 }
+
+export interface ForecastHour {
+  hour: number
+  day: number
+  hour_of_day: number
+  rainfall_mm: number
+}
+
+export const fetchForecast = (days = 3) => getJSON<{ days: number; hours: ForecastHour[] }>(`/api/forecast?days=${days}`)
+
+export interface DispatchLogEntry {
+  sim_time: string
+  hour_index: number
+  vehicle_id: string
+  cell_id: number
+  severity_band: SeverityBand
+  risk_score: number
+  population_exposed: number
+}
+
+export interface SimulateStepResult {
+  sim_time: string
+  hour_index: number
+  rainfall_mm: number
+  newly_dispatched: FleetVehicle[]
+  fleet: FleetVehicle[]
+  hotspots: Hotspot[]
+  bands: SeverityStat[]
+  log: DispatchLogEntry[]
+}
+
+export async function simulateStep(
+  hourIndex: number,
+  rainfallMm: number,
+  model: ModelName,
+  bandMethod: BandMethod,
+): Promise<SimulateStepResult> {
+  const res = await fetch(`${API_URL}/api/simulate/step`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ hour_index: hourIndex, rainfall_mm: rainfallMm, model, band_method: bandMethod }),
+  })
+  if (!res.ok) throw new Error(`simulate/step failed: ${res.status}`)
+  return res.json()
+}
+
+export async function resetSimulation() {
+  const res = await fetch(`${API_URL}/api/simulate/reset`, { method: 'POST' })
+  if (!res.ok) throw new Error(`simulate/reset failed: ${res.status}`)
+  return res.json()
+}
+
+export async function stopSimulation() {
+  const res = await fetch(`${API_URL}/api/simulate/stop`, { method: 'POST' })
+  if (!res.ok) throw new Error(`simulate/stop failed: ${res.status}`)
+  return res.json()
+}

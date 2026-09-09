@@ -149,6 +149,57 @@ def recall_drf(vehicle_id: str):
     return {"vehicle_id": vehicle_id, "recalled": True}
 
 
+class AutoDispatchRequest(BaseModel):
+    rainfall_mm: float = DEFAULT_RAINFALL_MM
+    model: str = DEFAULT_MODEL
+    band_method: str = DEFAULT_BAND_METHOD
+    threshold_band: str = Field(default="red", pattern="^(green|yellow|red)$")
+
+
+@app.post("/api/auto-dispatch")
+def auto_dispatch(body: AutoDispatchRequest):
+    """One-shot automated mobilization: dispatch every currently-free
+    vehicle to the highest-priority uncovered cell at/above threshold_band,
+    driven purely by the model's current risk/severity output."""
+    dispatched = get_engine().auto_dispatch(body.rainfall_mm, body.model, body.band_method, body.threshold_band)
+    return {"dispatched": dispatched}
+
+
+@app.get("/api/forecast")
+def rainfall_forecast(days: int = 3):
+    return {"days": days, "hours": get_engine().rainfall_forecast(days)}
+
+
+class SimulateStepRequest(BaseModel):
+    hour_index: int = Field(ge=0)
+    rainfall_mm: float
+    model: str = DEFAULT_MODEL
+    band_method: str = DEFAULT_BAND_METHOD
+
+
+@app.post("/api/simulate/step")
+def simulate_step(body: SimulateStepRequest):
+    """One tick of the live 1-3 day forecast playback: advances the
+    simulated clock, lets vehicles whose job duration has elapsed by then
+    auto-return to base, and auto-dispatches free vehicles to any newly
+    red cell at this step's rainfall - the whole point being to watch
+    mobilization happen live as the forecast plays out, with no admin
+    clicking anything."""
+    return get_engine().simulate_step(body.hour_index, body.rainfall_mm, body.model, body.band_method)
+
+
+@app.post("/api/simulate/reset")
+def simulate_reset():
+    get_engine().reset_simulation()
+    return {"reset": True}
+
+
+@app.post("/api/simulate/stop")
+def simulate_stop():
+    get_engine().stop_simulation()
+    return {"stopped": True}
+
+
 class AlertRequest(BaseModel):
     lat: float
     lon: float

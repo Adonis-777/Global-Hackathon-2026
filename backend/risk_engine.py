@@ -82,6 +82,19 @@ class RiskEngine:
         self._grid_tree = cKDTree(self.grid[["lat", "lon"]].values)
         self._roads = self._load_roads() if os.path.exists(ROADS_GEOJSON) else []
 
+        # Simulated clock for the forecast playback (simulate_step): while a
+        # simulation is running, sim_now advances hours-per-step instead of
+        # real wall-clock minutes, so a ~90-minute vehicle dispatch actually
+        # visibly frees up again within the fast-forwarded playback. reset_
+        # simulation() re-anchors sim_epoch to real "now" and clears it back
+        # to normal (real-time) operation.
+        self.sim_epoch: datetime = datetime.now(timezone.utc)
+        self.sim_now: datetime | None = None
+        self.sim_log: list[dict] = []
+
+    def _now(self) -> datetime:
+        return self.sim_now if self.sim_now is not None else datetime.now(timezone.utc)
+
     @staticmethod
     def _load_fleet():
         if not os.path.exists(DEPOTS_JSON):
@@ -97,6 +110,7 @@ class RiskEngine:
                 "dispatched_at": None,
                 "eta_minutes": None,
                 "busy_until": None,
+                "dispatch_reason": None,
             }
             for depot in depots
         ]
@@ -219,18 +233,26 @@ class RiskEngine:
     def _expire_stale_dispatches(self):
         """Vehicles auto-return to free once their estimated busy duration
         elapses - no manual recall required for the normal flow."""
-        now = datetime.now(timezone.utc)
+        now = self._now()
         for v in self.fleet:
             if v["status"] == "busy" and datetime.fromisoformat(v["busy_until"]) <= now:
                 self._reset_vehicle(v)
 
     @staticmethod
     def _reset_vehicle(v: dict):
-        v.update(status="free", assigned_cell_id=None, severity_band=None, dispatched_at=None, eta_minutes=None, busy_until=None)
+        v.update(
+            status="free",
+            assigned_cell_id=None,
+            severity_band=None,
+            dispatched_at=None,
+            eta_minutes=None,
+            busy_until=None,
+            dispatch_reason=None,
+        )
 
     def fleet_status(self, target_lat: float | None = None, target_lon: float | None = None) -> list[dict]:
         self._expire_stale_dispatches()
-        now = datetime.now(timezone.utc)
+        now = self._now()
         out = []
         for v in self.fleet:
             entry = dict(v)
@@ -243,6 +265,37 @@ class RiskEngine:
             out.append(entry)
         return out
 
+    def _dispatch(self, vehicle: dict, row, reason: str) -> dict:
+        """Shared assignment logic for both manual (mobilize_drf) and
+        automatic (auto_dispatch) DRF dispatch - grounded in the cell's live
+        risk_score/severity_band either way. The vehicle becomes busy for an
+        estimated round-trip-plus-on-site duration (using the engine's
+        current clock - real time normally, simulated time during forecast
+        playback) and cannot be dispatched again until it expires or is
+        manually recalled."""
+        dist_km = float(haversine_km(vehicle["home_lat"], vehicle["home_lon"], row.lat, row.lon))
+        eta_minutes = dist_km / DRF_SPEED_KMH * 60
+        on_site_minutes = ON_SITE_MINUTES[row.severity_band]
+        total_busy_minutes = 2 * eta_minutes + on_site_minutes  # there, on-site, and back
+        now = self._now()
+
+        vehicle.update(
+            status="busy",
+            assigned_cell_id=int(row.cell_id),
+            severity_band=row.severity_band,
+            dispatched_at=now.isoformat(),
+            eta_minutes=round(eta_minutes, 1),
+            busy_until=(now + timedelta(minutes=total_busy_minutes)).isoformat(),
+            dispatch_reason=reason,
+        )
+        return {
+            **vehicle,
+            "cell_risk_score": round(float(row.risk_score), 4),
+            "population_exposed": int(row.population_exposed),
+            "on_site_minutes": on_site_minutes,
+            "free_in_minutes": round(total_busy_minutes, 1),
+        }
+
     def mobilize_drf(
         self,
         vehicle_id: str,
@@ -251,10 +304,7 @@ class RiskEngine:
         model_name: str = DEFAULT_MODEL,
         band_method: str = DEFAULT_BAND_METHOD,
     ) -> dict:
-        """Dispatch a specific free DRF vehicle to a cell, grounded in that
-        cell's live risk_score/severity_band. The vehicle becomes busy for an
-        estimated round-trip-plus-on-site duration and cannot be dispatched
-        again until it expires (or is manually recalled early)."""
+        """Manually dispatch a specific free DRF vehicle to a cell."""
         self._expire_stale_dispatches()
         vehicle = next((v for v in self.fleet if v["vehicle_id"] == vehicle_id), None)
         if vehicle is None:
@@ -266,35 +316,115 @@ class RiskEngine:
         row = df.loc[df["cell_id"] == cell_id]
         if row.empty:
             raise ValueError(f"Unknown cell_id {cell_id}")
-        row = row.iloc[0]
+        return self._dispatch(vehicle, row.iloc[0], reason="manual")
 
-        dist_km = float(haversine_km(vehicle["home_lat"], vehicle["home_lon"], row.lat, row.lon))
-        eta_minutes = dist_km / DRF_SPEED_KMH * 60
-        on_site_minutes = ON_SITE_MINUTES[row.severity_band]
-        total_busy_minutes = 2 * eta_minutes + on_site_minutes  # there, on-site, and back
-        now = datetime.now(timezone.utc)
+    def auto_dispatch(
+        self,
+        rainfall_mm: float,
+        model_name: str = DEFAULT_MODEL,
+        band_method: str = DEFAULT_BAND_METHOD,
+        threshold_band: str = "red",
+    ) -> list[dict]:
+        """Automatically dispatch every currently-free vehicle to the
+        highest-priority (risk x population) cell at or above threshold_band
+        that doesn't already have a vehicle assigned - i.e. mobilization
+        driven directly by the model's own severity/probability output,
+        no admin click required. Limited by however many vehicles are
+        actually free right now, same as a human dispatcher would be."""
+        self._expire_stale_dispatches()
+        threshold_rank = BAND_RANK[threshold_band]
 
-        vehicle.update(
-            status="busy",
-            assigned_cell_id=cell_id,
-            severity_band=row.severity_band,
-            dispatched_at=now.isoformat(),
-            eta_minutes=round(eta_minutes, 1),
-            busy_until=(now + timedelta(minutes=total_busy_minutes)).isoformat(),
-        )
-        return {
-            **vehicle,
-            "cell_risk_score": round(float(row.risk_score), 4),
-            "population_exposed": int(row.population_exposed),
-            "on_site_minutes": on_site_minutes,
-            "free_in_minutes": round(total_busy_minutes, 1),
-        }
+        df = self.score(rainfall_mm, model_name, band_method)
+        df["mobilization_score"] = df["risk_score"] * df["population_exposed"]
+        assigned_cells = {v["assigned_cell_id"] for v in self.fleet if v["status"] == "busy"}
+        candidates = df[
+            (df["severity_band"].map(BAND_RANK) >= threshold_rank) & (~df["cell_id"].isin(assigned_cells))
+        ].sort_values("mobilization_score", ascending=False)
+
+        free_vehicles = [v for v in self.fleet if v["status"] == "free"]
+        dispatched = []
+        for row in candidates.itertuples():
+            if not free_vehicles:
+                break
+            nearest = min(free_vehicles, key=lambda v: haversine_km(v["home_lat"], v["home_lon"], row.lat, row.lon))
+            record = self._dispatch(nearest, row, reason="auto")
+            free_vehicles.remove(nearest)
+            dispatched.append(record)
+        return dispatched
 
     def recall_drf(self, vehicle_id: str):
         """Manual early return-to-base, ahead of the automatic expiry."""
         vehicle = next((v for v in self.fleet if v["vehicle_id"] == vehicle_id), None)
         if vehicle is not None:
             self._reset_vehicle(vehicle)
+
+    def rainfall_forecast(self, days: int = 3) -> list[dict]:
+        """Synthetic multi-day monsoon rainfall forecast (placeholder pending
+        real IMD forecast data, see data/DATA_SOURCES.md) - three staggered
+        rain-burst events of increasing then decreasing intensity, so the
+        live simulation has real variation to react to across the window
+        instead of one flat number."""
+        hours = np.arange(days * 24)
+        bursts = [(14, 3.5, 40), (40, 4.0, 120), (58, 3.0, 65)]  # (center_hour, width_hours, peak_mm)
+        rainfall = np.full(len(hours), 8.0)
+        for center, width, peak in bursts:
+            rainfall += peak * np.exp(-((hours - center) ** 2) / (2 * width**2))
+        rainfall = np.clip(rainfall, 5, 160)
+        return [
+            {"hour": int(h), "day": int(h // 24) + 1, "hour_of_day": int(h % 24), "rainfall_mm": round(float(r), 1)}
+            for h, r in zip(hours, rainfall)
+        ]
+
+    def reset_simulation(self):
+        """Re-anchors the simulated clock to real 'now' and returns every
+        vehicle to base, for a clean demo restart."""
+        self.sim_epoch = datetime.now(timezone.utc)
+        self.sim_now = None
+        self.sim_log = []
+        for v in self.fleet:
+            self._reset_vehicle(v)
+
+    def stop_simulation(self):
+        """Exit simulated-time mode and resume real wall-clock time for
+        every subsequent request (fleet timers keep whatever busy_until they
+        already have, now measured against real time again)."""
+        self.sim_now = None
+
+    def simulate_step(
+        self, hour_index: int, rainfall_mm: float, model_name: str = DEFAULT_MODEL, band_method: str = DEFAULT_BAND_METHOD
+    ) -> dict:
+        """One tick of the live forecast playback: advance the simulated
+        clock to sim_epoch + hour_index hours, let any vehicles whose
+        estimated job duration has elapsed by that point auto-return to
+        base, then auto-dispatch free vehicles to any new/still-uncovered
+        red cell - purely driven by the model's current output at this
+        step's rainfall, not a scripted sequence."""
+        self.sim_now = self.sim_epoch + timedelta(hours=hour_index)
+        dispatched = self.auto_dispatch(rainfall_mm, model_name, band_method)
+
+        for record in dispatched:
+            self.sim_log.append(
+                {
+                    "sim_time": self.sim_now.isoformat(),
+                    "hour_index": hour_index,
+                    "vehicle_id": record["vehicle_id"],
+                    "cell_id": record["assigned_cell_id"],
+                    "severity_band": record["severity_band"],
+                    "risk_score": record["cell_risk_score"],
+                    "population_exposed": record["population_exposed"],
+                }
+            )
+
+        return {
+            "sim_time": self.sim_now.isoformat(),
+            "hour_index": hour_index,
+            "rainfall_mm": rainfall_mm,
+            "newly_dispatched": dispatched,
+            "fleet": self.fleet_status(),
+            "hotspots": self.hotspots(rainfall_mm, 15, model_name, band_method),
+            "bands": self.severity_population_stats(rainfall_mm, model_name, band_method),
+            "log": self.sim_log[-30:],
+        }
 
     def severity_population_stats(self, rainfall_mm: float, model_name: str = DEFAULT_MODEL, band_method: str = DEFAULT_BAND_METHOD) -> list[dict]:
         df = self.score(rainfall_mm, model_name, band_method)

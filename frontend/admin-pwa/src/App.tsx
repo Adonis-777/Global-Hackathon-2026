@@ -21,6 +21,7 @@ import {
 } from './api'
 import RiskMap from './RiskMap'
 import SeverityChart from './SeverityChart'
+import SimulationPanel from './SimulationPanel'
 
 const BAND_BADGE: Record<SeverityBand, string> = {
   red: 'bg-red-100 text-red-800',
@@ -182,6 +183,10 @@ function App() {
           )}
         </div>
       </header>
+
+      <div className="px-4 pt-4">
+        <SimulationPanel model={model} bandMethod={bandMethod} onTick={(mm) => setRainfallMm(mm)} />
+      </div>
 
       <div className="flex flex-1 min-h-0">
         <div className="flex-1 relative min-h-[280px]">
