@@ -449,12 +449,14 @@ class RiskEngine:
         dist = haversine_km(lat, lon, df["lat"].values, df["lon"].values)
         idx = int(np.argmin(dist))
         row = df.iloc[idx]
+        percentile = float((df["risk_score"] <= row.risk_score).mean() * 100)
         return {
             "cell_id": int(row.cell_id),
             "lat": float(row.lat),
             "lon": float(row.lon),
             "risk_score": round(float(row.risk_score), 4),
             "severity_band": row.severity_band,
+            "percentile_citywide": round(percentile, 1),
             "distance_km": round(float(dist[idx]), 3),
         }
 

@@ -30,6 +30,7 @@ export interface AlertResponse {
     lon: number
     risk_score: number
     severity_band: SeverityBand
+    percentile_citywide: number
     distance_km: number
   }
   alternate_route?: {

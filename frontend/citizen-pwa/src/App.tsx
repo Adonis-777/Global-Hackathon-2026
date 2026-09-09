@@ -2,14 +2,13 @@ import { useEffect, useState } from 'react'
 import { fetchRiskGrid, fetchSafeRoute, triggerAlert, type AlertResponse, type RiskGridGeoJSON, type SafeRoute } from './api'
 import AlertRegistrationCard from './AlertRegistrationCard'
 import { DropletIcon, LocationIcon, PhoneIcon } from './icons'
-import LiveRainfallCard from './LiveRainfallCard'
 import PrecautionarySteps from './PrecautionarySteps'
 import RiskLegend from './RiskLegend'
 import RiskMap from './RiskMap'
 import RiskStatusCard from './RiskStatusCard'
 import SafeRouteCard from './SafeRouteCard'
+import { getUrgencyLevel } from './severity'
 import { useGeolocation } from './useGeolocation'
-import { useLiveRainfall } from './useLiveRainfall'
 
 // Fallback "my location" - a real GHMC waterlogging-prone locality (Malakpet,
 // geocoded in data/processed/ghmc_waterlogging_incidents_2019.csv) so the
@@ -17,8 +16,7 @@ import { useLiveRainfall } from './useLiveRainfall'
 const DEMO_LOCATION = { lat: 17.3736706, lon: 78.4996484 }
 
 function App() {
-  const { current: liveRainfall, history: rainfallHistory, loading: rainfallLoading } = useLiveRainfall()
-  const rainfallMm = liveRainfall?.rainfallMm ?? 60
+  const rainfallMm = 60
   const { location, status: gpsStatus, requestLocation } = useGeolocation(DEMO_LOCATION)
   const [riskGrid, setRiskGrid] = useState<RiskGridGeoJSON | null>(null)
   const [alert, setAlert] = useState<AlertResponse | null>(null)
@@ -54,10 +52,18 @@ function App() {
     }
   }, [location.lat, location.lon, rainfallMm])
 
-  // Only a citizen actually in a red zone needs a route out - fetch on
-  // demand rather than for every visitor.
+  const urgency = alert ? getUrgencyLevel(alert.cell.severity_band, alert.cell.percentile_citywide) : null
+  const isCritical = Boolean(alert?.triggered && urgency === 'critical')
+
+  // Only a citizen at critical urgency needs a route out right now - a
+  // cell on the low end of the red band gets "stay alert" advice instead
+  // (see severity.ts), not a "leave immediately" card, and fetching this
+  // on demand avoids the extra request for everyone else. Also requires
+  // alert.triggered so a percentile-red cell on an otherwise low-risk day
+  // (risk_score under the alert threshold) doesn't get a route-out card
+  // when no alert fired at all.
   useEffect(() => {
-    if (alert?.cell.severity_band !== 'red') {
+    if (!isCritical) {
       setSafeRoute(null)
       return
     }
@@ -70,7 +76,7 @@ function App() {
     return () => {
       cancelled = true
     }
-  }, [alert, location.lat, location.lon, rainfallMm])
+  }, [isCritical, location.lat, location.lon, rainfallMm])
 
   // Red = where the citizen currently is, green = where they should head.
   // Destination markers are added first, current location last, so the
@@ -129,10 +135,11 @@ function App() {
           <div className="flex-1 overflow-y-auto p-4 space-y-3">
             {error && <p className="text-sm text-red-600">{error}</p>}
             <AlertRegistrationCard lat={location.lat} lon={location.lon} />
-            <LiveRainfallCard current={liveRainfall} history={rainfallHistory} loading={rainfallLoading} />
             {alert && <RiskStatusCard alert={alert} />}
-            {alert?.cell.severity_band === 'red' && <SafeRouteCard route={safeRoute} loading={safeRouteLoading} />}
-            {alert && <PrecautionarySteps severityBand={alert.cell.severity_band} />}
+            {isCritical && <SafeRouteCard route={safeRoute} loading={safeRouteLoading} />}
+            {alert?.triggered && (
+              <PrecautionarySteps severityBand={alert.cell.severity_band} percentileCitywide={alert.cell.percentile_citywide} />
+            )}
           </div>
 
           <div className="shrink-0 border-t border-slate-200 bg-slate-50 px-4 py-3 flex items-center justify-between gap-2">

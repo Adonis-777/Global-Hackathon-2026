@@ -1,6 +1,6 @@
 import type { AlertResponse } from './api'
 import { InfoIcon, WarningIcon } from './icons'
-import { SEVERITY_BADGE_CLASS, SEVERITY_CARD_CLASS, SEVERITY_HEADLINE, SEVERITY_LABEL } from './severity'
+import { getUrgencyLevel, SEVERITY_BADGE_CLASS, SEVERITY_CARD_CLASS, SEVERITY_LABEL, URGENCY_HEADLINE } from './severity'
 
 export default function RiskStatusCard({ alert }: { alert: AlertResponse }) {
   const band = alert.cell.severity_band
@@ -17,7 +17,8 @@ export default function RiskStatusCard({ alert }: { alert: AlertResponse }) {
     )
   }
 
-  const Icon = band === 'green' ? InfoIcon : WarningIcon
+  const urgency = getUrgencyLevel(band, alert.cell.percentile_citywide)
+  const Icon = urgency === 'low' ? InfoIcon : WarningIcon
 
   return (
     <div className={`rounded-xl border p-4 ${SEVERITY_CARD_CLASS[band]}`}>
@@ -29,10 +30,16 @@ export default function RiskStatusCard({ alert }: { alert: AlertResponse }) {
               {band}
             </span>
             <h2 className="font-semibold text-sm">
-              {SEVERITY_LABEL[band]} near you — {SEVERITY_HEADLINE[band]}
+              {SEVERITY_LABEL[band]} near you — {URGENCY_HEADLINE[urgency]}
             </h2>
           </div>
           <p className="text-xs mt-1 opacity-80">Risk score {alert.cell.risk_score.toFixed(2)} · {alert.cell.distance_km} km from your location</p>
+
+          {urgency === 'elevated' && (
+            <p className="text-xs mt-1.5 opacity-90">
+              This is on the lower end of the high-risk range - not yet critical, but close enough to prepare to move if it worsens.
+            </p>
+          )}
 
           {band !== 'red' && alert.alternate_route && (
             <p className="text-xs mt-1.5">

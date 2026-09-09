@@ -1,9 +1,9 @@
 import type { SeverityBand } from './api'
 import { InfoIcon, WarningIcon } from './icons'
-import { SEVERITY_BADGE_CLASS, SEVERITY_CARD_CLASS } from './severity'
+import { getUrgencyLevel, SEVERITY_BADGE_CLASS, SEVERITY_CARD_CLASS, type UrgencyLevel } from './severity'
 
-const STEPS_BY_BAND: Record<SeverityBand, { heading: string; steps: string[] }> = {
-  red: {
+const STEPS_BY_URGENCY: Record<UrgencyLevel, { heading: string; steps: string[] }> = {
+  critical: {
     heading: 'High risk — act now',
     steps: [
       'Avoid the area now — do not drive or walk through standing water; as little as 30cm can sweep away a car.',
@@ -13,7 +13,20 @@ const STEPS_BY_BAND: Record<SeverityBand, { heading: string; steps: string[] }> 
       'Check on elderly neighbours, people with disabilities, and anyone living on a ground floor nearby.',
     ],
   },
-  yellow: {
+  elevated: {
+    // Still a red-band cell, but on the lower end of that range - the
+    // model isn't calling for an immediate evacuation, so the advice
+    // shouldn't either. See severity.ts's getUrgencyLevel for the cutoff.
+    heading: 'High risk — stay alert',
+    steps: [
+      'Avoid unnecessary travel through the area, especially underpasses and low-lying stretches, while conditions develop.',
+      'Prepare to move to higher ground if conditions worsen — know your route, but no need to leave immediately.',
+      'Keep a torch, power bank, and essential medication within reach.',
+      'Recheck this app if rainfall increases — this status can shift quickly.',
+      'Save GHMC Disaster Management (155304) in your phone in case it does.',
+    ],
+  },
+  moderate: {
     heading: 'Moderate risk — be prepared',
     steps: [
       'Plan an alternate route in advance — avoid known low-lying stretches and underpasses during heavy rain.',
@@ -23,7 +36,7 @@ const STEPS_BY_BAND: Record<SeverityBand, { heading: string; steps: string[] }> 
       'Clear leaves or debris from the drain/gutter nearest your house if it is safe to do so.',
     ],
   },
-  green: {
+  low: {
     heading: 'Low risk — stay aware',
     steps: [
       'No immediate action needed, but keep an eye on the forecast if heavy rain is expected.',
@@ -34,9 +47,15 @@ const STEPS_BY_BAND: Record<SeverityBand, { heading: string; steps: string[] }> 
   },
 }
 
-export default function PrecautionarySteps({ severityBand }: { severityBand: SeverityBand }) {
-  const group = STEPS_BY_BAND[severityBand]
-  const Icon = severityBand === 'green' ? InfoIcon : WarningIcon
+interface Props {
+  severityBand: SeverityBand
+  percentileCitywide: number
+}
+
+export default function PrecautionarySteps({ severityBand, percentileCitywide }: Props) {
+  const urgency = getUrgencyLevel(severityBand, percentileCitywide)
+  const group = STEPS_BY_URGENCY[urgency]
+  const Icon = urgency === 'low' ? InfoIcon : WarningIcon
 
   return (
     <div className={`rounded-xl border p-4 ${SEVERITY_CARD_CLASS[severityBand]}`}>
