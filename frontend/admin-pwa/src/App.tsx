@@ -24,6 +24,7 @@ import ProneAreasPanel from './ProneAreasPanel'
 import RiskMap from './RiskMap'
 import SeverityChart from './SeverityChart'
 import SimulationPanel from './SimulationPanel'
+import TerrainView from './TerrainView'
 
 const BAND_BADGE: Record<SeverityBand, string> = {
   red: 'bg-red-100 text-red-800',
@@ -40,6 +41,7 @@ function App() {
   const [model, setModel] = useState<ModelName>('random_forest')
   const [bandMethod, setBandMethod] = useState<BandMethod>('percentile')
   const [riskGrid, setRiskGrid] = useState<RiskGridGeoJSON | null>(null)
+  const [view3D, setView3D] = useState(false)
   const [hotspots, setHotspots] = useState<Hotspot[]>([])
   const [bands, setBands] = useState<SeverityStat[]>([])
   const [fleet, setFleet] = useState<FleetVehicle[]>([])
@@ -210,7 +212,23 @@ function App() {
 
       <div className="flex flex-1 min-h-0">
         <div className="flex-1 relative min-h-[280px]">
-          <RiskMap riskGrid={riskGrid} onCellClick={setSelected} />
+          {view3D ? <TerrainView riskGrid={riskGrid} /> : <RiskMap riskGrid={riskGrid} onCellClick={setSelected} />}
+
+          <div className="absolute top-2 right-2 flex rounded-full bg-white/90 p-0.5 text-xs shadow">
+            <button
+              onClick={() => setView3D(false)}
+              className={`px-3 py-1 rounded-full font-medium ${!view3D ? 'bg-orange-800 text-white' : 'text-slate-600'}`}
+            >
+              2D Heatmap
+            </button>
+            <button
+              onClick={() => setView3D(true)}
+              className={`px-3 py-1 rounded-full font-medium ${view3D ? 'bg-orange-800 text-white' : 'text-slate-600'}`}
+            >
+              3D Terrain
+            </button>
+          </div>
+
           {loading && (
             <div className="absolute top-2 left-2 bg-white/90 text-xs px-2 py-1 rounded shadow">Loading...</div>
           )}

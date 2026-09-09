@@ -202,6 +202,7 @@ class RiskEngine:
                     "population_exposed": int(row.population_exposed),
                     "dist_to_drain_km": round(float(row.dist_to_drain_km), 3),
                     "dist_to_incident_km": round(float(row.dist_to_incident_km), 3),
+                    "elevation_proxy": round(float(row.elevation_proxy), 2),
                     "overridden": int(row.cell_id) in self.overrides,
                 },
             }

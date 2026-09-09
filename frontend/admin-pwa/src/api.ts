@@ -11,6 +11,7 @@ export interface RiskCellProperties {
   population_exposed: number
   dist_to_drain_km: number
   dist_to_incident_km: number
+  elevation_proxy?: number
   overridden: boolean
 }
 
