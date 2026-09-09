@@ -7,15 +7,19 @@ the backend doesn't need to import the ml/ package - it only needs the
 pipeline's output files to exist. Run `python ml/run_pipeline.py` once
 (from a venv with ml/requirements.txt installed) before starting the API.
 """
+import json
 import os
 
 import joblib
 import numpy as np
 import pandas as pd
+from scipy.spatial import cKDTree
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 GRID_FEATURES_CSV = os.path.join(REPO_ROOT, "data", "processed", "grid_features.csv")
 MODEL_PATH = os.path.join(REPO_ROOT, "ml", "models", "risk_model.joblib")
+ROADS_GEOJSON = os.path.join(REPO_ROOT, "data", "raw", "osm_roads_hyderabad.geojson")
+LOCALITIES_CSV = os.path.join(REPO_ROOT, "data", "processed", "ghmc_waterlogging_incidents_2019.csv")
 
 BAND_RANK = {"green": 0, "yellow": 1, "red": 2}
 BAND_NAMES = ["green", "yellow", "red"]
@@ -47,6 +51,32 @@ class RiskEngine:
         self.feature_cols = bundle["feature_cols"]
         # human-in-the-loop overrides: cell_id -> severity_band, kept in memory only
         self.overrides: dict[int, str] = {}
+
+        # Grid rows never change position/order after this, so a KDTree built
+        # once here can be reused by every request - only risk_score/severity
+        # (which don't affect nearest-neighbour geometry) change per rainfall.
+        self._grid_tree = cKDTree(self.grid[["lat", "lon"]].values)
+        self._roads = self._load_roads() if os.path.exists(ROADS_GEOJSON) else []
+
+    @staticmethod
+    def _load_roads():
+        with open(ROADS_GEOJSON, encoding="utf-8") as f:
+            geojson = json.load(f)
+        roads = []
+        for feat in geojson["features"]:
+            coords = feat["geometry"]["coordinates"]
+            mid = coords[len(coords) // 2]
+            roads.append(
+                {
+                    "osm_id": feat["properties"].get("osm_id"),
+                    "name": feat["properties"].get("name"),
+                    "highway": feat["properties"].get("highway"),
+                    "coordinates": coords,
+                    "mid_lon": mid[0],
+                    "mid_lat": mid[1],
+                }
+            )
+        return roads
 
     def score(self, rainfall_mm: float) -> pd.DataFrame:
         df = self.grid.copy()
@@ -162,6 +192,86 @@ class RiskEngine:
             "severity_band": best.severity_band,
             "distance_km": round(float(best.distance_km), 3),
         }
+
+    def localities(self) -> list[dict]:
+        """Real GHMC 2019 waterlogging-prone localities (geocoded), used to
+        populate a real location picker instead of one hardcoded demo point."""
+        if not os.path.exists(LOCALITIES_CSV):
+            return []
+        df = pd.read_csv(LOCALITIES_CSV)
+        return [
+            {"name": row.locality, "lat": float(row.lat), "lon": float(row.lon)}
+            for row in df.itertuples()
+        ]
+
+    def feature_importances(self) -> list[dict]:
+        pairs = sorted(zip(self.feature_cols, self.model.feature_importances_), key=lambda x: -x[1])
+        return [{"feature": f, "importance": round(float(i), 4)} for f, i in pairs]
+
+    def risk_histogram(self, rainfall_mm: float, bins: int = 10) -> list[dict]:
+        df = self.score(rainfall_mm)
+        counts, edges = np.histogram(df["risk_score"], bins=bins, range=(0, 1))
+        return [
+            {"bin_start": round(float(edges[i]), 2), "bin_end": round(float(edges[i + 1]), 2), "count": int(counts[i])}
+            for i in range(len(counts))
+        ]
+
+    def risk_at_point(self, lat: float, lon: float, rainfall_mm: float) -> dict:
+        df = self.score(rainfall_mm)
+        dist = haversine_km(lat, lon, df["lat"].values, df["lon"].values)
+        idx = int(np.argmin(dist))
+        row = df.iloc[idx]
+        percentile = float((df["risk_score"] <= row.risk_score).mean() * 100)
+        return {
+            "cell_id": int(row.cell_id),
+            "lat": float(row.lat),
+            "lon": float(row.lon),
+            "distance_km": round(float(dist[idx]), 3),
+            "risk_score": round(float(row.risk_score), 4),
+            "severity_band": row.severity_band,
+            "percentile_citywide": round(percentile, 1),
+            "population_exposed": int(row.population_exposed),
+            "rainfall_mm": rainfall_mm,
+            "factors": {
+                "dist_to_drain_km": round(float(row.dist_to_drain_km), 3),
+                "dist_to_incident_km": round(float(row.dist_to_incident_km), 3),
+                "elevation_proxy": round(float(row.elevation_proxy), 1),
+            },
+        }
+
+    def affected_road_segments(self, rainfall_mm: float) -> dict:
+        """Road segments (trunk/primary/secondary/tertiary, from OSM) whose
+        nearest grid cell is yellow or red at this rainfall - i.e. roads
+        actually near a modelled hotspot, not just any road in the city."""
+        df = self.score(rainfall_mm)
+        severity = df["severity_band"].values
+        risk = df["risk_score"].values
+
+        if not self._roads:
+            return {"type": "FeatureCollection", "features": []}
+
+        mids = np.array([[r["mid_lat"], r["mid_lon"]] for r in self._roads])
+        _, idx = self._grid_tree.query(mids, k=1)
+
+        features = []
+        for road, cell_idx in zip(self._roads, idx):
+            band = severity[cell_idx]
+            if band == "green":
+                continue
+            features.append(
+                {
+                    "type": "Feature",
+                    "geometry": {"type": "LineString", "coordinates": road["coordinates"]},
+                    "properties": {
+                        "osm_id": road["osm_id"],
+                        "name": road["name"],
+                        "highway": road["highway"],
+                        "severity_band": band,
+                        "risk_score": round(float(risk[cell_idx]), 4),
+                    },
+                }
+            )
+        return {"type": "FeatureCollection", "features": features}
 
     def set_override(self, cell_id: int, severity_band: str):
         if severity_band not in BAND_NAMES:

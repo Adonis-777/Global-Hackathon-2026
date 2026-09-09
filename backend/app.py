@@ -67,6 +67,31 @@ def severity_population_stats(rainfall_mm: float = DEFAULT_RAINFALL_MM):
     return {"rainfall_mm": rainfall_mm, "bands": get_engine().severity_population_stats(rainfall_mm)}
 
 
+@app.get("/api/stats/risk-histogram")
+def risk_histogram(rainfall_mm: float = DEFAULT_RAINFALL_MM, bins: int = 10):
+    return {"rainfall_mm": rainfall_mm, "bins": get_engine().risk_histogram(rainfall_mm, bins)}
+
+
+@app.get("/api/model/feature-importance")
+def feature_importance():
+    return {"features": get_engine().feature_importances()}
+
+
+@app.get("/api/risk-at-point")
+def risk_at_point(lat: float, lon: float, rainfall_mm: float = DEFAULT_RAINFALL_MM):
+    return get_engine().risk_at_point(lat, lon, rainfall_mm)
+
+
+@app.get("/api/road-segments")
+def road_segments(rainfall_mm: float = DEFAULT_RAINFALL_MM):
+    return get_engine().affected_road_segments(rainfall_mm)
+
+
+@app.get("/api/localities")
+def localities():
+    return {"localities": get_engine().localities()}
+
+
 class OverrideRequest(BaseModel):
     cell_id: int
     severity_band: str = Field(pattern="^(green|yellow|red)$")
