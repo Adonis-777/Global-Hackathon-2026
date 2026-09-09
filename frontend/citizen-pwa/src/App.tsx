@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
 import { fetchRiskGrid, fetchSafeRoute, triggerAlert, type AlertResponse, type RiskGridGeoJSON, type SafeRoute } from './api'
+import { DropletIcon, LocationIcon, PhoneIcon } from './icons'
 import PrecautionarySteps from './PrecautionarySteps'
+import RiskLegend from './RiskLegend'
 import RiskMap from './RiskMap'
+import RiskStatusCard from './RiskStatusCard'
 import SafeRouteCard from './SafeRouteCard'
 import { useGeolocation } from './useGeolocation'
 
@@ -9,12 +12,6 @@ import { useGeolocation } from './useGeolocation'
 // geocoded in data/processed/ghmc_waterlogging_incidents_2019.csv) so the
 // alert has a real chance of firing if device geolocation is unavailable or denied.
 const DEMO_LOCATION = { lat: 17.3736706, lon: 78.4996484 }
-
-const SEVERITY_LABEL: Record<string, string> = {
-  red: 'High risk',
-  yellow: 'Moderate risk',
-  green: 'Low risk',
-}
 
 function App() {
   const rainfallMm = 60
@@ -88,18 +85,24 @@ function App() {
       ? 'Your current location (GPS)'
       : gpsStatus === 'locating'
         ? 'Locating...'
-        : 'Malakpet (demo location - GPS unavailable)'
+        : 'Malakpet (demo location)'
 
   return (
-    <main className="flex flex-col h-screen bg-slate-50 text-slate-900">
-      <header className="bg-teal-700 text-white px-4 py-3">
-        <h1 className="text-lg font-semibold">Hyderabad Waterlogging Alerts</h1>
-        <div className="flex items-center justify-between gap-2">
-          <p className="text-teal-100 text-sm">Citizen PWA - {locationLabel}</p>
+    <main className="flex flex-col h-screen bg-slate-100 text-slate-900 overflow-hidden">
+      <header className="bg-teal-700 text-white px-4 py-3 shrink-0">
+        <div className="flex items-center gap-2">
+          <DropletIcon className="w-5 h-5 text-teal-200" />
+          <h1 className="text-base font-semibold leading-tight">Hyderabad Waterlogging Alerts</h1>
+        </div>
+        <div className="flex items-center justify-between gap-2 mt-0.5 pl-7">
+          <p className="text-teal-100 text-xs flex items-center gap-1">
+            <LocationIcon className="w-3 h-3 shrink-0" />
+            {locationLabel}
+          </p>
           {location.source === 'demo' && gpsStatus !== 'locating' && (
             <button
               onClick={requestLocation}
-              className="text-xs font-medium bg-teal-800/60 hover:bg-teal-800 px-2 py-1 rounded-full whitespace-nowrap"
+              className="text-[11px] font-medium bg-teal-800/60 hover:bg-teal-800 px-2 py-1 rounded-full whitespace-nowrap transition-colors"
             >
               Use my location
             </button>
@@ -107,60 +110,42 @@ function App() {
         </div>
       </header>
 
-      <div className="flex-1 relative min-h-[280px]">
+      <div className="flex-[1.1] relative min-h-[200px]">
         <RiskMap riskGrid={riskGrid} markers={markers} />
+        <RiskLegend />
         {loading && (
-          <div className="absolute top-2 left-2 bg-white/90 text-xs px-2 py-1 rounded shadow">Loading...</div>
+          <div className="absolute top-3 right-3 bg-white/95 backdrop-blur text-xs px-2.5 py-1.5 rounded-lg shadow-md text-slate-600">
+            Loading...
+          </div>
         )}
       </div>
 
-      <section className="p-4 space-y-2 bg-white border-t border-slate-200">
-        {error && <p className="text-sm text-red-600">{error}</p>}
-        {alert && (
-          <div
-            className={
-              'rounded-lg border p-3 text-sm ' +
-              (alert.triggered ? 'border-red-300 bg-red-50 text-red-900' : 'border-slate-200 bg-slate-50 text-slate-600')
-            }
-          >
-            {alert.triggered ? (
-              <>
-                <p className="font-semibold">
-                  {SEVERITY_LABEL[alert.cell.severity_band]} near you (score {alert.cell.risk_score.toFixed(2)})
-                </p>
-                {alert.alternate_route ? (
-                  <p>
-                    Suggested alternate route: ~{alert.alternate_route.distance_km} km toward a {alert.alternate_route.severity_band} zone.
-                  </p>
-                ) : (
-                  <p>No safer nearby route found within 5km.</p>
-                )}
-                <p className="text-xs text-slate-500 mt-1">
-                  Alert delivery: {alert.delivery?.status} (Twilio dry-run unless credentials are configured)
-                </p>
-              </>
-            ) : (
-              <p>No active alert at your location for this rainfall scenario.</p>
-            )}
-          </div>
-        )}
-        {alert?.cell.severity_band === 'red' && <SafeRouteCard route={safeRoute} loading={safeRouteLoading} />}
-        {alert && <PrecautionarySteps severityBand={alert.cell.severity_band} />}
-      </section>
+      <section className="relative z-10 -mt-5 rounded-t-3xl bg-white shadow-[0_-8px_24px_-4px_rgba(0,0,0,0.12)] flex flex-col flex-1 min-h-0">
+        <div className="flex justify-center pt-2.5 pb-1 shrink-0">
+          <span className="w-10 h-1 rounded-full bg-slate-200" />
+        </div>
 
-      <footer className="p-4 bg-slate-100 border-t border-slate-200 flex flex-col gap-2">
-        <h2 className="text-sm font-semibold text-slate-700">Emergency Helpline</h2>
-        <div className="flex items-center justify-between">
-          <p className="text-sm text-slate-600">GHMC Disaster Management</p>
+        <div className="flex-1 overflow-y-auto px-4 pb-3 space-y-3">
+          {error && <p className="text-sm text-red-600">{error}</p>}
+          {alert && <RiskStatusCard alert={alert} />}
+          {alert?.cell.severity_band === 'red' && <SafeRouteCard route={safeRoute} loading={safeRouteLoading} />}
+          {alert && <PrecautionarySteps severityBand={alert.cell.severity_band} />}
+        </div>
+
+        <div className="shrink-0 border-t border-slate-200 bg-slate-50 rounded-b-3xl px-4 py-3 flex items-center justify-between">
+          <div>
+            <h2 className="text-xs font-semibold text-slate-700">Emergency Helpline</h2>
+            <p className="text-xs text-slate-500">GHMC Disaster Management</p>
+          </div>
           <a
             href="tel:155304"
-            className="bg-teal-600 text-white px-3 py-1 rounded-full text-xs font-medium hover:bg-teal-700 transition-colors"
+            className="flex items-center gap-1.5 bg-teal-600 text-white px-3 py-1.5 rounded-full text-xs font-medium hover:bg-teal-700 transition-colors"
           >
+            <PhoneIcon className="w-3.5 h-3.5" />
             Call 155304
           </a>
         </div>
-      </footer>
-
+      </section>
     </main>
   )
 }

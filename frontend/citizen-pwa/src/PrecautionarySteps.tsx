@@ -1,17 +1,10 @@
 import type { SeverityBand } from './api'
+import { InfoIcon, WarningIcon } from './icons'
+import { SEVERITY_BADGE_CLASS, SEVERITY_CARD_CLASS } from './severity'
 
-interface StepGroup {
-  heading: string
-  badgeClass: string
-  containerClass: string
-  steps: string[]
-}
-
-const STEPS_BY_BAND: Record<SeverityBand, StepGroup> = {
+const STEPS_BY_BAND: Record<SeverityBand, { heading: string; steps: string[] }> = {
   red: {
     heading: 'High risk — act now',
-    badgeClass: 'bg-red-600 text-white',
-    containerClass: 'border-red-300 bg-red-50 text-red-900',
     steps: [
       'Avoid the area now — do not drive or walk through standing water; as little as 30cm can sweep away a car.',
       'If you are already there, move to higher ground immediately (upper floors, raised roads).',
@@ -22,8 +15,6 @@ const STEPS_BY_BAND: Record<SeverityBand, StepGroup> = {
   },
   yellow: {
     heading: 'Moderate risk — be prepared',
-    badgeClass: 'bg-amber-500 text-white',
-    containerClass: 'border-amber-300 bg-amber-50 text-amber-900',
     steps: [
       'Plan an alternate route in advance — avoid known low-lying stretches and underpasses during heavy rain.',
       'Keep a torch, power bank, drinking water, and any essential medication ready at home.',
@@ -34,8 +25,6 @@ const STEPS_BY_BAND: Record<SeverityBand, StepGroup> = {
   },
   green: {
     heading: 'Low risk — stay aware',
-    badgeClass: 'bg-emerald-600 text-white',
-    containerClass: 'border-emerald-300 bg-emerald-50 text-emerald-900',
     steps: [
       'No immediate action needed, but keep an eye on the forecast if heavy rain is expected.',
       'Report a blocked or overflowing drain near you — early reports help prevent flooding upstream.',
@@ -47,18 +36,20 @@ const STEPS_BY_BAND: Record<SeverityBand, StepGroup> = {
 
 export default function PrecautionarySteps({ severityBand }: { severityBand: SeverityBand }) {
   const group = STEPS_BY_BAND[severityBand]
+  const Icon = severityBand === 'green' ? InfoIcon : WarningIcon
 
   return (
-    <div className={`rounded-lg border p-3 text-sm ${group.containerClass}`}>
+    <div className={`rounded-xl border p-4 ${SEVERITY_CARD_CLASS[severityBand]}`}>
       <div className="flex items-center gap-2 mb-2">
-        <span className={`text-[10px] font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full ${group.badgeClass}`}>
+        <Icon className="w-5 h-5 shrink-0" />
+        <span className={`text-[10px] font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full ${SEVERITY_BADGE_CLASS[severityBand]}`}>
           {severityBand}
         </span>
-        <h2 className="font-semibold">{group.heading}</h2>
+        <h2 className="font-semibold text-sm">{group.heading}</h2>
       </div>
       <ul className="space-y-1.5">
         {group.steps.map((step) => (
-          <li key={step} className="flex items-start gap-2">
+          <li key={step} className="flex items-start gap-2 text-sm">
             <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-current shrink-0 opacity-60" />
             <span>{step}</span>
           </li>
