@@ -79,14 +79,44 @@ export default function RiskMap({ riskGrid, onCellClick }: Props) {
         return
       }
       map.addSource('risk-grid', { type: 'geojson', data: riskGrid as FeatureCollection })
+
+      // Heatmap first (renders underneath) so severity visually spreads and
+      // blends across the whole city between grid cells, instead of only
+      // showing isolated 5px dots with visible gaps between them.
+      map.addLayer({
+        id: 'risk-grid-heat',
+        type: 'heatmap',
+        source: 'risk-grid',
+        paint: {
+          'heatmap-weight': ['interpolate', ['linear'], ['get', 'risk_score'], 0, 0, 1, 1],
+          'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 9.5, 1, 15, 3],
+          'heatmap-color': [
+            'interpolate',
+            ['linear'],
+            ['heatmap-density'],
+            0, 'rgba(0,0,0,0)',
+            0.2, 'rgba(21,128,61,0.55)',
+            0.4, 'rgba(132,204,22,0.65)',
+            0.6, 'rgba(234,179,8,0.75)',
+            0.8, 'rgba(249,115,22,0.8)',
+            1, 'rgba(220,38,38,0.85)',
+          ],
+          'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 9.5, 18, 15, 45],
+          'heatmap-opacity': 0.85,
+        },
+      })
+
+      // Clickable per-cell dots on top, for the precise selection/override/
+      // DRF-dispatch interactions - kept small and semi-transparent so the
+      // heat spread beneath still reads clearly.
       map.addLayer({
         id: 'risk-grid-circles',
         type: 'circle',
         source: 'risk-grid',
         paint: {
-          'circle-radius': 5,
+          'circle-radius': 4,
           'circle-color': SEVERITY_COLOR_EXPR,
-          'circle-opacity': 0.7,
+          'circle-opacity': 0.55,
           'circle-stroke-width': ['case', ['get', 'overridden'], 2, 0],
           'circle-stroke-color': '#0f172a',
         },
