@@ -1,10 +1,10 @@
 import type { SeverityBand } from './api'
 import { InfoIcon, WarningIcon } from './icons'
-import { getUrgencyLevel, SEVERITY_BADGE_CLASS, SEVERITY_CARD_CLASS, type UrgencyLevel } from './severity'
+import { getUrgencyLevel, URGENCY_BADGE_CLASS, URGENCY_BADGE_LABEL, URGENCY_CARD_CLASS, type UrgencyLevel } from './severity'
 
 const STEPS_BY_URGENCY: Record<UrgencyLevel, { heading: string; steps: string[] }> = {
   critical: {
-    heading: 'High risk — act now',
+    heading: 'Critical risk — act now',
     steps: [
       'Avoid the area now — do not drive or walk through standing water; as little as 30cm can sweep away a car.',
       'If you are already there, move to higher ground immediately (upper floors, raised roads).',
@@ -16,8 +16,9 @@ const STEPS_BY_URGENCY: Record<UrgencyLevel, { heading: string; steps: string[] 
   elevated: {
     // Still a red-band cell, but on the lower end of that range - the
     // model isn't calling for an immediate evacuation, so the advice
-    // shouldn't either. See severity.ts's getUrgencyLevel for the cutoff.
-    heading: 'High risk — stay alert',
+    // (and the badge/heading) shouldn't either. See severity.ts's
+    // getUrgencyLevel for the cutoff.
+    heading: 'Elevated risk — stay alert',
     steps: [
       'Avoid unnecessary travel through the area, especially underpasses and low-lying stretches, while conditions develop.',
       'Prepare to move to higher ground if conditions worsen — know your route, but no need to leave immediately.',
@@ -58,11 +59,11 @@ export default function PrecautionarySteps({ severityBand, percentileCitywide }:
   const Icon = urgency === 'low' ? InfoIcon : WarningIcon
 
   return (
-    <div className={`rounded-xl border p-4 ${SEVERITY_CARD_CLASS[severityBand]}`}>
+    <div className={`rounded-xl border p-4 ${URGENCY_CARD_CLASS[urgency]}`}>
       <div className="flex items-center gap-2 mb-2">
         <Icon className="w-5 h-5 shrink-0" />
-        <span className={`text-[10px] font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full ${SEVERITY_BADGE_CLASS[severityBand]}`}>
-          {severityBand}
+        <span className={`text-[10px] font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full ${URGENCY_BADGE_CLASS[urgency]}`}>
+          {URGENCY_BADGE_LABEL[urgency]}
         </span>
         <h2 className="font-semibold text-sm">{group.heading}</h2>
       </div>
