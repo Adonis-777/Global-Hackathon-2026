@@ -14,7 +14,7 @@ const SEVERITY_LABEL: Record<string, string> = {
 }
 
 function App() {
-  const [rainfallMm, setRainfallMm] = useState(60)
+  const rainfallMm = 60
   const [riskGrid, setRiskGrid] = useState<RiskGridGeoJSON | null>(null)
   const [alert, setAlert] = useState<AlertResponse | null>(null)
   const [loading, setLoading] = useState(false)
@@ -38,7 +38,8 @@ function App() {
     return () => {
       cancelled = true
     }
-  }, [rainfallMm])
+  }, [])
+
 
   const markers = [{ lon: DEMO_LOCATION.lon, lat: DEMO_LOCATION.lat, color: '#0f766e' }]
   if (alert?.alternate_route) {
@@ -51,22 +52,6 @@ function App() {
         <h1 className="text-lg font-semibold">Hyderabad Waterlogging Alerts</h1>
         <p className="text-teal-100 text-sm">Citizen PWA - {DEMO_LOCATION.label}</p>
       </header>
-
-      <section className="px-4 py-3 bg-white border-b border-slate-200 flex items-center gap-3">
-        <label htmlFor="rainfall" className="text-sm text-slate-600 whitespace-nowrap">
-          Test rainfall: {rainfallMm} mm
-        </label>
-        <input
-          id="rainfall"
-          type="range"
-          min={10}
-          max={150}
-          step={5}
-          value={rainfallMm}
-          onChange={(e) => setRainfallMm(Number(e.target.value))}
-          className="w-full"
-        />
-      </section>
 
       <div className="flex-1 relative min-h-[280px]">
         <RiskMap riskGrid={riskGrid} markers={markers} />
