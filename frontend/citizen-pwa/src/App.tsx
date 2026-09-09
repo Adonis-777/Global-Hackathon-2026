@@ -106,6 +106,20 @@ function App() {
           </div>
         )}
       </section>
+
+      <footer className="p-4 bg-slate-100 border-t border-slate-200 flex flex-col gap-2">
+        <h2 className="text-sm font-semibold text-slate-700">Emergency Helpline</h2>
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-slate-600">GHMC Disaster Management</p>
+          <a
+            href="tel:155304"
+            className="bg-teal-600 text-white px-3 py-1 rounded-full text-xs font-medium hover:bg-teal-700 transition-colors"
+          >
+            Call 155304
+          </a>
+        </div>
+      </footer>
+
     </main>
   )
 }
