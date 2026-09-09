@@ -87,6 +87,14 @@ export const fetchRiskAtLocalities = (rainfallMm: number, model: ModelName, band
     `/api/risk-at-localities?rainfall_mm=${rainfallMm}&model=${model}&band_method=${bandMethod}`,
   )
 
+export interface FeatureImportance {
+  feature: string
+  importance: number
+}
+
+export const fetchFeatureImportance = (model: ModelName) =>
+  getJSON<{ model: ModelName; features: FeatureImportance[] }>(`/api/model/feature-importance?model=${model}`)
+
 async function getJSON<T>(path: string): Promise<T> {
   const res = await fetch(`${API_URL}${path}`)
   if (!res.ok) throw new Error(`${path} failed: ${res.status}`)

@@ -12,30 +12,45 @@ import {
   type BandMethod,
   type FleetVehicle,
   type Hotspot,
+  type LocalityRisk,
   type ModelName,
   type ModelOptions,
-  type LocalityRisk,
   type RiskCellProperties,
   type RiskGridGeoJSON,
   type SeverityBand,
   type SeverityStat,
 } from './api'
-import ProneAreasPanel from './ProneAreasPanel'
-import RiskMap from './RiskMap'
-import SeverityChart from './SeverityChart'
-import SimulationPanel from './SimulationPanel'
-import TerrainView from './TerrainView'
+import { BAND_METHOD_LABEL, MODEL_LABEL } from './constants'
+import FleetOpsTab from './pages/FleetOpsTab'
+import ForecastTab from './pages/ForecastTab'
+import OverviewTab from './pages/OverviewTab'
+import RiskModelTab from './pages/RiskModelTab'
+import StatCard from './ui/StatCard'
 
-const BAND_BADGE: Record<SeverityBand, string> = {
-  red: 'bg-red-100 text-red-800',
-  yellow: 'bg-yellow-100 text-yellow-800',
-  green: 'bg-green-100 text-green-800',
+type Tab = 'overview' | 'fleet' | 'model' | 'forecast'
+const TABS: { id: Tab; label: string }[] = [
+  { id: 'overview', label: 'Overview & Map' },
+  { id: 'fleet', label: 'Fleet & Mobilization' },
+  { id: 'model', label: 'Risk Model & Prone Areas' },
+  { id: 'forecast', label: 'Forecast Simulation' },
+]
+
+function localityToCell(loc: LocalityRisk): RiskCellProperties {
+  return {
+    cell_id: loc.cell_id,
+    lat: loc.lat,
+    lon: loc.lon,
+    risk_score: loc.risk_score,
+    severity_band: loc.severity_band,
+    population_exposed: loc.population_exposed,
+    dist_to_drain_km: 0,
+    dist_to_incident_km: 0,
+    overridden: false,
+  }
 }
 
-const MODEL_LABEL: Record<ModelName, string> = { random_forest: 'Random Forest', xgboost: 'XGBoost', adaboost: 'AdaBoost' }
-const BAND_METHOD_LABEL: Record<BandMethod, string> = { percentile: 'Percentile (default)', kmeans: 'K-Means', hybrid: 'Hybrid (K-Means + KNN)' }
-
 function App() {
+  const [tab, setTab] = useState<Tab>('overview')
   const [rainfallMm, setRainfallMm] = useState(60)
   const [modelOptions, setModelOptions] = useState<ModelOptions | null>(null)
   const [model, setModel] = useState<ModelName>('random_forest')
@@ -132,266 +147,132 @@ function App() {
     }
   }
 
-  const assignedToSelected = selected ? fleet.find((v) => v.status === 'busy' && v.assigned_cell_id === selected.cell_id) : undefined
+  const goToOverview = (cell: RiskCellProperties) => {
+    setSelected(cell)
+    setTab('overview')
+  }
+
   const busyCount = fleet.filter((v) => v.status === 'busy').length
+  const redBand = bands.find((b) => b.severity_band === 'red')
 
   return (
     <main className="flex flex-col h-screen bg-slate-50 text-slate-900">
-      <header className="bg-orange-800 text-white px-4 py-3 flex items-center justify-between">
-        <div>
-          <h1 className="text-lg font-semibold">Hyderabad Disaster Response</h1>
-          <p className="text-orange-100 text-sm">Admin PWA</p>
-        </div>
-        <div className="flex items-center gap-2 rounded-full bg-orange-900/60 px-3 py-1 text-sm">
-          <span className="h-2 w-2 rounded-full bg-emerald-400" />
-          DRF units deployed: <strong>{busyCount}</strong> / {fleet.length}
-        </div>
-        <div className="flex items-center gap-3 text-sm">
-          <label htmlFor="rainfall">Rainfall: {rainfallMm} mm</label>
-          <input
-            id="rainfall"
-            type="range"
-            min={10}
-            max={150}
-            step={5}
-            value={rainfallMm}
-            onChange={(e) => setRainfallMm(Number(e.target.value))}
-          />
-          {modelOptions && (
-            <>
-              <select
-                value={model}
-                onChange={(e) => setModel(e.target.value as ModelName)}
-                className="rounded bg-orange-900/60 border border-orange-700 text-xs px-2 py-1"
-                title="Prediction model (see ML_Algorithm_Comparison_Paper.docx)"
-              >
-                {modelOptions.models.map((m) => (
-                  <option key={m} value={m}>
-                    {MODEL_LABEL[m]}
-                  </option>
-                ))}
-              </select>
-              <select
-                value={bandMethod}
-                onChange={(e) => setBandMethod(e.target.value as BandMethod)}
-                className="rounded bg-orange-900/60 border border-orange-700 text-xs px-2 py-1"
-                title="Severity-banding method (see ML_Algorithm_Comparison_Paper.docx)"
-              >
-                {modelOptions.band_methods.map((b) => (
-                  <option key={b} value={b}>
-                    {BAND_METHOD_LABEL[b]}
-                  </option>
-                ))}
-              </select>
-            </>
-          )}
+      <header className="bg-orange-800 text-white px-4 py-3">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h1 className="text-lg font-semibold leading-tight">Hyderabad Disaster Response</h1>
+            <p className="text-orange-100 text-xs">Admin Command Center</p>
+          </div>
+
+          <div className="flex items-center gap-3 text-sm">
+            <label htmlFor="rainfall" className="whitespace-nowrap">
+              Rainfall: {rainfallMm} mm
+            </label>
+            <input
+              id="rainfall"
+              type="range"
+              min={10}
+              max={150}
+              step={5}
+              value={rainfallMm}
+              onChange={(e) => setRainfallMm(Number(e.target.value))}
+            />
+            {modelOptions && (
+              <>
+                <select
+                  value={model}
+                  onChange={(e) => setModel(e.target.value as ModelName)}
+                  className="rounded bg-orange-900/60 border border-orange-700 text-xs px-2 py-1"
+                  title="Prediction model (see ML_Algorithm_Comparison_Paper.docx)"
+                >
+                  {modelOptions.models.map((m) => (
+                    <option key={m} value={m}>
+                      {MODEL_LABEL[m]}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  value={bandMethod}
+                  onChange={(e) => setBandMethod(e.target.value as BandMethod)}
+                  className="rounded bg-orange-900/60 border border-orange-700 text-xs px-2 py-1"
+                  title="Severity-banding method (see ML_Algorithm_Comparison_Paper.docx)"
+                >
+                  {modelOptions.band_methods.map((b) => (
+                    <option key={b} value={b}>
+                      {BAND_METHOD_LABEL[b]}
+                    </option>
+                  ))}
+                </select>
+              </>
+            )}
+          </div>
         </div>
       </header>
 
-      <div className="px-4 pt-4 space-y-4">
-        <ProneAreasPanel
+      <div className="flex flex-wrap gap-2 px-4 py-3 bg-white border-b border-slate-200">
+        <StatCard label="DRF deployed" value={`${busyCount}/${fleet.length}`} accent={busyCount > 0 ? 'red' : 'green'} />
+        <StatCard label="Test rainfall" value={`${rainfallMm} mm`} />
+        <StatCard label="Red-severity cells" value={redBand?.cell_count ?? 0} accent="red" sub="at current rainfall" />
+        <StatCard label="Population at high risk" value={(redBand?.total_population_exposed ?? 0).toLocaleString()} accent="amber" />
+        <StatCard label="Active model" value={MODEL_LABEL[model]} />
+
+        <nav className="ml-auto flex items-end">
+          <div className="flex rounded-full bg-slate-100 p-0.5 text-xs">
+            {TABS.map((t) => (
+              <button
+                key={t.id}
+                onClick={() => setTab(t.id)}
+                className={`px-3 py-1.5 rounded-full font-medium whitespace-nowrap ${
+                  tab === t.id ? 'bg-orange-800 text-white' : 'text-slate-600 hover:bg-slate-200'
+                }`}
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
+        </nav>
+      </div>
+
+      {tab === 'overview' && (
+        <OverviewTab
+          riskGrid={riskGrid}
+          view3D={view3D}
+          setView3D={setView3D}
+          selected={selected}
+          setSelected={setSelected}
+          loading={loading}
+          error={error}
+          fleet={fleet}
+          fleetForSelected={fleetForSelected}
+          dispatching={dispatching}
+          applyOverride={applyOverride}
+          removeOverride={removeOverride}
+          dispatchVehicle={dispatchVehicle}
+          recallVehicle={recallVehicle}
+        />
+      )}
+
+      {tab === 'fleet' && (
+        <FleetOpsTab
+          bands={bands}
+          hotspots={hotspots}
+          fleet={fleet}
+          recallVehicle={recallVehicle}
+          dispatching={dispatching}
+          goToOverview={goToOverview}
+        />
+      )}
+
+      {tab === 'model' && (
+        <RiskModelTab
           rainfallMm={rainfallMm}
           model={model}
           bandMethod={bandMethod}
-          onSelect={(loc: LocalityRisk) =>
-            setSelected({
-              cell_id: loc.cell_id,
-              lat: loc.lat,
-              lon: loc.lon,
-              risk_score: loc.risk_score,
-              severity_band: loc.severity_band,
-              population_exposed: loc.population_exposed,
-              dist_to_drain_km: 0,
-              dist_to_incident_km: 0,
-              overridden: false,
-            })
-          }
+          onSelect={(loc) => goToOverview(localityToCell(loc))}
         />
-        <SimulationPanel model={model} bandMethod={bandMethod} onTick={(mm) => setRainfallMm(mm)} />
-      </div>
+      )}
 
-      <div className="flex flex-1 min-h-0">
-        <div className="flex-1 relative min-h-[280px]">
-          {view3D ? (
-            <TerrainView
-              riskGrid={riskGrid}
-              center={selected ? { lat: selected.lat, lon: selected.lon, cellId: selected.cell_id } : null}
-              onResetCenter={() => setSelected(null)}
-            />
-          ) : (
-            <RiskMap
-              riskGrid={riskGrid}
-              onCellClick={(cell) => {
-                setSelected(cell)
-                setView3D(true)
-              }}
-            />
-          )}
-
-          <div className="absolute top-2 right-2 flex rounded-full bg-white/90 p-0.5 text-xs shadow">
-            <button
-              onClick={() => setView3D(false)}
-              className={`px-3 py-1 rounded-full font-medium ${!view3D ? 'bg-orange-800 text-white' : 'text-slate-600'}`}
-            >
-              2D Heatmap
-            </button>
-            <button
-              onClick={() => setView3D(true)}
-              className={`px-3 py-1 rounded-full font-medium ${view3D ? 'bg-orange-800 text-white' : 'text-slate-600'}`}
-            >
-              3D Terrain
-            </button>
-          </div>
-
-          {loading && (
-            <div className="absolute bottom-2 right-2 bg-white/90 text-xs px-2 py-1 rounded shadow">Loading...</div>
-          )}
-          {error && (
-            <div className="absolute bottom-2 right-2 bg-red-50 text-red-700 text-xs px-2 py-1 rounded shadow">
-              {error}
-            </div>
-          )}
-        </div>
-
-        <aside className="w-96 overflow-y-auto border-l border-slate-200 bg-white p-4 space-y-4">
-          {selected && (
-            <div className="rounded-lg border border-slate-300 p-3 text-sm space-y-2">
-              <p className="font-semibold">Cell #{selected.cell_id}</p>
-              <p>
-                Risk score: {selected.risk_score.toFixed(2)} - Population exposed: {selected.population_exposed}
-              </p>
-              <p>
-                Current band:{' '}
-                <span className={`px-2 py-0.5 rounded text-xs font-medium ${BAND_BADGE[selected.severity_band]}`}>
-                  {selected.severity_band}
-                  {selected.overridden ? ' (overridden)' : ''}
-                </span>
-              </p>
-              <div className="flex gap-2">
-                {(['green', 'yellow', 'red'] as SeverityBand[]).map((band) => (
-                  <button
-                    key={band}
-                    onClick={() => applyOverride(band)}
-                    className={`text-xs px-2 py-1 rounded border ${BAND_BADGE[band]} border-transparent hover:opacity-80`}
-                  >
-                    Set {band}
-                  </button>
-                ))}
-                {selected.overridden && (
-                  <button onClick={removeOverride} className="text-xs px-2 py-1 rounded border border-slate-300 hover:bg-slate-100">
-                    Clear
-                  </button>
-                )}
-              </div>
-              <p className="text-xs text-slate-500">Human-in-the-loop: model score above, admin judgement here.</p>
-
-              <div className="pt-2 border-t border-slate-200 space-y-1.5">
-                <p className="text-xs font-semibold text-slate-600">Disaster Response Force</p>
-
-                {assignedToSelected ? (
-                  <div className="flex items-center justify-between rounded bg-emerald-50 px-2 py-1.5">
-                    <span className="text-xs text-emerald-800">
-                      <strong>{assignedToSelected.vehicle_id}</strong> en route/on-site - free in{' '}
-                      {assignedToSelected.free_in_minutes} min
-                    </span>
-                    <button
-                      onClick={() => recallVehicle(assignedToSelected.vehicle_id)}
-                      disabled={dispatching === assignedToSelected.vehicle_id}
-                      className="text-[10px] px-1.5 py-0.5 rounded border border-emerald-300 hover:bg-emerald-100 disabled:opacity-50"
-                    >
-                      Recall
-                    </button>
-                  </div>
-                ) : (
-                  <ul className="space-y-1 max-h-48 overflow-y-auto">
-                    {[...fleetForSelected]
-                      .sort((a, b) => (a.status === b.status ? (a.eta_minutes_to_target ?? 0) - (b.eta_minutes_to_target ?? 0) : a.status === 'free' ? -1 : 1))
-                      .map((v) => (
-                        <li key={v.vehicle_id} className="flex items-center justify-between text-xs">
-                          <span className={v.status === 'free' ? 'text-slate-700' : 'text-slate-400'}>
-                            {v.vehicle_id} <span className="text-slate-400">({v.zone.replace(' Zone', '')})</span>
-                          </span>
-                          {v.status === 'free' ? (
-                            <button
-                              onClick={() => dispatchVehicle(v.vehicle_id)}
-                              disabled={dispatching === v.vehicle_id}
-                              className="px-2 py-0.5 rounded bg-orange-800 text-white hover:bg-orange-900 disabled:opacity-50"
-                            >
-                              {dispatching === v.vehicle_id ? '...' : `Dispatch (ETA ${v.eta_minutes_to_target}m)`}
-                            </button>
-                          ) : (
-                            <span className="text-slate-400">busy - free in {v.free_in_minutes}m</span>
-                          )}
-                        </li>
-                      ))}
-                  </ul>
-                )}
-              </div>
-            </div>
-          )}
-
-          <div>
-            <h2 className="text-sm font-semibold mb-2">Severity vs. population exposed</h2>
-            <SeverityChart bands={bands} />
-          </div>
-
-          <div>
-            <h2 className="text-sm font-semibold mb-2">Mobilization queue (top {hotspots.length})</h2>
-            <table className="w-full text-xs">
-              <thead>
-                <tr className="text-left text-slate-500 border-b border-slate-200">
-                  <th className="py-1">Cell</th>
-                  <th>Band</th>
-                  <th>Pop.</th>
-                  <th>Score</th>
-                  <th>DRF</th>
-                </tr>
-              </thead>
-              <tbody>
-                {hotspots.map((h) => (
-                  <tr
-                    key={h.cell_id}
-                    className="border-b border-slate-100 hover:bg-slate-50 cursor-pointer"
-                    onClick={() =>
-                      setSelected({
-                        cell_id: h.cell_id,
-                        lat: h.lat,
-                        lon: h.lon,
-                        risk_score: h.risk_score,
-                        severity_band: h.severity_band,
-                        population_exposed: h.population_exposed,
-                        dist_to_drain_km: 0,
-                        dist_to_incident_km: 0,
-                        overridden: false,
-                      })
-                    }
-                  >
-                    <td className="py-1">#{h.cell_id}</td>
-                    <td>
-                      <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium ${BAND_BADGE[h.severity_band]}`}>
-                        {h.severity_band}
-                      </span>
-                    </td>
-                    <td>{h.population_exposed.toLocaleString()}</td>
-                    <td>{h.mobilization_score.toLocaleString()}</td>
-                    <td>
-                      {h.drf_status === 'mobilized' ? (
-                        <span className="px-1.5 py-0.5 rounded text-[10px] font-medium bg-emerald-100 text-emerald-800">
-                          {h.drf_vehicle_id}
-                        </span>
-                      ) : (
-                        <span className="px-1.5 py-0.5 rounded text-[10px] font-medium border border-orange-300 text-orange-800">
-                          Unassigned
-                        </span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </aside>
-      </div>
+      {tab === 'forecast' && <ForecastTab model={model} bandMethod={bandMethod} onTick={setRainfallMm} />}
     </main>
   )
 }
