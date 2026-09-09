@@ -9,7 +9,7 @@ pipeline's output files to exist. Run `python ml/run_pipeline.py` once
 """
 import json
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 import joblib
 import numpy as np
@@ -21,9 +21,16 @@ GRID_FEATURES_CSV = os.path.join(REPO_ROOT, "data", "processed", "grid_features.
 MODEL_PATH = os.path.join(REPO_ROOT, "ml", "models", "risk_model.joblib")
 ROADS_GEOJSON = os.path.join(REPO_ROOT, "data", "raw", "osm_roads_hyderabad.geojson")
 LOCALITIES_CSV = os.path.join(REPO_ROOT, "data", "processed", "ghmc_waterlogging_incidents_2019.csv")
+DEPOTS_JSON = os.path.join(REPO_ROOT, "data", "processed", "drf_depots.json")
 
 BAND_RANK = {"green": 0, "yellow": 1, "red": 2}
 BAND_NAMES = ["green", "yellow", "red"]
+
+# Placeholder assumptions (see data/DATA_SOURCES.md) pending real routing data:
+# average urban emergency-vehicle speed incl. monsoon/traffic conditions, and
+# on-site operation time scaled by how bad the flooding is at the target cell.
+DRF_SPEED_KMH = 25.0
+ON_SITE_MINUTES = {"red": 60, "yellow": 40, "green": 20}
 
 
 def haversine_km(lat1, lon1, lat2, lon2):
@@ -52,14 +59,36 @@ class RiskEngine:
         self.feature_cols = bundle["feature_cols"]
         # human-in-the-loop overrides: cell_id -> severity_band, kept in memory only
         self.overrides: dict[int, str] = {}
-        # Disaster Response Force mobilizations: cell_id -> dispatch record, in memory only
-        self.mobilizations: dict[int, dict] = {}
+        # DRF vehicle fleet: in-memory list of dicts (id, zone, home_lat/lon,
+        # status, and - while busy - the assigned cell + timestamps). Loaded
+        # once from the real GHMC-zone-centroid depots computed by
+        # data/scripts/compute_drf_depots.py.
+        self.fleet: list[dict] = self._load_fleet()
 
         # Grid rows never change position/order after this, so a KDTree built
         # once here can be reused by every request - only risk_score/severity
         # (which don't affect nearest-neighbour geometry) change per rainfall.
         self._grid_tree = cKDTree(self.grid[["lat", "lon"]].values)
         self._roads = self._load_roads() if os.path.exists(ROADS_GEOJSON) else []
+
+    @staticmethod
+    def _load_fleet():
+        if not os.path.exists(DEPOTS_JSON):
+            return []
+        with open(DEPOTS_JSON, encoding="utf-8") as f:
+            depots = json.load(f)
+        return [
+            {
+                **depot,
+                "status": "free",
+                "assigned_cell_id": None,
+                "severity_band": None,
+                "dispatched_at": None,
+                "eta_minutes": None,
+                "busy_until": None,
+            }
+            for depot in depots
+        ]
 
     @staticmethod
     def _load_roads():
@@ -122,6 +151,8 @@ class RiskEngine:
         return {"type": "FeatureCollection", "features": features}
 
     def hotspots(self, rainfall_mm: float, limit: int = 20) -> list[dict]:
+        self._expire_stale_dispatches()
+        assigned = {v["assigned_cell_id"]: v for v in self.fleet if v["status"] == "busy"}
         df = self.score(rainfall_mm)
         df["mobilization_score"] = df["risk_score"] * df["population_exposed"]
         top = df.sort_values("mobilization_score", ascending=False).head(limit)
@@ -134,40 +165,84 @@ class RiskEngine:
                 "severity_band": row.severity_band,
                 "population_exposed": int(row.population_exposed),
                 "mobilization_score": round(float(row.mobilization_score), 1),
-                "drf_status": self.mobilizations.get(int(row.cell_id), {}).get("status", "pending"),
-                "dispatched_at": self.mobilizations.get(int(row.cell_id), {}).get("dispatched_at"),
+                "drf_status": "mobilized" if int(row.cell_id) in assigned else "pending",
+                "drf_vehicle_id": assigned.get(int(row.cell_id), {}).get("vehicle_id"),
             }
             for row in top.itertuples()
         ]
 
-    def mobilize_drf(self, cell_id: int, rainfall_mm: float) -> dict:
-        """Dispatch a Disaster Response Force unit to a cell. Only meaningful
-        for cells the model currently flags as risky - the mobilization
-        decision is grounded in the live risk_score/severity_band, not a
-        blind admin click."""
+    def _expire_stale_dispatches(self):
+        """Vehicles auto-return to free once their estimated busy duration
+        elapses - no manual recall required for the normal flow."""
+        now = datetime.now(timezone.utc)
+        for v in self.fleet:
+            if v["status"] == "busy" and datetime.fromisoformat(v["busy_until"]) <= now:
+                self._reset_vehicle(v)
+
+    @staticmethod
+    def _reset_vehicle(v: dict):
+        v.update(status="free", assigned_cell_id=None, severity_band=None, dispatched_at=None, eta_minutes=None, busy_until=None)
+
+    def fleet_status(self, target_lat: float | None = None, target_lon: float | None = None) -> list[dict]:
+        self._expire_stale_dispatches()
+        now = datetime.now(timezone.utc)
+        out = []
+        for v in self.fleet:
+            entry = dict(v)
+            if v["status"] == "busy":
+                entry["free_in_minutes"] = round((datetime.fromisoformat(v["busy_until"]) - now).total_seconds() / 60, 1)
+            elif target_lat is not None and target_lon is not None:
+                dist_km = float(haversine_km(v["home_lat"], v["home_lon"], target_lat, target_lon))
+                entry["eta_minutes_to_target"] = round(dist_km / DRF_SPEED_KMH * 60, 1)
+                entry["distance_km_to_target"] = round(dist_km, 2)
+            out.append(entry)
+        return out
+
+    def mobilize_drf(self, vehicle_id: str, cell_id: int, rainfall_mm: float) -> dict:
+        """Dispatch a specific free DRF vehicle to a cell, grounded in that
+        cell's live risk_score/severity_band. The vehicle becomes busy for an
+        estimated round-trip-plus-on-site duration and cannot be dispatched
+        again until it expires (or is manually recalled early)."""
+        self._expire_stale_dispatches()
+        vehicle = next((v for v in self.fleet if v["vehicle_id"] == vehicle_id), None)
+        if vehicle is None:
+            raise ValueError(f"Unknown vehicle_id {vehicle_id}")
+        if vehicle["status"] != "free":
+            raise ValueError(f"{vehicle_id} is already deployed")
+
         df = self.score(rainfall_mm)
         row = df.loc[df["cell_id"] == cell_id]
         if row.empty:
             raise ValueError(f"Unknown cell_id {cell_id}")
         row = row.iloc[0]
-        record = {
-            "cell_id": cell_id,
-            "lat": float(row.lat),
-            "lon": float(row.lon),
-            "risk_score": round(float(row.risk_score), 4),
-            "severity_band": row.severity_band,
+
+        dist_km = float(haversine_km(vehicle["home_lat"], vehicle["home_lon"], row.lat, row.lon))
+        eta_minutes = dist_km / DRF_SPEED_KMH * 60
+        on_site_minutes = ON_SITE_MINUTES[row.severity_band]
+        total_busy_minutes = 2 * eta_minutes + on_site_minutes  # there, on-site, and back
+        now = datetime.now(timezone.utc)
+
+        vehicle.update(
+            status="busy",
+            assigned_cell_id=cell_id,
+            severity_band=row.severity_band,
+            dispatched_at=now.isoformat(),
+            eta_minutes=round(eta_minutes, 1),
+            busy_until=(now + timedelta(minutes=total_busy_minutes)).isoformat(),
+        )
+        return {
+            **vehicle,
+            "cell_risk_score": round(float(row.risk_score), 4),
             "population_exposed": int(row.population_exposed),
-            "status": "mobilized",
-            "dispatched_at": datetime.now(timezone.utc).isoformat(),
+            "on_site_minutes": on_site_minutes,
+            "free_in_minutes": round(total_busy_minutes, 1),
         }
-        self.mobilizations[cell_id] = record
-        return record
 
-    def recall_drf(self, cell_id: int):
-        self.mobilizations.pop(cell_id, None)
-
-    def list_mobilizations(self) -> list[dict]:
-        return sorted(self.mobilizations.values(), key=lambda r: r["dispatched_at"], reverse=True)
+    def recall_drf(self, vehicle_id: str):
+        """Manual early return-to-base, ahead of the automatic expiry."""
+        vehicle = next((v for v in self.fleet if v["vehicle_id"] == vehicle_id), None)
+        if vehicle is not None:
+            self._reset_vehicle(vehicle)
 
     def severity_population_stats(self, rainfall_mm: float) -> list[dict]:
         df = self.score(rainfall_mm)

@@ -39,7 +39,9 @@ export default function RiskMap({ riskGrid, onCellClick }: Props) {
     map.on('error', (e) => console.error('maplibre error', e.error))
     map.on('click', 'risk-grid-circles', (e) => {
       const feature = e.features?.[0]
-      if (feature) onCellClickRef.current?.(feature.properties as RiskCellProperties)
+      if (!feature) return
+      const [lon, lat] = (feature.geometry as unknown as { coordinates: [number, number] }).coordinates
+      onCellClickRef.current?.({ ...(feature.properties as RiskCellProperties), lat, lon })
     })
     map.on('mouseenter', 'risk-grid-circles', () => {
       map.getCanvas().style.cursor = 'pointer'

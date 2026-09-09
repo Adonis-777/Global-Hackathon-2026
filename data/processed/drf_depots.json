@@ -1,0 +1,62 @@
+[
+  {
+    "vehicle_id": "DRF-East-1",
+    "zone": "East Zone",
+    "home_lat": 17.392478,
+    "home_lon": 78.568122
+  },
+  {
+    "vehicle_id": "DRF-East-2",
+    "zone": "East Zone",
+    "home_lat": 17.392478,
+    "home_lon": 78.568122
+  },
+  {
+    "vehicle_id": "DRF-South-1",
+    "zone": "South Zone",
+    "home_lat": 17.339157,
+    "home_lon": 78.45322
+  },
+  {
+    "vehicle_id": "DRF-South-2",
+    "zone": "South Zone",
+    "home_lat": 17.339157,
+    "home_lon": 78.45322
+  },
+  {
+    "vehicle_id": "DRF-North-1",
+    "zone": "North Zone",
+    "home_lat": 17.492539,
+    "home_lon": 78.484134
+  },
+  {
+    "vehicle_id": "DRF-North-2",
+    "zone": "North Zone",
+    "home_lat": 17.492539,
+    "home_lon": 78.484134
+  },
+  {
+    "vehicle_id": "DRF-West-1",
+    "zone": "West Zone",
+    "home_lat": 17.472046,
+    "home_lon": 78.354441
+  },
+  {
+    "vehicle_id": "DRF-West-2",
+    "zone": "West Zone",
+    "home_lat": 17.472046,
+    "home_lon": 78.354441
+  },
+  {
+    "vehicle_id": "DRF-Central-1",
+    "zone": "Central Zone",
+    "home_lat": 17.406799,
+    "home_lon": 78.447542
+  },
+  {
+    "vehicle_id": "DRF-Central-2",
+    "zone": "Central Zone",
+    "home_lat": 17.406799,
+    "home_lon": 78.447542
+  }
+]

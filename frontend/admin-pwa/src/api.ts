@@ -4,6 +4,8 @@ export type SeverityBand = 'green' | 'yellow' | 'red'
 
 export interface RiskCellProperties {
   cell_id: number
+  lat: number
+  lon: number
   risk_score: number
   severity_band: SeverityBand
   population_exposed: number
@@ -21,8 +23,6 @@ export interface RiskGridGeoJSON {
   }>
 }
 
-export type DrfStatus = 'pending' | 'mobilized'
-
 export interface Hotspot {
   cell_id: number
   lat: number
@@ -31,19 +31,24 @@ export interface Hotspot {
   severity_band: SeverityBand
   population_exposed: number
   mobilization_score: number
-  drf_status: DrfStatus
-  dispatched_at: string | null
+  drf_status: 'pending' | 'mobilized'
+  drf_vehicle_id: string | null
 }
 
-export interface DrfRecord {
-  cell_id: number
-  lat: number
-  lon: number
-  risk_score: number
-  severity_band: SeverityBand
-  population_exposed: number
-  status: DrfStatus
-  dispatched_at: string
+export interface FleetVehicle {
+  vehicle_id: string
+  zone: string
+  home_lat: number
+  home_lon: number
+  status: 'free' | 'busy'
+  assigned_cell_id: number | null
+  severity_band: SeverityBand | null
+  dispatched_at: string | null
+  eta_minutes: number | null
+  busy_until: string | null
+  free_in_minutes?: number
+  eta_minutes_to_target?: number
+  distance_km_to_target?: number
 }
 
 export interface SeverityStat {
@@ -84,20 +89,26 @@ export async function clearOverride(cellId: number) {
   return res.json()
 }
 
-export async function mobilizeDrf(cellId: number, rainfallMm: number): Promise<DrfRecord> {
+export const fetchFleet = (targetLat?: number, targetLon?: number) =>
+  getJSON<{ fleet: FleetVehicle[] }>(
+    targetLat != null && targetLon != null ? `/api/fleet?target_lat=${targetLat}&target_lon=${targetLon}` : '/api/fleet',
+  )
+
+export async function mobilizeDrf(vehicleId: string, cellId: number, rainfallMm: number): Promise<FleetVehicle> {
   const res = await fetch(`${API_URL}/api/mobilize`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ cell_id: cellId, rainfall_mm: rainfallMm }),
+    body: JSON.stringify({ vehicle_id: vehicleId, cell_id: cellId, rainfall_mm: rainfallMm }),
   })
-  if (!res.ok) throw new Error(`mobilize failed: ${res.status}`)
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}))
+    throw new Error(body.detail ?? `mobilize failed: ${res.status}`)
+  }
   return res.json()
 }
 
-export async function recallDrf(cellId: number) {
-  const res = await fetch(`${API_URL}/api/mobilize/${cellId}`, { method: 'DELETE' })
+export async function recallDrf(vehicleId: string) {
+  const res = await fetch(`${API_URL}/api/mobilize/${vehicleId}`, { method: 'DELETE' })
   if (!res.ok) throw new Error(`recall failed: ${res.status}`)
   return res.json()
 }
-
-export const fetchMobilizations = () => getJSON<{ mobilizations: DrfRecord[] }>('/api/mobilizations')

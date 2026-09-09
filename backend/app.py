@@ -114,7 +114,13 @@ def list_overrides():
     return get_engine().overrides
 
 
+@app.get("/api/fleet")
+def fleet_status(target_lat: float | None = None, target_lon: float | None = None):
+    return {"fleet": get_engine().fleet_status(target_lat, target_lon)}
+
+
 class MobilizeRequest(BaseModel):
+    vehicle_id: str
     cell_id: int
     rainfall_mm: float = DEFAULT_RAINFALL_MM
 
@@ -122,20 +128,15 @@ class MobilizeRequest(BaseModel):
 @app.post("/api/mobilize")
 def mobilize_drf(body: MobilizeRequest):
     try:
-        return get_engine().mobilize_drf(body.cell_id, body.rainfall_mm)
+        return get_engine().mobilize_drf(body.vehicle_id, body.cell_id, body.rainfall_mm)
     except ValueError as exc:
-        raise HTTPException(status_code=404, detail=str(exc))
+        raise HTTPException(status_code=409, detail=str(exc))
 
 
-@app.delete("/api/mobilize/{cell_id}")
-def recall_drf(cell_id: int):
-    get_engine().recall_drf(cell_id)
-    return {"cell_id": cell_id, "recalled": True}
-
-
-@app.get("/api/mobilizations")
-def list_mobilizations():
-    return {"mobilizations": get_engine().list_mobilizations()}
+@app.delete("/api/mobilize/{vehicle_id}")
+def recall_drf(vehicle_id: str):
+    get_engine().recall_drf(vehicle_id)
+    return {"vehicle_id": vehicle_id, "recalled": True}
 
 
 class AlertRequest(BaseModel):
