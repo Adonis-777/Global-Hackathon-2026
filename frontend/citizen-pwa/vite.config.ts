@@ -5,6 +5,11 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // maplibre-gl loads its own worker as an ESM module URL; letting Vite
+  // pre-bundle it into .vite/deps left that worker request stuck pending
+  // forever in dev (no vector tiles ever loaded). Excluding it serves
+  // maplibre-gl's own valid ESM build directly instead.
+  optimizeDeps: { exclude: ['maplibre-gl'] },
   plugins: [
     react(),
     tailwindcss(),
