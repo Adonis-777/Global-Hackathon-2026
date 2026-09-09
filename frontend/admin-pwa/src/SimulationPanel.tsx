@@ -15,6 +15,8 @@ interface Props {
   model: ModelName
   bandMethod: BandMethod
   onTick: (rainfallMm: number) => void
+  jumpToHour?: number | null
+  onJumpHandled?: () => void
 }
 
 const TICK_MS = 500
@@ -23,7 +25,7 @@ function labelFor(h: ForecastHour) {
   return `D${h.day} ${String(h.hour_of_day).padStart(2, '0')}:00`
 }
 
-export default function SimulationPanel({ model, bandMethod, onTick }: Props) {
+export default function SimulationPanel({ model, bandMethod, onTick, jumpToHour, onJumpHandled }: Props) {
   const [hours, setHours] = useState<ForecastHour[]>([])
   const [hourIndex, setHourIndex] = useState(0)
   const [playing, setPlaying] = useState(false)
@@ -74,6 +76,15 @@ export default function SimulationPanel({ model, bandMethod, onTick }: Props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hourIndex, hours, model, bandMethod])
+
+  // External "jump to the validated day-3 test event" request from ModelValidationPanel.
+  useEffect(() => {
+    if (jumpToHour == null || hours.length === 0) return
+    setPlaying(false)
+    setHourIndex(Math.min(jumpToHour, hours.length - 1))
+    onJumpHandled?.()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [jumpToHour, hours.length])
 
   const handleReset = async () => {
     setPlaying(false)

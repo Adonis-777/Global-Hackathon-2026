@@ -7,6 +7,7 @@ and the ml/models/risk_model_{random_forest,xgboost,adaboost}.joblib trio):
 
     uvicorn app:app --reload --port 8000
 """
+import json
 import logging
 import os
 
@@ -22,6 +23,9 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO)
 
 DEFAULT_RAINFALL_MM = 60.0
+MOCK_EVENT_VALIDATION_PATH = os.path.join(
+    os.path.dirname(__file__), "..", "data", "processed", "mock_event_validation_results.json"
+)
 
 app = FastAPI(title="Urban Waterlogging Nowcast API")
 
@@ -219,6 +223,18 @@ class AlertRequest(BaseModel):
     phone_number: str = Field(default="+10000000000", description="Demo number; dry-run unless Twilio is configured")
     rainfall_mm: float = DEFAULT_RAINFALL_MM
     threshold: float = Field(default=0.6, ge=0, le=1)
+
+
+@app.get("/api/mock-event-validation")
+def mock_event_validation():
+    """Precomputed accuracy/DRF-dispatch results of testing the live models
+    against a synthetic 3-day mock flood event's ground truth (see
+    ml/mock_flood_event.py + ml/validate_against_mock_event.py) - a fixed
+    reference artifact re-served here, not recomputed per-request."""
+    if not os.path.exists(MOCK_EVENT_VALIDATION_PATH):
+        raise HTTPException(status_code=404, detail="Run ml/validate_against_mock_event.py first")
+    with open(MOCK_EVENT_VALIDATION_PATH, encoding="utf-8") as f:
+        return json.load(f)
 
 
 @app.post("/api/alerts/trigger")

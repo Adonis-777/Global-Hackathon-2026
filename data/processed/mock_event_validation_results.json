@@ -1,0 +1,51 @@
+{
+  "event": {
+    "event_name": "Mock 3-day monsoon test event",
+    "days": 3,
+    "cumulative_rainfall_mm": 2618.9,
+    "exposure_index": 0.4224,
+    "day3_peak_hour": 58,
+    "day3_peak_rainfall_mm": 73.00480783568716,
+    "ground_truth_seed": 99,
+    "actual_flooded_count": 297,
+    "total_cells": 2558
+  },
+  "models": {
+    "random_forest": {
+      "day3_test_rainfall_mm": 73.0,
+      "predicted_flooded_count": 516,
+      "accuracy": 0.7955,
+      "precision": 0.281,
+      "recall": 0.4882,
+      "f1_score": 0.3567,
+      "drf_dispatch_precision": 0.9,
+      "drf_coverage_of_actual_flooding": 0.0303,
+      "drf_vehicles_dispatched": 10,
+      "drf_correct_dispatches": 9
+    },
+    "xgboost": {
+      "day3_test_rainfall_mm": 73.0,
+      "predicted_flooded_count": 512,
+      "accuracy": 0.8057,
+      "precision": 0.3047,
+      "recall": 0.5253,
+      "f1_score": 0.3857,
+      "drf_dispatch_precision": 0.9,
+      "drf_coverage_of_actual_flooding": 0.0303,
+      "drf_vehicles_dispatched": 10,
+      "drf_correct_dispatches": 9
+    },
+    "adaboost": {
+      "day3_test_rainfall_mm": 73.0,
+      "predicted_flooded_count": 518,
+      "accuracy": 0.7893,
+      "precision": 0.2664,
+      "recall": 0.4646,
+      "f1_score": 0.3387,
+      "drf_dispatch_precision": 0.8,
+      "drf_coverage_of_actual_flooding": 0.0269,
+      "drf_vehicles_dispatched": 10,
+      "drf_correct_dispatches": 8
+    }
+  }
+}

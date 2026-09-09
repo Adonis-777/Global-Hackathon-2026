@@ -216,3 +216,33 @@ export async function stopSimulation() {
   if (!res.ok) throw new Error(`simulate/stop failed: ${res.status}`)
   return res.json()
 }
+
+export interface MockEventModelResult {
+  day3_test_rainfall_mm: number
+  predicted_flooded_count: number
+  accuracy: number
+  precision: number
+  recall: number
+  f1_score: number
+  drf_dispatch_precision: number
+  drf_coverage_of_actual_flooding: number
+  drf_vehicles_dispatched: number
+  drf_correct_dispatches: number
+}
+
+export interface MockEventValidation {
+  event: {
+    event_name: string
+    days: number
+    cumulative_rainfall_mm: number
+    exposure_index: number
+    day3_peak_hour: number
+    day3_peak_rainfall_mm: number
+    ground_truth_seed: number
+    actual_flooded_count: number
+    total_cells: number
+  }
+  models: Record<ModelName, MockEventModelResult>
+}
+
+export const fetchMockEventValidation = () => getJSON<MockEventValidation>('/api/mock-event-validation')

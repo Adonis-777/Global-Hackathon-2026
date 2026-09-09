@@ -1,0 +1,11 @@
+{
+  "event_name": "Mock 3-day monsoon test event",
+  "days": 3,
+  "cumulative_rainfall_mm": 2618.9,
+  "exposure_index": 0.4224,
+  "day3_peak_hour": 58,
+  "day3_peak_rainfall_mm": 73.00480783568716,
+  "ground_truth_seed": 99,
+  "actual_flooded_count": 297,
+  "total_cells": 2558
+}
