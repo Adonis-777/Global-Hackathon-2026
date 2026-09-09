@@ -246,3 +246,40 @@ export interface MockEventValidation {
 }
 
 export const fetchMockEventValidation = () => getJSON<MockEventValidation>('/api/mock-event-validation')
+
+export interface RegisteredCitizen {
+  id: string
+  name: string
+  phone_number: string
+  address: string
+  lat: number
+  lon: number
+  registered_at: string
+}
+
+export const fetchCitizens = () => getJSON<{ citizens: RegisteredCitizen[] }>('/api/citizens')
+
+export async function deleteCitizen(id: string) {
+  const res = await fetch(`${API_URL}/api/citizens/${id}`, { method: 'DELETE' })
+  if (!res.ok) throw new Error(`delete citizen failed: ${res.status}`)
+  return res.json()
+}
+
+export interface TestAlertResult {
+  citizen: RegisteredCitizen
+  message: string
+  delivery: { status: string; to: string; message: string; sid?: string }
+}
+
+export async function sendTestAlert(citizenIds: string[] | null, rainfallMm: number): Promise<{ sent: number; results: TestAlertResult[] }> {
+  const res = await fetch(`${API_URL}/api/citizens/test-alert`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ citizen_ids: citizenIds, rainfall_mm: rainfallMm }),
+  })
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}))
+    throw new Error(body.detail ?? `test-alert failed: ${res.status}`)
+  }
+  return res.json()
+}

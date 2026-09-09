@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { fetchRiskGrid, fetchSafeRoute, triggerAlert, type AlertResponse, type RiskGridGeoJSON, type SafeRoute } from './api'
+import AlertRegistrationCard from './AlertRegistrationCard'
 import { DropletIcon, LocationIcon, PhoneIcon } from './icons'
 import LiveRainfallCard from './LiveRainfallCard'
 import PrecautionarySteps from './PrecautionarySteps'
@@ -127,6 +128,7 @@ function App() {
         <aside className="w-[360px] shrink-0 bg-white border-l border-slate-200 flex flex-col min-h-0">
           <div className="flex-1 overflow-y-auto p-4 space-y-3">
             {error && <p className="text-sm text-red-600">{error}</p>}
+            <AlertRegistrationCard lat={location.lat} lon={location.lon} />
             <LiveRainfallCard current={liveRainfall} history={rainfallHistory} loading={rainfallLoading} />
             {alert && <RiskStatusCard alert={alert} />}
             {alert?.cell.severity_band === 'red' && <SafeRouteCard route={safeRoute} loading={safeRouteLoading} />}

@@ -17,6 +17,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from alerts import build_alert_message, send_alert
+from citizen_registry import delete_citizen, get_citizens, list_citizens, register_citizen
 from risk_engine import DEFAULT_BAND_METHOD, DEFAULT_MODEL, RiskEngine
 
 load_dotenv()
@@ -247,6 +248,70 @@ def mock_event_validation():
         raise HTTPException(status_code=404, detail="Run ml/validate_against_mock_event.py first")
     with open(MOCK_EVENT_VALIDATION_PATH, encoding="utf-8") as f:
         return json.load(f)
+
+
+class CitizenRegisterRequest(BaseModel):
+    name: str
+    phone_number: str
+    address: str
+    lat: float
+    lon: float
+
+
+@app.post("/api/citizens/register")
+def citizens_register(body: CitizenRegisterRequest):
+    """One-time citizen opt-in (name, phone, address + the location they
+    registered from) to receive real SMS/WhatsApp alerts - separate from
+    the anonymous /api/alerts/trigger threshold check, which needs no
+    registration at all."""
+    return register_citizen(body.name, body.phone_number, body.address, body.lat, body.lon)
+
+
+@app.get("/api/citizens")
+def citizens_list():
+    return {"citizens": list_citizens()}
+
+
+@app.delete("/api/citizens/{citizen_id}")
+def citizens_delete(citizen_id: str):
+    if not delete_citizen(citizen_id):
+        raise HTTPException(status_code=404, detail="Citizen not found")
+    return {"id": citizen_id, "deleted": True}
+
+
+class TestAlertRequest(BaseModel):
+    citizen_ids: list[str] | None = Field(default=None, description="None = every registered citizen")
+    rainfall_mm: float = Field(ge=0)
+
+
+def _channel_number(phone_number: str) -> str:
+    """Twilio requires the `to` number use the same whatsapp: prefix as
+    `from` when TWILIO_FROM_NUMBER is a WhatsApp sandbox number."""
+    from_number = os.getenv("TWILIO_FROM_NUMBER", "")
+    if from_number.startswith("whatsapp:") and not phone_number.startswith("whatsapp:"):
+        return f"whatsapp:{phone_number}"
+    return phone_number
+
+
+@app.post("/api/citizens/test-alert")
+def citizens_test_alert(body: TestAlertRequest):
+    """Admin-side demo control: send a real (or dry-run) alert to one or
+    more registered citizens referencing a bumped rainfall figure for
+    "their area" - lets the notification pipeline be shown live during a
+    pitch instead of only described."""
+    targets = get_citizens(body.citizen_ids)
+    if not targets:
+        raise HTTPException(status_code=404, detail="No matching registered citizens")
+
+    results = []
+    for citizen in targets:
+        message = (
+            f"[TESTING] Hyderabad Waterlogging Nowcast: rainfall rising to {body.rainfall_mm:.0f}mm "
+            f"near {citizen['address']}. This is a test of the live alert system."
+        )
+        delivery = send_alert(_channel_number(citizen["phone_number"]), message)
+        results.append({"citizen": citizen, "message": message, "delivery": delivery})
+    return {"sent": len(results), "results": results}
 
 
 @app.post("/api/alerts/trigger")

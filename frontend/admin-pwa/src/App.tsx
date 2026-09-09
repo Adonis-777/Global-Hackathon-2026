@@ -21,18 +21,20 @@ import {
   type SeverityStat,
 } from './api'
 import { BAND_METHOD_LABEL, MODEL_LABEL } from './constants'
+import CitizenAlertsTab from './pages/CitizenAlertsTab'
 import FleetOpsTab from './pages/FleetOpsTab'
 import ForecastTab from './pages/ForecastTab'
 import OverviewTab from './pages/OverviewTab'
 import RiskModelTab from './pages/RiskModelTab'
 import StatCard from './ui/StatCard'
 
-type Tab = 'overview' | 'fleet' | 'model' | 'forecast'
+type Tab = 'overview' | 'fleet' | 'model' | 'forecast' | 'alerts'
 const TABS: { id: Tab; label: string }[] = [
   { id: 'overview', label: 'Overview & Map' },
   { id: 'fleet', label: 'Fleet & Mobilization' },
   { id: 'model', label: 'Risk Model & Prone Areas' },
   { id: 'forecast', label: 'Forecast Simulation' },
+  { id: 'alerts', label: 'Citizen Alerts' },
 ]
 
 function localityToCell(loc: LocalityRisk): RiskCellProperties {
@@ -273,6 +275,8 @@ function App() {
       )}
 
       {tab === 'forecast' && <ForecastTab model={model} bandMethod={bandMethod} onTick={setRainfallMm} />}
+
+      {tab === 'alerts' && <CitizenAlertsTab />}
     </main>
   )
 }

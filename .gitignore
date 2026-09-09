@@ -16,3 +16,7 @@ backend/.env
 
 # Local dev-server logs
 *.log
+
+# Real citizen registrations (name/phone/address) captured during demos -
+# personal data, never committed
+data/processed/registered_citizens.json

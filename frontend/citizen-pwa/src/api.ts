@@ -96,6 +96,38 @@ export interface ForecastHour {
 
 export const fetchForecast = (days = 3) => getJSON<{ days: number; hours: ForecastHour[] }>(`/api/forecast?days=${days}`)
 
+export interface RegisteredCitizen {
+  id: string
+  name: string
+  phone_number: string
+  address: string
+  lat: number
+  lon: number
+  registered_at: string
+}
+
+export async function registerCitizen(params: {
+  name: string
+  phoneNumber: string
+  address: string
+  lat: number
+  lon: number
+}): Promise<RegisteredCitizen> {
+  const res = await fetch(`${API_URL}/api/citizens/register`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: params.name,
+      phone_number: params.phoneNumber,
+      address: params.address,
+      lat: params.lat,
+      lon: params.lon,
+    }),
+  })
+  if (!res.ok) throw new Error(`citizens/register failed: ${res.status}`)
+  return res.json()
+}
+
 async function getJSON<T>(path: string): Promise<T> {
   const res = await fetch(`${API_URL}${path}`)
   if (!res.ok) throw new Error(`${path} failed: ${res.status}`)
