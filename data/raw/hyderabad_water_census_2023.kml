@@ -1,0 +1,3181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="telangana_jal_dharohar_2023" id="telangana_jal_dharohar_2023">
+	<SimpleField name="objectid" type="int"></SimpleField>
+	<SimpleField name="uuid" type="string"></SimpleField>
+	<SimpleField name="mi_id" type="float"></SimpleField>
+	<SimpleField name="unique_id" type="string"></SimpleField>
+	<SimpleField name="state" type="string"></SimpleField>
+	<SimpleField name="district" type="string"></SimpleField>
+	<SimpleField name="district_nwic" type="string"></SimpleField>
+	<SimpleField name="block_tehsil" type="string"></SimpleField>
+	<SimpleField name="village" type="string"></SimpleField>
+	<SimpleField name="water_body_type" type="string"></SimpleField>
+	<SimpleField name="longitude" type="string"></SimpleField>
+	<SimpleField name="latitude" type="string"></SimpleField>
+	<SimpleField name="rural_or_urban" type="string"></SimpleField>
+	<SimpleField name="enumeration_date" type="float"></SimpleField>
+	<SimpleField name="khasra_number" type="string"></SimpleField>
+	<SimpleField name="water_body_ownership" type="string"></SimpleField>
+	<SimpleField name="waterbody_use" type="string"></SimpleField>
+	<SimpleField name="waterbody_use_notuse" type="string"></SimpleField>
+	<SimpleField name="water_body_nature" type="string"></SimpleField>
+	<SimpleField name="max_depth_water_body_fully_fill" type="float"></SimpleField>
+	<SimpleField name="storage_capacity_water_body_ori" type="float"></SimpleField>
+	<SimpleField name="waterbody_encroached" type="string"></SimpleField>
+	<SimpleField name="image_path" type="string"></SimpleField>
+	<SimpleField name="remarks" type="string"></SimpleField>
+	<SimpleField name="water_spread_area_of_water_body" type="float"></SimpleField>
+	<SimpleField name="district_iw" type="string"></SimpleField>
+	<SimpleField name="district_code" type="string"></SimpleField>
+	<SimpleField name="subdistrict_nwic" type="string"></SimpleField>
+	<SimpleField name="subdistrict_code" type="string"></SimpleField>
+	<SimpleField name="village_nwic" type="string"></SimpleField>
+	<SimpleField name="village_code" type="string"></SimpleField>
+</Schema>
+<Folder><name>telangana_jal_dharohar_2023</name>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113259</SimpleData>
+		<SimpleData name="mi_id">1631</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220707/000003/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">AMBERPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 83</SimpleData>
+		<SimpleData name="water_body_type">02</SimpleData>
+		<SimpleData name="longitude">78.5191666701535</SimpleData>
+		<SimpleData name="latitude">17.4044444403958</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use_notuse">No</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220707000003001.jpeg</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Amberpet</SimpleData>
+		<SimpleData name="subdistrict_code">4502</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5191667,17.4044444</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113260</SimpleData>
+		<SimpleData name="mi_id">1632</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220707/000003/002</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">AMBERPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 83</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.5316666698886</SimpleData>
+		<SimpleData name="latitude">17.4052777798146</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">15</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">2</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220707000003002.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">1.35</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Musheerabad</SimpleData>
+		<SimpleData name="subdistrict_code">4501</SimpleData>
+		<SimpleData name="village_nwic">Osmania University CT</SimpleData>
+		<SimpleData name="village_code">573968</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5316667,17.4052778</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113261</SimpleData>
+		<SimpleData name="mi_id">28675</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221111/000010/002</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">ASIFNAGAR</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 63</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4594444399208</SimpleData>
+		<SimpleData name="latitude">17.3711111104109</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1557792000000</SimpleData>
+		<SimpleData name="water_body_ownership">Other private body</SimpleData>
+		<SimpleData name="waterbody_use">Religious</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">2</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221111000010002.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Asif Nagar</SimpleData>
+		<SimpleData name="subdistrict_code">4506</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4594444,17.3711111</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113262</SimpleData>
+		<SimpleData name="mi_id">28674</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221111/000010/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">ASIFNAGAR</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 63</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4630555597401</SimpleData>
+		<SimpleData name="latitude">17.3705555603252</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1557792000000</SimpleData>
+		<SimpleData name="water_body_ownership">Other private body</SimpleData>
+		<SimpleData name="waterbody_use">Religious</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">2</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221111000010001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Asif Nagar</SimpleData>
+		<SimpleData name="subdistrict_code">4506</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4630556,17.3705556</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113263</SimpleData>
+		<SimpleData name="mi_id">28676</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221111/000010/003</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">ASIFNAGAR</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 63</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.460000000229</SimpleData>
+		<SimpleData name="latitude">17.372500000275</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1557792000000</SimpleData>
+		<SimpleData name="water_body_ownership">Other private body</SimpleData>
+		<SimpleData name="waterbody_use">Religious</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221111000010003.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Asif Nagar</SimpleData>
+		<SimpleData name="subdistrict_code">4506</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.46,17.3725</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113264</SimpleData>
+		<SimpleData name="mi_id">28677</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221111/000010/004</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">ASIFNAGAR</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 63</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4594444396737</SimpleData>
+		<SimpleData name="latitude">17.3722222201909</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1557792000000</SimpleData>
+		<SimpleData name="water_body_ownership">Other private body</SimpleData>
+		<SimpleData name="waterbody_use">Religious</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221111000010004.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Asif Nagar</SimpleData>
+		<SimpleData name="subdistrict_code">4506</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4594444,17.3722222</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113265</SimpleData>
+		<SimpleData name="mi_id">6627</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221111/000004/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">ASIFNAGAR</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 73</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.450555559769</SimpleData>
+		<SimpleData name="latitude">17.4041666702346</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556755200000</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use_notuse">No</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">2</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">2</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221111000004001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.002</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Asif Nagar</SimpleData>
+		<SimpleData name="subdistrict_code">4506</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4505556,17.4041667</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113266</SimpleData>
+		<SimpleData name="mi_id">1106</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221111/000007/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">ASIFNAGAR</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 76</SimpleData>
+		<SimpleData name="water_body_type">03</SimpleData>
+		<SimpleData name="longitude">78.4594444397354</SimpleData>
+		<SimpleData name="latitude">17.4013888896191</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556064000000</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">8</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221111000007001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.48</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Asif Nagar</SimpleData>
+		<SimpleData name="subdistrict_code">4506</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4594444,17.4013889</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113267</SimpleData>
+		<SimpleData name="mi_id">28678</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221313/000005/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">BAHADURPURA</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 47</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4738888896356</SimpleData>
+		<SimpleData name="latitude">17.3450000002731</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1557792000000</SimpleData>
+		<SimpleData name="water_body_ownership">Other private body</SimpleData>
+		<SimpleData name="waterbody_use">Religious</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221313000005001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Bahadurpura</SimpleData>
+		<SimpleData name="subdistrict_code">4508</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4738889,17.345</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113268</SimpleData>
+		<SimpleData name="mi_id">33384</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221313/000001/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">BAHADURPURA</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 48</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4786111102808</SimpleData>
+		<SimpleData name="latitude">17.3672222201687</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1558051200000</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Religious</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221313000001001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Bahadurpura</SimpleData>
+		<SimpleData name="subdistrict_code">4508</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4786111,17.3672222</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113269</SimpleData>
+		<SimpleData name="mi_id">1571</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221313/000008/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">BAHADURPURA</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 55</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4505555595695</SimpleData>
+		<SimpleData name="latitude">17.3588888904475</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">2</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">650</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221313000008001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.004</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Bahadurpura</SimpleData>
+		<SimpleData name="subdistrict_code">4508</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4505556,17.3588889</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113270</SimpleData>
+		<SimpleData name="mi_id">1570</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221313/000009/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">BAHADURPURA</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 56</SimpleData>
+		<SimpleData name="water_body_type">02</SimpleData>
+		<SimpleData name="longitude">78.4572222195767</SimpleData>
+		<SimpleData name="latitude">17.338611109938</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="khasra_number">293</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Industrial</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">25</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">240000</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221313000009001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">10</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Bandlaguda</SimpleData>
+		<SimpleData name="subdistrict_code">4509</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4572222,17.3386111</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113271</SimpleData>
+		<SimpleData name="mi_id">1566</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221414/000004/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Ranga Reddy</SimpleData>
+		<SimpleData name="block_tehsil">BANDLAGUDA</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 41</SimpleData>
+		<SimpleData name="water_body_type">03</SimpleData>
+		<SimpleData name="longitude">78.5144444397328</SimpleData>
+		<SimpleData name="latitude">17.3483333301701</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">2</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">29603</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221414000004001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.005</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">518</SimpleData>
+		<SimpleData name="subdistrict_nwic">Saroornagar</SimpleData>
+		<SimpleData name="subdistrict_code">4526</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5144444,17.3483333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113272</SimpleData>
+		<SimpleData name="mi_id">1567</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221414/000005/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">BANDLAGUDA</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 42</SimpleData>
+		<SimpleData name="water_body_type">02</SimpleData>
+		<SimpleData name="longitude">78.4880555603667</SimpleData>
+		<SimpleData name="latitude">17.3216666699559</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="khasra_number">184</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">5</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">183511</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221414000005001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">1</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Bandlaguda</SimpleData>
+		<SimpleData name="subdistrict_code">4509</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4880556,17.3216667</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113273</SimpleData>
+		<SimpleData name="mi_id">1569</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221414/000006/002</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">BANDLAGUDA</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 43</SimpleData>
+		<SimpleData name="water_body_type">02</SimpleData>
+		<SimpleData name="longitude">78.4733333304221</SimpleData>
+		<SimpleData name="latitude">17.3155555604471</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="khasra_number">62/1</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">5</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">79527</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221414000006002.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">6</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Bandlaguda</SimpleData>
+		<SimpleData name="subdistrict_code">4509</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4733333,17.3155556</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113274</SimpleData>
+		<SimpleData name="mi_id">1568</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221414/000006/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">BANDLAGUDA</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 43</SimpleData>
+		<SimpleData name="water_body_type">02</SimpleData>
+		<SimpleData name="longitude">78.4719444399505</SimpleData>
+		<SimpleData name="latitude">17.3200000003315</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="khasra_number">13</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use_notuse">No</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">9324</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221414000006001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Bandlaguda</SimpleData>
+		<SimpleData name="subdistrict_code">4509</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4719444,17.32</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113275</SimpleData>
+		<SimpleData name="mi_id">2885</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221212/000001/003</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">GOLKONDA</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 66</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4144444396571</SimpleData>
+		<SimpleData name="latitude">17.3980555603063</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221212000001003.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4144444,17.3980556</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113276</SimpleData>
+		<SimpleData name="mi_id">2888</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221212/000001/006</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">GOLKONDA</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 66</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4144444400982</SimpleData>
+		<SimpleData name="latitude">17.3986111104029</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="water_body_ownership">Other private body</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221212000001006.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4144444,17.3986111</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113277</SimpleData>
+		<SimpleData name="mi_id">2883</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221212/000001/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">GOLKONDA</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 66</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4102777797574</SimpleData>
+		<SimpleData name="latitude">17.3974999996459</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="water_body_ownership">Other private body</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221212000001001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4102778,17.3975</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113278</SimpleData>
+		<SimpleData name="mi_id">2886</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221212/000001/004</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">GOLKONDA</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 66</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4122222200823</SimpleData>
+		<SimpleData name="latitude">17.3955555603077</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="water_body_ownership">Other private body</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221212000001004.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4122222,17.3955556</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113279</SimpleData>
+		<SimpleData name="mi_id">2891</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221212/000001/007</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">GOLKONDA</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 66</SimpleData>
+		<SimpleData name="water_body_type">02</SimpleData>
+		<SimpleData name="longitude">78.4222222195807</SimpleData>
+		<SimpleData name="latitude">17.3880555601882</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">6</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">34955</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221212000001007.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">3</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Golconda</SimpleData>
+		<SimpleData name="subdistrict_code">4507</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4222222,17.3880556</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113280</SimpleData>
+		<SimpleData name="mi_id">2887</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221212/000001/005</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">GOLKONDA</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 66</SimpleData>
+		<SimpleData name="water_body_type">02</SimpleData>
+		<SimpleData name="longitude">78.4144444398608</SimpleData>
+		<SimpleData name="latitude">17.3944444400858</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="water_body_ownership">Other private body</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">5</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">42805</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221212000001005.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">1</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4144444,17.3944444</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113281</SimpleData>
+		<SimpleData name="mi_id">2884</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221212/000001/002</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">GOLKONDA</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 66</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.411944439946</SimpleData>
+		<SimpleData name="latitude">17.3974999995804</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="water_body_ownership">Other private body</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221212000001002.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4119444,17.3975</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113282</SimpleData>
+		<SimpleData name="mi_id">2890</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221212/000002/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">GOLKONDA</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 67</SimpleData>
+		<SimpleData name="water_body_type">03</SimpleData>
+		<SimpleData name="longitude">78.400833330036</SimpleData>
+		<SimpleData name="latitude">17.392499999605</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">4</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">20284</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221212000002001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">2</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4008333,17.3925</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113283</SimpleData>
+		<SimpleData name="mi_id">28828</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220808/000002/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">HIMAYATNAGAR</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 80</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.5005555602198</SimpleData>
+		<SimpleData name="latitude">17.38916667009</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1557360000000</SimpleData>
+		<SimpleData name="water_body_ownership">Group of Individuals</SimpleData>
+		<SimpleData name="waterbody_use">Religious</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">800</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220808000002001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Himayatnagar</SimpleData>
+		<SimpleData name="subdistrict_code">4503</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5005556,17.3891667</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113284</SimpleData>
+		<SimpleData name="mi_id">28829</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220808/000002/002</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">HIMAYATNAGAR</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 80</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4983333304133</SimpleData>
+		<SimpleData name="latitude">17.3905555595749</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1557705600000</SimpleData>
+		<SimpleData name="water_body_ownership">Group of Individuals</SimpleData>
+		<SimpleData name="waterbody_use">Religious</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">5</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">800</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220808000002002.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Himayatnagar</SimpleData>
+		<SimpleData name="subdistrict_code">4503</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4983333,17.3905556</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113285</SimpleData>
+		<SimpleData name="mi_id">1622</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221010/000005/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">KHAIRATABAD</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 101</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4472222197811</SimpleData>
+		<SimpleData name="latitude">17.4499999996014</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">6</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">5147</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221010000005001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">2.4</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Ameerpet</SimpleData>
+		<SimpleData name="subdistrict_code">4497</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4472222,17.45</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113286</SimpleData>
+		<SimpleData name="mi_id">1625</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221010/000006/003</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">KHAIRATABAD</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 102</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4277777797586</SimpleData>
+		<SimpleData name="latitude">17.4524999996656</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="khasra_number">128/1-9</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use_notuse">No</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221010000006003.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Khairatabad</SimpleData>
+		<SimpleData name="subdistrict_code">4505</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4277778,17.4525</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113287</SimpleData>
+		<SimpleData name="mi_id">1623</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221010/000006/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">KHAIRATABAD</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 102</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4263888896104</SimpleData>
+		<SimpleData name="latitude">17.4488888898532</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="khasra_number">128/1-9</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use_notuse">No</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221010000006001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Khairatabad</SimpleData>
+		<SimpleData name="subdistrict_code">4505</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4263889,17.4488889</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113288</SimpleData>
+		<SimpleData name="mi_id">1626</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221010/000001/003</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">KHAIRATABAD</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 91</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4588888900554</SimpleData>
+		<SimpleData name="latitude">17.4277777801767</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="khasra_number">115/116</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221010000001003.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Khairatabad</SimpleData>
+		<SimpleData name="subdistrict_code">4505</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4588889,17.4277778</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113289</SimpleData>
+		<SimpleData name="mi_id">1076</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221010/000001/002</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">KHAIRATABAD</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 91</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4750000003115</SimpleData>
+		<SimpleData name="latitude">17.4230555601238</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1555977600000</SimpleData>
+		<SimpleData name="khasra_number">9/p</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221010000001002.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Khairatabad</SimpleData>
+		<SimpleData name="subdistrict_code">4505</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.475,17.4230556</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113290</SimpleData>
+		<SimpleData name="mi_id">6628</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221010/000001/004</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">KHAIRATABAD</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 91</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4725000004224</SimpleData>
+		<SimpleData name="latitude">17.4144444400727</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556755200000</SimpleData>
+		<SimpleData name="water_body_ownership">Group of Individuals</SimpleData>
+		<SimpleData name="waterbody_use">Religious</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221010000001004.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Khairatabad</SimpleData>
+		<SimpleData name="subdistrict_code">4505</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4725,17.4144444</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113291</SimpleData>
+		<SimpleData name="mi_id">1075</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221010/000001/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">KHAIRATABAD</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 91</SimpleData>
+		<SimpleData name="water_body_type">02</SimpleData>
+		<SimpleData name="longitude">78.485555559982</SimpleData>
+		<SimpleData name="latitude">17.421944439884</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1555977600000</SimpleData>
+		<SimpleData name="khasra_number">9/P</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1225</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221010000001001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Musheerabad</SimpleData>
+		<SimpleData name="subdistrict_code">4501</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4855556,17.4219444</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113292</SimpleData>
+		<SimpleData name="mi_id">1619</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221010/000003/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">KHAIRATABAD</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 96</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4180555597643</SimpleData>
+		<SimpleData name="latitude">17.4458333301916</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">6</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221010000003001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Khairatabad</SimpleData>
+		<SimpleData name="subdistrict_code">4505</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4180556,17.4458333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113293</SimpleData>
+		<SimpleData name="mi_id">1621</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221010/000004/002</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">KHAIRATABAD</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 99</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4402777798493</SimpleData>
+		<SimpleData name="latitude">17.4450000000851</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221010000004002.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Ameerpet</SimpleData>
+		<SimpleData name="subdistrict_code">4497</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4402778,17.445</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113294</SimpleData>
+		<SimpleData name="mi_id">1620</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221010/000004/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">KHAIRATABAD</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 99</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4397222202481</SimpleData>
+		<SimpleData name="latitude">17.4441666700241</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221010000004001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Khairatabad</SimpleData>
+		<SimpleData name="subdistrict_code">4505</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4397222,17.4441667</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113295</SimpleData>
+		<SimpleData name="mi_id">2442</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220505/000002/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Medchal Malkajgiri</SimpleData>
+		<SimpleData name="block_tehsil">MAREDPALLY</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 143</SimpleData>
+		<SimpleData name="water_body_type">02</SimpleData>
+		<SimpleData name="longitude">78.5561111098108</SimpleData>
+		<SimpleData name="latitude">17.4419444397069</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="khasra_number">124</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">12000</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220505000002001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">700</SimpleData>
+		<SimpleData name="subdistrict_nwic">Uppal</SimpleData>
+		<SimpleData name="subdistrict_code">4524</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5561111,17.4419444</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113296</SimpleData>
+		<SimpleData name="mi_id">26190</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220606/000002/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">MUSHEERABAD</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 86</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.5094444401453</SimpleData>
+		<SimpleData name="latitude">17.4055555603056</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1557705600000</SimpleData>
+		<SimpleData name="khasra_number">5/1,7/1,d,155</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use_notuse">No</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220606000002001.jpeg</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Amberpet</SimpleData>
+		<SimpleData name="subdistrict_code">4502</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5094444,17.4055556</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113297</SimpleData>
+		<SimpleData name="mi_id">26163</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220606/000003/003</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">MUSHEERABAD</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 87</SimpleData>
+		<SimpleData name="water_body_type">02</SimpleData>
+		<SimpleData name="longitude">78.5216666699162</SimpleData>
+		<SimpleData name="latitude">17.4213888904162</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1557705600000</SimpleData>
+		<SimpleData name="khasra_number">45</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use_notuse">No</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220606000003003.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Musheerabad</SimpleData>
+		<SimpleData name="subdistrict_code">4501</SimpleData>
+		<SimpleData name="village_nwic">Osmania University CT</SimpleData>
+		<SimpleData name="village_code">573968</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5216667,17.4213889</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113298</SimpleData>
+		<SimpleData name="mi_id">1629</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220606/000003/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">MUSHEERABAD</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 87</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.5249999995255</SimpleData>
+		<SimpleData name="latitude">17.408611110192</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220606000003001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Musheerabad</SimpleData>
+		<SimpleData name="subdistrict_code">4501</SimpleData>
+		<SimpleData name="village_nwic">Osmania University CT</SimpleData>
+		<SimpleData name="village_code">573968</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.525,17.4086111</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113299</SimpleData>
+		<SimpleData name="mi_id">1630</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220606/000003/002</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Medchal Malkajgiri</SimpleData>
+		<SimpleData name="block_tehsil">MUSHEERABAD</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 87</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.5375000004101</SimpleData>
+		<SimpleData name="latitude">17.4172222203123</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use_notuse">No</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220606000003002.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">700</SimpleData>
+		<SimpleData name="subdistrict_nwic">Uppal</SimpleData>
+		<SimpleData name="subdistrict_code">4524</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5375,17.4172222</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113300</SimpleData>
+		<SimpleData name="mi_id">10587</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220606/000004/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">MUSHEERABAD</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 88</SimpleData>
+		<SimpleData name="water_body_type">06</SimpleData>
+		<SimpleData name="longitude">78.5072222201158</SimpleData>
+		<SimpleData name="latitude">17.4191666696261</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556841600000</SimpleData>
+		<SimpleData name="water_body_ownership">Other private body</SimpleData>
+		<SimpleData name="waterbody_use">Religious</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">0</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220606000004001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Musheerabad</SimpleData>
+		<SimpleData name="subdistrict_code">4501</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5072222,17.4191667</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113301</SimpleData>
+		<SimpleData name="mi_id">1628</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220606/000005/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">MUSHEERABAD</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 89</SimpleData>
+		<SimpleData name="water_body_type">03</SimpleData>
+		<SimpleData name="longitude">78.4922222203734</SimpleData>
+		<SimpleData name="latitude">17.4191666699065</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220606000005001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Himayatnagar</SimpleData>
+		<SimpleData name="subdistrict_code">4503</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4922222,17.4191667</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113302</SimpleData>
+		<SimpleData name="mi_id">33385</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220909/000001/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">NAMPALLY</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 50</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4761111103428</SimpleData>
+		<SimpleData name="latitude">17.3891666701505</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1558051200000</SimpleData>
+		<SimpleData name="water_body_ownership">Group of Individuals</SimpleData>
+		<SimpleData name="waterbody_use">Religious</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">5</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220909000001001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.002</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Nampally</SimpleData>
+		<SimpleData name="subdistrict_code">4504</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4761111,17.3891667</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113303</SimpleData>
+		<SimpleData name="mi_id">6631</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220909/000002/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">NAMPALLY</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 51</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4758333296524</SimpleData>
+		<SimpleData name="latitude">17.3938888897475</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556755200000</SimpleData>
+		<SimpleData name="water_body_ownership">Group of Individuals</SimpleData>
+		<SimpleData name="waterbody_use">Religious</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220909000002001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Nampally</SimpleData>
+		<SimpleData name="subdistrict_code">4504</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4758333,17.3938889</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113304</SimpleData>
+		<SimpleData name="mi_id">6629</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220909/000004/002</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">NAMPALLY</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 78</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4727777795769</SimpleData>
+		<SimpleData name="latitude">17.4019444404268</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556755200000</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220909000004002.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Nampally</SimpleData>
+		<SimpleData name="subdistrict_code">4504</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4727778,17.4019444</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113305</SimpleData>
+		<SimpleData name="mi_id">1627</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220909/000004/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">NAMPALLY</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 78</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4741666700736</SimpleData>
+		<SimpleData name="latitude">17.4058333302467</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220909000004001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Himayatnagar</SimpleData>
+		<SimpleData name="subdistrict_code">4503</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4741667,17.4058333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113306</SimpleData>
+		<SimpleData name="mi_id">6630</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220909/000004/003</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">NAMPALLY</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 78</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.470277780176</SimpleData>
+		<SimpleData name="latitude">17.401111110412</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556755200000</SimpleData>
+		<SimpleData name="water_body_ownership">Group of Individuals</SimpleData>
+		<SimpleData name="waterbody_use">Religious</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220909000004003.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Nampally</SimpleData>
+		<SimpleData name="subdistrict_code">4504</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4702778,17.4011111</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113307</SimpleData>
+		<SimpleData name="mi_id">1565</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221616/000001/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SAIDABAD</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 24</SimpleData>
+		<SimpleData name="water_body_type">03</SimpleData>
+		<SimpleData name="longitude">78.511666670394</SimpleData>
+		<SimpleData name="latitude">17.3586111099522</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="khasra_number">221/1- 5/A/172</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1200</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221616000001001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Saidabad</SimpleData>
+		<SimpleData name="subdistrict_code">4511</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5116667,17.3586111</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113308</SimpleData>
+		<SimpleData name="mi_id">28830</SimpleData>
+		<SimpleData name="unique_id">2/36/022/221616/000004/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SAIDABAD</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 27</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.5002777802259</SimpleData>
+		<SimpleData name="latitude">17.3758333298617</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1557792000000</SimpleData>
+		<SimpleData name="water_body_ownership">Group of Individuals</SimpleData>
+		<SimpleData name="waterbody_use">Religious</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022221616000004001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Amberpet</SimpleData>
+		<SimpleData name="subdistrict_code">4502</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5002778,17.3758333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113309</SimpleData>
+		<SimpleData name="mi_id">37723</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220303/000004/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SECUNDERABAD</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 150</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.5061111098</SimpleData>
+		<SimpleData name="latitude">17.4408333297688</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1558310400000</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Religious</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220303000004001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Marredpally</SimpleData>
+		<SimpleData name="subdistrict_code">4500</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5061111,17.4408333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113310</SimpleData>
+		<SimpleData name="mi_id">1799</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000002/006</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 93</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.435555560475</SimpleData>
+		<SimpleData name="latitude">17.4219444401013</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556496000000</SimpleData>
+		<SimpleData name="khasra_number">202</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000002006.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4355556,17.4219444</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113311</SimpleData>
+		<SimpleData name="mi_id">1603</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000002/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 93</SimpleData>
+		<SimpleData name="water_body_type">03</SimpleData>
+		<SimpleData name="longitude">78.4274999995377</SimpleData>
+		<SimpleData name="latitude">17.4161111103036</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="khasra_number">102/1P</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">4</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">17351</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000002001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.045</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4275,17.4161111</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113312</SimpleData>
+		<SimpleData name="mi_id">1801</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000002/008</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 93</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.428333329584</SimpleData>
+		<SimpleData name="latitude">17.4172222199166</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556496000000</SimpleData>
+		<SimpleData name="khasra_number">202</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000002008.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4283333,17.4172222</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113313</SimpleData>
+		<SimpleData name="mi_id">1796</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000002/003</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 93</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4333333303487</SimpleData>
+		<SimpleData name="latitude">17.4258333303391</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556496000000</SimpleData>
+		<SimpleData name="khasra_number">202</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000002003.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4333333,17.4258333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113314</SimpleData>
+		<SimpleData name="mi_id">1814</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000002/018</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 93</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4294444397144</SimpleData>
+		<SimpleData name="latitude">17.4272222200431</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556496000000</SimpleData>
+		<SimpleData name="khasra_number">202</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000002018.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4294444,17.4272222</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113315</SimpleData>
+		<SimpleData name="mi_id">1813</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000002/017</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 93</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4272222204031</SimpleData>
+		<SimpleData name="latitude">17.4263888898701</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556496000000</SimpleData>
+		<SimpleData name="khasra_number">202</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Other</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000002017.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4272222,17.4263889</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113316</SimpleData>
+		<SimpleData name="mi_id">1804</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000002/011</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 93</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.418333329709</SimpleData>
+		<SimpleData name="latitude">17.4186111101007</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556496000000</SimpleData>
+		<SimpleData name="khasra_number">202</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000002011.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4183333,17.4186111</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113317</SimpleData>
+		<SimpleData name="mi_id">1803</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000002/010</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 93</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4205555595302</SimpleData>
+		<SimpleData name="latitude">17.4191666702769</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556496000000</SimpleData>
+		<SimpleData name="khasra_number">202</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000002010.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4205556,17.4191667</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113318</SimpleData>
+		<SimpleData name="mi_id">1798</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000002/005</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 93</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.436111110083</SimpleData>
+		<SimpleData name="latitude">17.4230555602479</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556496000000</SimpleData>
+		<SimpleData name="khasra_number">202</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000002005.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4361111,17.4230556</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113319</SimpleData>
+		<SimpleData name="mi_id">1797</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000002/004</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 93</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4333333297464</SimpleData>
+		<SimpleData name="latitude">17.4255555599351</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556496000000</SimpleData>
+		<SimpleData name="khasra_number">202</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000002004.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4333333,17.4255556</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113320</SimpleData>
+		<SimpleData name="mi_id">1607</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000002/002</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 93</SimpleData>
+		<SimpleData name="water_body_type">03</SimpleData>
+		<SimpleData name="longitude">78.4597222199274</SimpleData>
+		<SimpleData name="latitude">17.4202777799004</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="khasra_number">129</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">4</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">145995</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000002002.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">3.542</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Ameerpet</SimpleData>
+		<SimpleData name="subdistrict_code">4497</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4597222,17.4202778</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113321</SimpleData>
+		<SimpleData name="mi_id">1811</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000002/015</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 93</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4269444400096</SimpleData>
+		<SimpleData name="latitude">17.4277777797146</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556496000000</SimpleData>
+		<SimpleData name="khasra_number">202</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000002015.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4269444,17.4277778</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113322</SimpleData>
+		<SimpleData name="mi_id">1805</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000002/012</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 93</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4255555598745</SimpleData>
+		<SimpleData name="latitude">17.4227777798614</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556496000000</SimpleData>
+		<SimpleData name="khasra_number">202</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000002012.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4255556,17.4227778</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113323</SimpleData>
+		<SimpleData name="mi_id">1812</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000002/016</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 93</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4283333300755</SimpleData>
+		<SimpleData name="latitude">17.4266666703129</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556496000000</SimpleData>
+		<SimpleData name="khasra_number">202</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000002016.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4283333,17.4266667</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113324</SimpleData>
+		<SimpleData name="mi_id">1810</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000002/014</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 93</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4250000003078</SimpleData>
+		<SimpleData name="latitude">17.4277777799114</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556496000000</SimpleData>
+		<SimpleData name="khasra_number">202</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000002014.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.425,17.4277778</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113325</SimpleData>
+		<SimpleData name="mi_id">1809</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000002/013</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 93</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4224999995588</SimpleData>
+		<SimpleData name="latitude">17.4313888897945</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556496000000</SimpleData>
+		<SimpleData name="khasra_number">202</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000002013.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4225,17.4313889</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113326</SimpleData>
+		<SimpleData name="mi_id">1802</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000002/009</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 93</SimpleData>
+		<SimpleData name="water_body_type">03</SimpleData>
+		<SimpleData name="longitude">78.4227777799557</SimpleData>
+		<SimpleData name="latitude">17.4180555604014</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556496000000</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">5</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">124672</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000002009.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.1</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4227778,17.4180556</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113327</SimpleData>
+		<SimpleData name="mi_id">1800</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000002/007</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 93</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4274999998085</SimpleData>
+		<SimpleData name="latitude">17.4188888897427</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556496000000</SimpleData>
+		<SimpleData name="khasra_number">202</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000002007.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4275,17.4188889</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113328</SimpleData>
+		<SimpleData name="mi_id">2889</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000003/005</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 94</SimpleData>
+		<SimpleData name="water_body_type">03</SimpleData>
+		<SimpleData name="longitude">78.4186111103794</SimpleData>
+		<SimpleData name="latitude">17.4013888902104</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="khasra_number">195</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">121211</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000003005.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">4.1</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4186111,17.4013889</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113329</SimpleData>
+		<SimpleData name="mi_id">2879</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000003/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 94</SimpleData>
+		<SimpleData name="water_body_type">03</SimpleData>
+		<SimpleData name="longitude">78.4077777798335</SimpleData>
+		<SimpleData name="latitude">17.4147222197368</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="khasra_number">89</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">129419</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000003001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4077778,17.4147222</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113330</SimpleData>
+		<SimpleData name="mi_id">2882</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000003/004</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 94</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4108333295382</SimpleData>
+		<SimpleData name="latitude">17.4072222202542</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use_notuse">No</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000003004.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4108333,17.4072222</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113331</SimpleData>
+		<SimpleData name="mi_id">2880</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000003/002</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 94</SimpleData>
+		<SimpleData name="water_body_type">03</SimpleData>
+		<SimpleData name="longitude">78.4205555601503</SimpleData>
+		<SimpleData name="latitude">17.4136111097052</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">4565</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000003002.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">1.346</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4205556,17.4136111</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113332</SimpleData>
+		<SimpleData name="mi_id">2881</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000003/003</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Ranga Reddy</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 94</SimpleData>
+		<SimpleData name="water_body_type">03</SimpleData>
+		<SimpleData name="longitude">78.4002777799322</SimpleData>
+		<SimpleData name="latitude">17.411111110064</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="khasra_number">1</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">12325</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000003003.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">518</SimpleData>
+		<SimpleData name="subdistrict_nwic">Rajendranagar</SimpleData>
+		<SimpleData name="subdistrict_code">4527</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4002778,17.4111111</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113333</SimpleData>
+		<SimpleData name="mi_id">1807</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000004/006</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 95</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4219444400567</SimpleData>
+		<SimpleData name="latitude">17.4316666703301</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556496000000</SimpleData>
+		<SimpleData name="khasra_number">202</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Other</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">3</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000004006.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4219444,17.4316667</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113334</SimpleData>
+		<SimpleData name="mi_id">1806</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000004/005</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 95</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4169444395608</SimpleData>
+		<SimpleData name="latitude">17.4305555596415</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556496000000</SimpleData>
+		<SimpleData name="khasra_number">202</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Recreation</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000004005.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4169444,17.4305556</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113335</SimpleData>
+		<SimpleData name="mi_id">1605</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000004/002</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 95</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4241666699057</SimpleData>
+		<SimpleData name="latitude">17.4230555601673</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="khasra_number">129/1P</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">3</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">41831</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000004002.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.54</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4241667,17.4230556</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113336</SimpleData>
+		<SimpleData name="mi_id">1608</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000004/004</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 95</SimpleData>
+		<SimpleData name="water_body_type">03</SimpleData>
+		<SimpleData name="longitude">78.4419444400827</SimpleData>
+		<SimpleData name="latitude">17.4238888895774</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="khasra_number">102/1P</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use_notuse">No</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">2</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">37232</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000004004.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.044</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4419444,17.4238889</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113337</SimpleData>
+		<SimpleData name="mi_id">1606</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000004/003</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 95</SimpleData>
+		<SimpleData name="water_body_type">03</SimpleData>
+		<SimpleData name="longitude">78.4008333303567</SimpleData>
+		<SimpleData name="latitude">17.4224999999931</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="khasra_number">79</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">3</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">36807</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000004003.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.063</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4008333,17.4225</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113338</SimpleData>
+		<SimpleData name="mi_id">1604</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000004/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 95</SimpleData>
+		<SimpleData name="water_body_type">03</SimpleData>
+		<SimpleData name="longitude">78.4199999999756</SimpleData>
+		<SimpleData name="latitude">17.4200000003089</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556236800000</SimpleData>
+		<SimpleData name="khasra_number">102/1P</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use_notuse">No</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">4</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">2469</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000004001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.072</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.42,17.42</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113339</SimpleData>
+		<SimpleData name="mi_id">1808</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220101/000004/007</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">SHAIKPET</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 95</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4274999997763</SimpleData>
+		<SimpleData name="latitude">17.4300000000557</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556496000000</SimpleData>
+		<SimpleData name="khasra_number">202</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Other</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">1</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">4</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220101000004007.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.001</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Shaikpet</SimpleData>
+		<SimpleData name="subdistrict_code">4496</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4275,17.43</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113340</SimpleData>
+		<SimpleData name="mi_id">2433</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220404/000001/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Medchal Malkajgiri</SimpleData>
+		<SimpleData name="block_tehsil">TIRUMALGIRI</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 1</SimpleData>
+		<SimpleData name="water_body_type">02</SimpleData>
+		<SimpleData name="longitude">78.4986111103793</SimpleData>
+		<SimpleData name="latitude">17.4763888896392</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="khasra_number">83</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">2</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220404000001001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">700</SimpleData>
+		<SimpleData name="subdistrict_nwic">Malkajgiri</SimpleData>
+		<SimpleData name="subdistrict_code">4521</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4986111,17.4763889</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113341</SimpleData>
+		<SimpleData name="mi_id">2434</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220404/000001/002</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">TIRUMALGIRI</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 1</SimpleData>
+		<SimpleData name="water_body_type">02</SimpleData>
+		<SimpleData name="longitude">78.4869444404468</SimpleData>
+		<SimpleData name="latitude">17.4702777803852</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="khasra_number">131</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">12001</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220404000001002.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Tirumalgiri</SimpleData>
+		<SimpleData name="subdistrict_code">4499</SimpleData>
+		<SimpleData name="village_nwic">Secundarabad</SimpleData>
+		<SimpleData name="village_code">277300</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4869444,17.4702778</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113342</SimpleData>
+		<SimpleData name="mi_id">2437</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220404/000007/004</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">TIRUMALGIRI</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 7</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.5194444396823</SimpleData>
+		<SimpleData name="latitude">17.4938888902285</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="khasra_number">243</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Other</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220404000007004.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Tirumalgiri</SimpleData>
+		<SimpleData name="subdistrict_code">4499</SimpleData>
+		<SimpleData name="village_nwic">Secundarabad</SimpleData>
+		<SimpleData name="village_code">277300</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5194444,17.4938889</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113343</SimpleData>
+		<SimpleData name="mi_id">37720</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220404/000007/008</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">TIRUMALGIRI</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 7</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.5191666698154</SimpleData>
+		<SimpleData name="latitude">17.4913888897019</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1558310400000</SimpleData>
+		<SimpleData name="khasra_number">243</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Religious</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220404000007008.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Tirumalgiri</SimpleData>
+		<SimpleData name="subdistrict_code">4499</SimpleData>
+		<SimpleData name="village_nwic">Secundarabad</SimpleData>
+		<SimpleData name="village_code">277300</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5191667,17.4913889</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113344</SimpleData>
+		<SimpleData name="mi_id">37721</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220404/000007/009</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">TIRUMALGIRI</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 7</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.5230555602688</SimpleData>
+		<SimpleData name="latitude">17.4913888901769</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1558310400000</SimpleData>
+		<SimpleData name="khasra_number">243</SimpleData>
+		<SimpleData name="water_body_ownership">Group of Individuals</SimpleData>
+		<SimpleData name="waterbody_use">Religious</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220404000007009.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Tirumalgiri</SimpleData>
+		<SimpleData name="subdistrict_code">4499</SimpleData>
+		<SimpleData name="village_nwic">Secundarabad</SimpleData>
+		<SimpleData name="village_code">277300</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5230556,17.4913889</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113345</SimpleData>
+		<SimpleData name="mi_id">2438</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220404/000007/005</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">TIRUMALGIRI</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 7</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.5230555604631</SimpleData>
+		<SimpleData name="latitude">17.4941666704254</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="khasra_number">243</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220404000007005.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Tirumalgiri</SimpleData>
+		<SimpleData name="subdistrict_code">4499</SimpleData>
+		<SimpleData name="village_nwic">Secundarabad</SimpleData>
+		<SimpleData name="village_code">277300</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5230556,17.4941667</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113346</SimpleData>
+		<SimpleData name="mi_id">2440</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220404/000007/007</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Medchal Malkajgiri</SimpleData>
+		<SimpleData name="block_tehsil">TIRUMALGIRI</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 7</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.53666667037</SimpleData>
+		<SimpleData name="latitude">17.4847222195889</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="khasra_number">243</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220404000007007.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">700</SimpleData>
+		<SimpleData name="subdistrict_nwic">Malkajgiri</SimpleData>
+		<SimpleData name="subdistrict_code">4521</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5366667,17.4847222</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113347</SimpleData>
+		<SimpleData name="mi_id">2432</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220404/000007/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">TIRUMALGIRI</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 7</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.4977777803315</SimpleData>
+		<SimpleData name="latitude">17.4725000001405</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="khasra_number">82</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Other</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220404000007001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Tirumalgiri</SimpleData>
+		<SimpleData name="subdistrict_code">4499</SimpleData>
+		<SimpleData name="village_nwic">Secundarabad</SimpleData>
+		<SimpleData name="village_code">277300</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.4977778,17.4725</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113348</SimpleData>
+		<SimpleData name="mi_id">2439</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220404/000007/006</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">TIRUMALGIRI</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 7</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.525555559574</SimpleData>
+		<SimpleData name="latitude">17.4930555597788</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="khasra_number">243</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220404000007006.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Tirumalgiri</SimpleData>
+		<SimpleData name="subdistrict_code">4499</SimpleData>
+		<SimpleData name="village_nwic">Secundarabad</SimpleData>
+		<SimpleData name="village_code">277300</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5255556,17.4930556</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113349</SimpleData>
+		<SimpleData name="mi_id">2436</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220404/000007/003</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Hyderabad</SimpleData>
+		<SimpleData name="block_tehsil">TIRUMALGIRI</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 7</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.5197222201334</SimpleData>
+		<SimpleData name="latitude">17.4950000001225</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="khasra_number">243</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Other</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220404000007003.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">507</SimpleData>
+		<SimpleData name="subdistrict_nwic">Tirumalgiri</SimpleData>
+		<SimpleData name="subdistrict_code">4499</SimpleData>
+		<SimpleData name="village_nwic">Secundarabad</SimpleData>
+		<SimpleData name="village_code">277300</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5197222,17.495</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113350</SimpleData>
+		<SimpleData name="mi_id">2435</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220404/000007/002</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Medchal Malkajgiri</SimpleData>
+		<SimpleData name="block_tehsil">TIRUMALGIRI</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 7</SimpleData>
+		<SimpleData name="water_body_type">02</SimpleData>
+		<SimpleData name="longitude">78.5122222199621</SimpleData>
+		<SimpleData name="latitude">17.4799999995824</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="khasra_number">118</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Natural</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">25483</SimpleData>
+		<SimpleData name="waterbody_encroached">Yes</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220404000007002.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">700</SimpleData>
+		<SimpleData name="subdistrict_nwic">Malkajgiri</SimpleData>
+		<SimpleData name="subdistrict_code">4521</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5122222,17.48</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113351</SimpleData>
+		<SimpleData name="mi_id">37722</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220404/000008/002</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Medchal Malkajgiri</SimpleData>
+		<SimpleData name="block_tehsil">TIRUMALGIRI</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 8</SimpleData>
+		<SimpleData name="water_body_type">03</SimpleData>
+		<SimpleData name="longitude">78.5288888895867</SimpleData>
+		<SimpleData name="latitude">17.5102777797691</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1558310400000</SimpleData>
+		<SimpleData name="khasra_number">GLR 157</SimpleData>
+		<SimpleData name="water_body_ownership">Other Govt.Agency</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220404000008002.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">700</SimpleData>
+		<SimpleData name="subdistrict_nwic">Malkajgiri</SimpleData>
+		<SimpleData name="subdistrict_code">4521</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5288889,17.5102778</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#telangana_jal_dharohar_2023">
+		<SimpleData name="objectid">1113352</SimpleData>
+		<SimpleData name="mi_id">2441</SimpleData>
+		<SimpleData name="unique_id">2/36/022/220404/000008/001</SimpleData>
+		<SimpleData name="state">TS</SimpleData>
+		<SimpleData name="district">HYDERABAD</SimpleData>
+		<SimpleData name="district_nwic">Medchal Malkajgiri</SimpleData>
+		<SimpleData name="block_tehsil">TIRUMALGIRI</SimpleData>
+		<SimpleData name="village">GHMC WARD NUMBER 8</SimpleData>
+		<SimpleData name="water_body_type">01</SimpleData>
+		<SimpleData name="longitude">78.5263888903068</SimpleData>
+		<SimpleData name="latitude">17.5091666702213</SimpleData>
+		<SimpleData name="rural_or_urban">Urban</SimpleData>
+		<SimpleData name="enumeration_date">1556323200000</SimpleData>
+		<SimpleData name="khasra_number">GLR157</SimpleData>
+		<SimpleData name="water_body_ownership">Muncipal authority</SimpleData>
+		<SimpleData name="waterbody_use">Ground water recharge</SimpleData>
+		<SimpleData name="waterbody_use_notuse">Yes</SimpleData>
+		<SimpleData name="water_body_nature">Man-made</SimpleData>
+		<SimpleData name="max_depth_water_body_fully_fill">0</SimpleData>
+		<SimpleData name="storage_capacity_water_body_ori">1</SimpleData>
+		<SimpleData name="waterbody_encroached">No</SimpleData>
+		<SimpleData name="image_path">https://mi6census.mowr.gov.in/mic/getWaterBodyImageByURL/MIC_236022220404000008001.jpeg</SimpleData>
+		<SimpleData name="water_spread_area_of_water_body">0.3</SimpleData>
+		<SimpleData name="district_iw">Hyderabad</SimpleData>
+		<SimpleData name="district_code">700</SimpleData>
+		<SimpleData name="subdistrict_nwic">Malkajgiri</SimpleData>
+		<SimpleData name="subdistrict_code">4521</SimpleData>
+		<SimpleData name="village_nwic">Hyderabad</SimpleData>
+		<SimpleData name="village_code">251664</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>78.5263889,17.5091667</coordinates></Point>
+  </Placemark>
+</Folder>
+</Document></kml>
