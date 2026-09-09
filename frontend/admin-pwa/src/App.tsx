@@ -212,7 +212,21 @@ function App() {
 
       <div className="flex flex-1 min-h-0">
         <div className="flex-1 relative min-h-[280px]">
-          {view3D ? <TerrainView riskGrid={riskGrid} /> : <RiskMap riskGrid={riskGrid} onCellClick={setSelected} />}
+          {view3D ? (
+            <TerrainView
+              riskGrid={riskGrid}
+              center={selected ? { lat: selected.lat, lon: selected.lon, cellId: selected.cell_id } : null}
+              onResetCenter={() => setSelected(null)}
+            />
+          ) : (
+            <RiskMap
+              riskGrid={riskGrid}
+              onCellClick={(cell) => {
+                setSelected(cell)
+                setView3D(true)
+              }}
+            />
+          )}
 
           <div className="absolute top-2 right-2 flex rounded-full bg-white/90 p-0.5 text-xs shadow">
             <button
@@ -230,10 +244,10 @@ function App() {
           </div>
 
           {loading && (
-            <div className="absolute top-2 left-2 bg-white/90 text-xs px-2 py-1 rounded shadow">Loading...</div>
+            <div className="absolute bottom-2 right-2 bg-white/90 text-xs px-2 py-1 rounded shadow">Loading...</div>
           )}
           {error && (
-            <div className="absolute top-2 left-2 bg-red-50 text-red-700 text-xs px-2 py-1 rounded shadow">
+            <div className="absolute bottom-2 right-2 bg-red-50 text-red-700 text-xs px-2 py-1 rounded shadow">
               {error}
             </div>
           )}

@@ -4,8 +4,18 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import { useEffect, useRef } from 'react'
 import type { RiskCellProperties, RiskGridGeoJSON } from './api'
 
-const HYDERABAD_CENTER: [number, number] = [78.4867, 17.385]
 const BASEMAP_STYLE = 'https://tiles.openfreemap.org/styles/liberty'
+
+// Exact GHMC grid extent (data/processed/grid_features.csv) - keeps both the
+// initial view and pan/zoom limits scoped to Hyderabad only, not the world.
+const HYDERABAD_BOUNDS: [[number, number], [number, number]] = [
+  [78.243207, 17.296138],
+  [78.621207, 17.557138],
+]
+const HYDERABAD_MAX_BOUNDS: [[number, number], [number, number]] = [
+  [78.15, 17.21],
+  [78.72, 17.65],
+]
 
 const SEVERITY_COLOR_EXPR: maplibregl.ExpressionSpecification = [
   'match',
@@ -32,8 +42,10 @@ export default function RiskMap({ riskGrid, onCellClick }: Props) {
     const map = new maplibregl.Map({
       container: containerRef.current,
       style: BASEMAP_STYLE,
-      center: HYDERABAD_CENTER,
-      zoom: 10.5,
+      bounds: HYDERABAD_BOUNDS,
+      fitBoundsOptions: { padding: 16 },
+      maxBounds: HYDERABAD_MAX_BOUNDS,
+      minZoom: 9.5,
     })
     map.addControl(new maplibregl.NavigationControl(), 'top-right')
     map.on('error', (e) => console.error('maplibre error', e.error))
