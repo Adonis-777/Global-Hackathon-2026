@@ -1,0 +1,15 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Trained models - regenerate with `python ml/run_pipeline.py`
+ml/models/*.joblib
+
+# Node (frontend apps also have their own .gitignore)
+node_modules/
+dist/
+
+# Env files with real secrets
+.env
+backend/.env
