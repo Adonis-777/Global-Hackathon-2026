@@ -82,3 +82,28 @@ Rather than ward-level (coarse, but easy), we run the risk model and map on a **
 
 **6. Validation**
 - Run the full pipeline against one synthetic/test rainfall event end-to-end: rainfall in → per-cell risk map + severity ranking + sample citizen alert out. That's the demo.
+
+## Running this project
+
+Real data sources and current placeholders (elevation, population, rainfall - see `data/DATA_SOURCES.md`) are documented separately.
+
+**1. ML pipeline** (grid → features → train → cluster; produces the risk data the API serves)
+```
+python -m venv .venv
+.venv/Scripts/activate        # .venv/bin/activate on macOS/Linux
+pip install -r ml/requirements.txt
+python ml/run_pipeline.py
+```
+
+**2. Backend** (FastAPI, serves risk-grid/hotspots/stats/alerts)
+```
+pip install -r backend/requirements.txt
+cd backend && uvicorn app:app --reload --port 8000
+```
+Copy `backend/.env.example` to `backend/.env` and fill in Twilio credentials to send real SMS/WhatsApp alerts - alerts run in dry-run (logged, not sent) otherwise.
+
+**3. Frontend** (two independent PWAs)
+```
+cd frontend/citizen-pwa && cp .env.example .env && npm install && npm run dev   # http://localhost:5173
+cd frontend/admin-pwa   && cp .env.example .env && npm install && npm run dev   # http://localhost:5174
+```
