@@ -67,3 +67,22 @@ export async function triggerAlert(params: {
   if (!res.ok) throw new Error(`alerts/trigger failed: ${res.status}`)
   return res.json()
 }
+
+export interface SafeRoute {
+  road_name: string
+  highway: string
+  severity_band: SeverityBand
+  lat: number
+  lon: number
+  distance_km: number
+  walk_minutes: number
+  drive_minutes: number
+  user_severity_band: SeverityBand
+}
+
+export async function fetchSafeRoute(lat: number, lon: number, rainfallMm: number): Promise<SafeRoute | null> {
+  const res = await fetch(`${API_URL}/api/safe-route?lat=${lat}&lon=${lon}&rainfall_mm=${rainfallMm}`)
+  if (res.status === 404) return null
+  if (!res.ok) throw new Error(`safe-route failed: ${res.status}`)
+  return res.json()
+}

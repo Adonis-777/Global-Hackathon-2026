@@ -225,6 +225,18 @@ class AlertRequest(BaseModel):
     threshold: float = Field(default=0.6, ge=0, le=1)
 
 
+@app.get("/api/safe-route")
+def safe_route(lat: float, lon: float, rainfall_mm: float = DEFAULT_RAINFALL_MM, model: str = DEFAULT_MODEL, band_method: str = DEFAULT_BAND_METHOD):
+    """Nearest real main-road point (yellow/green severity) for a citizen at
+    (lat, lon) to head toward when they're in a red zone - see
+    RiskEngine.nearest_safe_road() for what "nearest" means here (straight-
+    line to the road's real geometry, not a full routing engine)."""
+    result = get_engine().nearest_safe_road(lat, lon, rainfall_mm, model, band_method)
+    if result is None:
+        raise HTTPException(status_code=404, detail="No safe main road found within range")
+    return result
+
+
 @app.get("/api/mock-event-validation")
 def mock_event_validation():
     """Precomputed accuracy/DRF-dispatch results of testing the live models

@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
-import { fetchRiskGrid, triggerAlert, type AlertResponse, type RiskGridGeoJSON } from './api'
+import { fetchRiskGrid, fetchSafeRoute, triggerAlert, type AlertResponse, type RiskGridGeoJSON, type SafeRoute } from './api'
 import PrecautionarySteps from './PrecautionarySteps'
 import RiskMap from './RiskMap'
+import SafeRouteCard from './SafeRouteCard'
+import { useGeolocation } from './useGeolocation'
 
-// Demo "my location" - a real GHMC waterlogging-prone locality (Malakpet,
+// Fallback "my location" - a real GHMC waterlogging-prone locality (Malakpet,
 // geocoded in data/processed/ghmc_waterlogging_incidents_2019.csv) so the
-// alert has a real chance of firing without needing device geolocation.
-const DEMO_LOCATION = { lat: 17.3736706, lon: 78.4996484, label: 'Malakpet (demo location)' }
+// alert has a real chance of firing if device geolocation is unavailable or denied.
+const DEMO_LOCATION = { lat: 17.3736706, lon: 78.4996484 }
 
 const SEVERITY_LABEL: Record<string, string> = {
   red: 'High risk',
@@ -16,10 +18,20 @@ const SEVERITY_LABEL: Record<string, string> = {
 
 function App() {
   const rainfallMm = 60
+  const { location, status: gpsStatus, requestLocation } = useGeolocation(DEMO_LOCATION)
   const [riskGrid, setRiskGrid] = useState<RiskGridGeoJSON | null>(null)
   const [alert, setAlert] = useState<AlertResponse | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [safeRoute, setSafeRoute] = useState<SafeRoute | null>(null)
+  const [safeRouteLoading, setSafeRouteLoading] = useState(false)
+
+  // Ask for device GPS once on load; falls back to the demo location if
+  // denied/unsupported (useGeolocation already seeds that as the initial state).
+  useEffect(() => {
+    requestLocation()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     let cancelled = false
@@ -27,7 +39,7 @@ function App() {
     setError(null)
     Promise.all([
       fetchRiskGrid(rainfallMm),
-      triggerAlert({ lat: DEMO_LOCATION.lat, lon: DEMO_LOCATION.lon, rainfallMm }),
+      triggerAlert({ lat: location.lat, lon: location.lon, rainfallMm }),
     ])
       .then(([grid, alertResult]) => {
         if (cancelled) return
@@ -39,19 +51,56 @@ function App() {
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [location.lat, location.lon])
 
+  // Only a citizen actually in a red zone needs a route out - fetch on
+  // demand rather than for every visitor.
+  useEffect(() => {
+    if (alert?.cell.severity_band !== 'red') {
+      setSafeRoute(null)
+      return
+    }
+    let cancelled = false
+    setSafeRouteLoading(true)
+    fetchSafeRoute(location.lat, location.lon, rainfallMm)
+      .then((route) => !cancelled && setSafeRoute(route))
+      .catch(() => !cancelled && setSafeRoute(null))
+      .finally(() => !cancelled && setSafeRouteLoading(false))
+    return () => {
+      cancelled = true
+    }
+  }, [alert, location.lat, location.lon])
 
-  const markers = [{ lon: DEMO_LOCATION.lon, lat: DEMO_LOCATION.lat, color: '#0f766e' }]
+  const markers = [{ lon: location.lon, lat: location.lat, color: '#0f766e' }]
   if (alert?.alternate_route) {
     markers.push({ lon: alert.alternate_route.lon, lat: alert.alternate_route.lat, color: '#22c55e' })
   }
+  if (safeRoute) {
+    markers.push({ lon: safeRoute.lon, lat: safeRoute.lat, color: '#0d9488' })
+  }
+
+  const locationLabel =
+    location.source === 'gps'
+      ? 'Your current location (GPS)'
+      : gpsStatus === 'locating'
+        ? 'Locating...'
+        : 'Malakpet (demo location - GPS unavailable)'
 
   return (
     <main className="flex flex-col h-screen bg-slate-50 text-slate-900">
       <header className="bg-teal-700 text-white px-4 py-3">
         <h1 className="text-lg font-semibold">Hyderabad Waterlogging Alerts</h1>
-        <p className="text-teal-100 text-sm">Citizen PWA - {DEMO_LOCATION.label}</p>
+        <div className="flex items-center justify-between gap-2">
+          <p className="text-teal-100 text-sm">Citizen PWA - {locationLabel}</p>
+          {location.source === 'demo' && gpsStatus !== 'locating' && (
+            <button
+              onClick={requestLocation}
+              className="text-xs font-medium bg-teal-800/60 hover:bg-teal-800 px-2 py-1 rounded-full whitespace-nowrap"
+            >
+              Use my location
+            </button>
+          )}
+        </div>
       </header>
 
       <div className="flex-1 relative min-h-[280px]">
@@ -91,6 +140,7 @@ function App() {
             )}
           </div>
         )}
+        {alert?.cell.severity_band === 'red' && <SafeRouteCard route={safeRoute} loading={safeRouteLoading} />}
         {alert && <PrecautionarySteps severityBand={alert.cell.severity_band} />}
       </section>
 

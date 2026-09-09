@@ -485,6 +485,83 @@ class RiskEngine:
             "distance_km": round(float(best.distance_km), 3),
         }
 
+    # Assumed average speeds for the walking/driving ETA shown alongside a
+    # safe-road suggestion - a real routing engine (OSRM + the road graph)
+    # is out of scope for a 24h hackathon, so distance is straight-line
+    # (haversine to the nearest point on the road geometry, not just its
+    # midpoint) and ETA is that distance over an assumed speed.
+    WALK_SPEED_KMH = 4.5
+    DRIVE_SPEED_KMH = 18.0
+
+    def nearest_safe_road(
+        self,
+        lat: float,
+        lon: float,
+        rainfall_mm: float,
+        model_name: str = DEFAULT_MODEL,
+        band_method: str = DEFAULT_BAND_METHOD,
+        radius_km: float = 8.0,
+    ) -> dict | None:
+        """Nearest point on a real OSM main road (trunk/primary/secondary/
+        tertiary - the only classes in data/raw/osm_roads_hyderabad.geojson)
+        whose surrounding cell is yellow or green, i.e. an actual driveable
+        street to head toward rather than an arbitrary safer grid cell.
+        Distance is to the closest vertex of the road's real geometry, not
+        just its midpoint, so the suggestion reflects the road's actual
+        shape (a long road can curve much closer to the user than its
+        midpoint implies)."""
+        if not self._roads:
+            return None
+
+        df = self.score(rainfall_mm, model_name, band_method)
+        severity = df["severity_band"].values
+
+        dist_user = haversine_km(lat, lon, df["lat"].values, df["lon"].values)
+        user_band = severity[int(np.argmin(dist_user))]
+
+        mids = np.array([[r["mid_lat"], r["mid_lon"]] for r in self._roads])
+        _, cell_idx = self._grid_tree.query(mids, k=1)
+        road_bands = severity[cell_idx]
+        safe_mask = np.isin(road_bands, ["yellow", "green"])
+
+        # Cheap first pass on midpoint distance (vectorized) to shortlist
+        # candidates before the more expensive per-vertex scan below - a
+        # road's real closest point can only be closer than its midpoint,
+        # so padding the radius here can't miss a true match.
+        mid_dist = haversine_km(lat, lon, mids[:, 0], mids[:, 1])
+        candidate_mask = safe_mask & (mid_dist <= radius_km + 3.0)
+        candidates = [(r, b) for r, b, keep in zip(self._roads, road_bands, candidate_mask) if keep]
+        if not candidates:
+            return None
+
+        best = None
+        for road, band in candidates:
+            coords = road["coordinates"]
+            lons = np.array([c[0] for c in coords])
+            lats = np.array([c[1] for c in coords])
+            d = haversine_km(lat, lon, lats, lons)
+            i = int(np.argmin(d))
+            dist_km = float(d[i])
+            if dist_km > radius_km:
+                continue
+            if best is None or dist_km < best["distance_km"]:
+                best = {
+                    "road_name": road["name"] or f"Unnamed {road['highway']} road",
+                    "highway": road["highway"],
+                    "severity_band": band,
+                    "lat": float(lats[i]),
+                    "lon": float(lons[i]),
+                    "distance_km": dist_km,
+                }
+        if best is None:
+            return None
+
+        best["distance_km"] = round(best["distance_km"], 3)
+        best["walk_minutes"] = round(best["distance_km"] / self.WALK_SPEED_KMH * 60, 1)
+        best["drive_minutes"] = round(best["distance_km"] / self.DRIVE_SPEED_KMH * 60, 1)
+        best["user_severity_band"] = user_band
+        return best
+
     def localities(self) -> list[dict]:
         """Real GHMC 2019 waterlogging-prone localities (geocoded), used to
         populate a real location picker instead of one hardcoded demo point."""
