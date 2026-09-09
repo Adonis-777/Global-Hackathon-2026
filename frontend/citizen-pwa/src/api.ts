@@ -86,3 +86,18 @@ export async function fetchSafeRoute(lat: number, lon: number, rainfallMm: numbe
   if (!res.ok) throw new Error(`safe-route failed: ${res.status}`)
   return res.json()
 }
+
+export interface ForecastHour {
+  hour: number
+  day: number
+  hour_of_day: number
+  rainfall_mm: number
+}
+
+export const fetchForecast = (days = 3) => getJSON<{ days: number; hours: ForecastHour[] }>(`/api/forecast?days=${days}`)
+
+async function getJSON<T>(path: string): Promise<T> {
+  const res = await fetch(`${API_URL}${path}`)
+  if (!res.ok) throw new Error(`${path} failed: ${res.status}`)
+  return res.json()
+}

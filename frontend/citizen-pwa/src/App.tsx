@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import { fetchRiskGrid, fetchSafeRoute, triggerAlert, type AlertResponse, type RiskGridGeoJSON, type SafeRoute } from './api'
 import { DropletIcon, LocationIcon, PhoneIcon } from './icons'
+import LiveRainfallCard from './LiveRainfallCard'
 import PrecautionarySteps from './PrecautionarySteps'
 import RiskLegend from './RiskLegend'
 import RiskMap from './RiskMap'
 import RiskStatusCard from './RiskStatusCard'
 import SafeRouteCard from './SafeRouteCard'
 import { useGeolocation } from './useGeolocation'
+import { useLiveRainfall } from './useLiveRainfall'
 
 // Fallback "my location" - a real GHMC waterlogging-prone locality (Malakpet,
 // geocoded in data/processed/ghmc_waterlogging_incidents_2019.csv) so the
@@ -14,7 +16,8 @@ import { useGeolocation } from './useGeolocation'
 const DEMO_LOCATION = { lat: 17.3736706, lon: 78.4996484 }
 
 function App() {
-  const rainfallMm = 60
+  const { current: liveRainfall, history: rainfallHistory, loading: rainfallLoading } = useLiveRainfall()
+  const rainfallMm = liveRainfall?.rainfallMm ?? 60
   const { location, status: gpsStatus, requestLocation } = useGeolocation(DEMO_LOCATION)
   const [riskGrid, setRiskGrid] = useState<RiskGridGeoJSON | null>(null)
   const [alert, setAlert] = useState<AlertResponse | null>(null)
@@ -48,7 +51,7 @@ function App() {
     return () => {
       cancelled = true
     }
-  }, [location.lat, location.lon])
+  }, [location.lat, location.lon, rainfallMm])
 
   // Only a citizen actually in a red zone needs a route out - fetch on
   // demand rather than for every visitor.
@@ -66,7 +69,7 @@ function App() {
     return () => {
       cancelled = true
     }
-  }, [alert, location.lat, location.lon])
+  }, [alert, location.lat, location.lon, rainfallMm])
 
   // Red = where the citizen currently is, green = where they should head.
   // Destination markers are added first, current location last, so the
@@ -124,6 +127,7 @@ function App() {
         <aside className="w-[360px] shrink-0 bg-white border-l border-slate-200 flex flex-col min-h-0">
           <div className="flex-1 overflow-y-auto p-4 space-y-3">
             {error && <p className="text-sm text-red-600">{error}</p>}
+            <LiveRainfallCard current={liveRainfall} history={rainfallHistory} loading={rainfallLoading} />
             {alert && <RiskStatusCard alert={alert} />}
             {alert?.cell.severity_band === 'red' && <SafeRouteCard route={safeRoute} loading={safeRouteLoading} />}
             {alert && <PrecautionarySteps severityBand={alert.cell.severity_band} />}
