@@ -114,6 +114,30 @@ def list_overrides():
     return get_engine().overrides
 
 
+class MobilizeRequest(BaseModel):
+    cell_id: int
+    rainfall_mm: float = DEFAULT_RAINFALL_MM
+
+
+@app.post("/api/mobilize")
+def mobilize_drf(body: MobilizeRequest):
+    try:
+        return get_engine().mobilize_drf(body.cell_id, body.rainfall_mm)
+    except ValueError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+
+
+@app.delete("/api/mobilize/{cell_id}")
+def recall_drf(cell_id: int):
+    get_engine().recall_drf(cell_id)
+    return {"cell_id": cell_id, "recalled": True}
+
+
+@app.get("/api/mobilizations")
+def list_mobilizations():
+    return {"mobilizations": get_engine().list_mobilizations()}
+
+
 class AlertRequest(BaseModel):
     lat: float
     lon: float

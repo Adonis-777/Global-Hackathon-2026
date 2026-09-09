@@ -21,6 +21,8 @@ export interface RiskGridGeoJSON {
   }>
 }
 
+export type DrfStatus = 'pending' | 'mobilized'
+
 export interface Hotspot {
   cell_id: number
   lat: number
@@ -29,6 +31,19 @@ export interface Hotspot {
   severity_band: SeverityBand
   population_exposed: number
   mobilization_score: number
+  drf_status: DrfStatus
+  dispatched_at: string | null
+}
+
+export interface DrfRecord {
+  cell_id: number
+  lat: number
+  lon: number
+  risk_score: number
+  severity_band: SeverityBand
+  population_exposed: number
+  status: DrfStatus
+  dispatched_at: string
 }
 
 export interface SeverityStat {
@@ -68,3 +83,21 @@ export async function clearOverride(cellId: number) {
   if (!res.ok) throw new Error(`clear override failed: ${res.status}`)
   return res.json()
 }
+
+export async function mobilizeDrf(cellId: number, rainfallMm: number): Promise<DrfRecord> {
+  const res = await fetch(`${API_URL}/api/mobilize`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ cell_id: cellId, rainfall_mm: rainfallMm }),
+  })
+  if (!res.ok) throw new Error(`mobilize failed: ${res.status}`)
+  return res.json()
+}
+
+export async function recallDrf(cellId: number) {
+  const res = await fetch(`${API_URL}/api/mobilize/${cellId}`, { method: 'DELETE' })
+  if (!res.ok) throw new Error(`recall failed: ${res.status}`)
+  return res.json()
+}
+
+export const fetchMobilizations = () => getJSON<{ mobilizations: DrfRecord[] }>('/api/mobilizations')

@@ -9,6 +9,7 @@ pipeline's output files to exist. Run `python ml/run_pipeline.py` once
 """
 import json
 import os
+from datetime import datetime, timezone
 
 import joblib
 import numpy as np
@@ -51,6 +52,8 @@ class RiskEngine:
         self.feature_cols = bundle["feature_cols"]
         # human-in-the-loop overrides: cell_id -> severity_band, kept in memory only
         self.overrides: dict[int, str] = {}
+        # Disaster Response Force mobilizations: cell_id -> dispatch record, in memory only
+        self.mobilizations: dict[int, dict] = {}
 
         # Grid rows never change position/order after this, so a KDTree built
         # once here can be reused by every request - only risk_score/severity
@@ -131,9 +134,40 @@ class RiskEngine:
                 "severity_band": row.severity_band,
                 "population_exposed": int(row.population_exposed),
                 "mobilization_score": round(float(row.mobilization_score), 1),
+                "drf_status": self.mobilizations.get(int(row.cell_id), {}).get("status", "pending"),
+                "dispatched_at": self.mobilizations.get(int(row.cell_id), {}).get("dispatched_at"),
             }
             for row in top.itertuples()
         ]
+
+    def mobilize_drf(self, cell_id: int, rainfall_mm: float) -> dict:
+        """Dispatch a Disaster Response Force unit to a cell. Only meaningful
+        for cells the model currently flags as risky - the mobilization
+        decision is grounded in the live risk_score/severity_band, not a
+        blind admin click."""
+        df = self.score(rainfall_mm)
+        row = df.loc[df["cell_id"] == cell_id]
+        if row.empty:
+            raise ValueError(f"Unknown cell_id {cell_id}")
+        row = row.iloc[0]
+        record = {
+            "cell_id": cell_id,
+            "lat": float(row.lat),
+            "lon": float(row.lon),
+            "risk_score": round(float(row.risk_score), 4),
+            "severity_band": row.severity_band,
+            "population_exposed": int(row.population_exposed),
+            "status": "mobilized",
+            "dispatched_at": datetime.now(timezone.utc).isoformat(),
+        }
+        self.mobilizations[cell_id] = record
+        return record
+
+    def recall_drf(self, cell_id: int):
+        self.mobilizations.pop(cell_id, None)
+
+    def list_mobilizations(self) -> list[dict]:
+        return sorted(self.mobilizations.values(), key=lambda r: r["dispatched_at"], reverse=True)
 
     def severity_population_stats(self, rainfall_mm: float) -> list[dict]:
         df = self.score(rainfall_mm)
