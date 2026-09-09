@@ -4,3 +4,7 @@ scikit-learn
 shapely
 scipy
 joblib
+
+# For run_experiments.py / generate_paper.py (algorithm-comparison paper)
+xgboost
+python-docx

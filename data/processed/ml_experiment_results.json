@@ -1,0 +1,84 @@
+{
+  "task_a_waterlog_prediction": {
+    "Random Forest": {
+      "accuracy": 0.9453,
+      "precision": 0.7637,
+      "recall": 0.7191,
+      "f1_score": 0.7407,
+      "roc_auc": 0.9752,
+      "train_seconds": 0.603,
+      "feature_importances": {
+        "terrain_elevation_m": 0.0605,
+        "rainfall_cm": 0.1658,
+        "drainage_distance_km": 0.4476,
+        "dist_to_incident_km": 0.3261
+      }
+    },
+    "XGBoost": {
+      "accuracy": 0.9462,
+      "precision": 0.7483,
+      "recall": 0.7618,
+      "f1_score": 0.755,
+      "roc_auc": 0.9748,
+      "train_seconds": 0.337,
+      "feature_importances": {
+        "terrain_elevation_m": 0.0416,
+        "rainfall_cm": 0.2221,
+        "drainage_distance_km": 0.451,
+        "dist_to_incident_km": 0.2853
+      }
+    },
+    "AdaBoost": {
+      "accuracy": 0.946,
+      "precision": 0.7593,
+      "recall": 0.7371,
+      "f1_score": 0.748,
+      "roc_auc": 0.9756,
+      "train_seconds": 1.402,
+      "feature_importances": {
+        "terrain_elevation_m": 0.0568,
+        "rainfall_cm": 0.1327,
+        "drainage_distance_km": 0.4781,
+        "dist_to_incident_km": 0.3324
+      }
+    },
+    "_meta": {
+      "n_train": 16371,
+      "n_test": 4093,
+      "positive_rate_test": 0.1087,
+      "features": [
+        "terrain_elevation_m",
+        "rainfall_cm",
+        "drainage_distance_km",
+        "dist_to_incident_km"
+      ]
+    }
+  },
+  "task_b_severity_ranking": {
+    "K-Means": {
+      "silhouette_score": 0.3903,
+      "davies_bouldin_score": 0.9381,
+      "train_seconds": 0.1157,
+      "cluster_sizes": {
+        "0": 1227,
+        "1": 555,
+        "2": 776
+      }
+    },
+    "KNN": {
+      "accuracy_vs_kmeans_bands": 0.9883,
+      "f1_macro_vs_kmeans_bands": 0.9862,
+      "train_seconds": 0.0015
+    },
+    "Hybrid (K-Means + spatial KNN smoothing)": {
+      "silhouette_score": 0.3034,
+      "cells_reassigned_by_smoothing": 280,
+      "pct_reassigned": 10.95,
+      "train_seconds": 0.0082
+    },
+    "_meta": {
+      "n_cells": 2558,
+      "rainfall_scenario_mm": 60
+    }
+  }
+}
