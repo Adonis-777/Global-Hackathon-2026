@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { fetchRiskGrid, triggerAlert, type AlertResponse, type RiskGridGeoJSON } from './api'
 import RiskMap from './RiskMap'
+import PrecautionarySteps, { RiskLevel } from './components/PrecautionarySteps'
 
 // Demo "my location" - a real GHMC waterlogging-prone locality (Malakpet,
 // geocoded in data/processed/ghmc_waterlogging_incidents_2019.csv) so the
@@ -11,6 +12,12 @@ const SEVERITY_LABEL: Record<string, string> = {
   red: 'High risk',
   yellow: 'Moderate risk',
   green: 'Low risk',
+}
+
+const SEVERITY_TO_RISK_LEVEL: Record<string, RiskLevel> = {
+  red: 'HIGH',
+  yellow: 'MODERATE',
+  green: 'LOW',
 }
 
 function App() {
@@ -103,6 +110,9 @@ function App() {
             ) : (
               <p>No active alert at your location for this rainfall scenario.</p>
             )}
+            <PrecautionarySteps
+              riskLevel={SEVERITY_TO_RISK_LEVEL[alert.cell?.severity_band || 'green']}
+            />
           </div>
         )}
       </section>
