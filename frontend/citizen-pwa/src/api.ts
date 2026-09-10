@@ -1,4 +1,7 @@
-const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
+// Strip a trailing slash so a VITE_API_URL set with one (e.g. deploy env
+// vars often get pasted as "https://host.com/") doesn't produce "//api/..."
+// double-slash URLs that the backend's router won't match.
+const API_URL = (import.meta.env.VITE_API_URL ?? 'http://localhost:8000').replace(/\/+$/, '')
 
 export type SeverityBand = 'green' | 'yellow' | 'red'
 
