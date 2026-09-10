@@ -4,6 +4,13 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import { useEffect, useRef } from 'react'
 import type { RiskCellProperties, RiskGridGeoJSON } from './api'
 
+// maplibre-gl auto-detects its own worker script's URL at runtime, but that
+// detection doesn't survive this project's Vite/Rolldown production bundle -
+// the worker request 404s (silently, no console error) and no tiles ever
+// render. Pointing it at a plain static copy in public/ (served verbatim,
+// unbundled) sidesteps the bundler issue entirely.
+maplibregl.setWorkerUrl('/maplibre-gl-worker.mjs')
+
 const BASEMAP_STYLE = 'https://tiles.openfreemap.org/styles/liberty'
 
 // Exact GHMC grid extent (data/processed/grid_features.csv) - keeps both the
